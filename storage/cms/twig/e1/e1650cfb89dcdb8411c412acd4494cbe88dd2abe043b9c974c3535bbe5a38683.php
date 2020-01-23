@@ -49,10 +49,7 @@ class __TwigTemplate_76349af3138bcab281e93d8f19516c25339e75893508bc6e4a468a2b2cf
 ";
         }
         // line 7
-        echo "?>
-<ul>
-  <li> <a href=\"register\">Register</a> </li>
-</ul>";
+        echo "?>";
     }
 
     public function getTemplateName()
@@ -78,9 +75,6 @@ class __TwigTemplate_76349af3138bcab281e93d8f19516c25339e75893508bc6e4a468a2b2cf
 {% else %}
      ?><p>Log in</p><?php
 {% endif %}
-?>
-<ul>
-  <li> <a href=\"register\">Register</a> </li>
-</ul>", "D:\\Web-Development\\htdocs\\KurzCademy.com/themes/KurzCademy/partials/header.htm", "");
+?>", "D:\\Web-Development\\htdocs\\KurzCademy.com/themes/KurzCademy/partials/header.htm", "");
     }
 }

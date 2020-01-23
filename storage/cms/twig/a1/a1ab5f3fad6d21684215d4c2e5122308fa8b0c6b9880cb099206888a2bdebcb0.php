@@ -44,6 +44,8 @@ class __TwigTemplate_43488de22a47552c74b6ada4936f5107167ef6f8e010eb8857299eedf4a
         echo $this->extensions['Cms\Twig\Extension']->themeFilter("assets/CSS/MainStyle.css");
         echo " \" />
     <link rel=\"profile\" href=\"http://gmpg.org/xfn/11\">
+
+                    <!-- Extensions for web (Somethink as bootstrap) -->
     <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">
     <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>
     <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\" integrity=\"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1\" crossorigin=\"anonymous\"></script>
@@ -59,25 +61,25 @@ class __TwigTemplate_43488de22a47552c74b6ada4936f5107167ef6f8e010eb8857299eedf4a
   <body>
 
     ";
-        // line 22
+        // line 24
         $context['__cms_partial_params'] = [];
         echo $this->env->getExtension('Cms\Twig\Extension')->partialFunction("header.htm"        , $context['__cms_partial_params']        , true        );
         unset($context['__cms_partial_params']);
-        // line 23
-        echo "
-
-    ";
         // line 25
-        echo $this->env->getExtension('Cms\Twig\Extension')->pageFunction();
-        // line 26
         echo "
 
     ";
+        // line 27
+        echo $this->env->getExtension('Cms\Twig\Extension')->pageFunction();
         // line 28
+        echo "
+
+    ";
+        // line 30
         $context['__cms_partial_params'] = [];
         echo $this->env->getExtension('Cms\Twig\Extension')->partialFunction("footer.htm"        , $context['__cms_partial_params']        , true        );
         unset($context['__cms_partial_params']);
-        // line 29
+        // line 31
         echo "
   </body>
 </html>";
@@ -95,7 +97,7 @@ class __TwigTemplate_43488de22a47552c74b6ada4936f5107167ef6f8e010eb8857299eedf4a
 
     public function getDebugInfo()
     {
-        return array (  81 => 29,  77 => 28,  73 => 26,  71 => 25,  67 => 23,  63 => 22,  44 => 6,  37 => 1,);
+        return array (  83 => 31,  79 => 30,  75 => 28,  73 => 27,  69 => 25,  65 => 24,  44 => 6,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -107,6 +109,8 @@ class __TwigTemplate_43488de22a47552c74b6ada4936f5107167ef6f8e010eb8857299eedf4a
 
     <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ 'assets/CSS/MainStyle.css' | theme }} \" />
     <link rel=\"profile\" href=\"http://gmpg.org/xfn/11\">
+
+                    <!-- Extensions for web (Somethink as bootstrap) -->
     <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">
     <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>
     <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\" integrity=\"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1\" crossorigin=\"anonymous\"></script>
