@@ -1,12 +1,13 @@
 title = "Account"
-url = "/account/:code?"
+url = "/account/"
 layout = "default"
 description = "Sign in, registration and account management."
-hidden = "0"
+is_hidden = 0
 
 [account]
 redirect = "account"
 paramCode = "code"
+forceSecure = 0
 ==
 {% component 'account' %}
 

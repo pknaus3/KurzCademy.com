@@ -42,4 +42,5 @@
   'RainLab\\Forum\\Components\\Member' => 'plugins\\rainlab\\forum\\components\\Member.php',
   'RainLab\\Forum\\Components\\EmbedTopic' => 'plugins\\rainlab\\forum\\components\\EmbedTopic.php',
   'RainLab\\Forum\\Components\\EmbedChannel' => 'plugins\\rainlab\\forum\\components\\EmbedChannel.php',
+  'RainLab\\Forum\\Models\\Member' => 'plugins\\rainlab\\forum\\models\\Member.php',
 );

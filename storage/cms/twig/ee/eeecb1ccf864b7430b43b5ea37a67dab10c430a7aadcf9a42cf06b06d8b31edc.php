@@ -33,6 +33,10 @@ class __TwigTemplate_c886dd9afca81c63c7b0265663854f123e3ade564e77da93b0fa7456ad7
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
+        // line 1
+        $context['__cms_component_params'] = [];
+        echo $this->env->getExtension('Cms\Twig\Extension')->componentFunction("account"        , $context['__cms_component_params']        );
+        unset($context['__cms_component_params']);
     }
 
     public function getTemplateName()
@@ -40,13 +44,18 @@ class __TwigTemplate_c886dd9afca81c63c7b0265663854f123e3ade564e77da93b0fa7456ad7
         return "D:\\Web-Development\\htdocs\\KurzCademy.com/themes/KurzCademy/pages/login.htm";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array ();
+        return array (  37 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("", "D:\\Web-Development\\htdocs\\KurzCademy.com/themes/KurzCademy/pages/login.htm", "");
+        return new Source("{% component 'account' %}", "D:\\Web-Development\\htdocs\\KurzCademy.com/themes/KurzCademy/pages/login.htm", "");
     }
 }
