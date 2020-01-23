@@ -34,7 +34,8 @@ class __TwigTemplate_3898270aac1c5467593a89f86453fc3d771934054f66ebe1d70d4b2578b
     {
         $macros = $this->macros;
         // line 1
-        echo "<form data-request=\"onRegister\">
+        echo "<p>HI</p>
+<form data-request=\"onRegister\">
     <label>Full Name</label>
     <input name=\"name\" type=\"text\" placeholder=\"Enter your full name\">
 
@@ -63,7 +64,8 @@ class __TwigTemplate_3898270aac1c5467593a89f86453fc3d771934054f66ebe1d70d4b2578b
 
     public function getSourceContext()
     {
-        return new Source("<form data-request=\"onRegister\">
+        return new Source("<p>HI</p>
+<form data-request=\"onRegister\">
     <label>Full Name</label>
     <input name=\"name\" type=\"text\" placeholder=\"Enter your full name\">
 

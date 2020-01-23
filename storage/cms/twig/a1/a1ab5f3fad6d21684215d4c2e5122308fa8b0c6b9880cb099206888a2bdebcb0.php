@@ -68,9 +68,9 @@ class __TwigTemplate_43488de22a47552c74b6ada4936f5107167ef6f8e010eb8857299eedf4a
 
     ";
         // line 25
-        echo twig_escape_filter($this->env, ($context["page"] ?? null), "html", null, true);
+        echo $this->env->getExtension('Cms\Twig\Extension')->pageFunction();
+        // line 26
         echo "
-
 
     ";
         // line 28
@@ -95,7 +95,7 @@ class __TwigTemplate_43488de22a47552c74b6ada4936f5107167ef6f8e010eb8857299eedf4a
 
     public function getDebugInfo()
     {
-        return array (  81 => 29,  77 => 28,  71 => 25,  67 => 23,  63 => 22,  44 => 6,  37 => 1,);
+        return array (  81 => 29,  77 => 28,  73 => 26,  71 => 25,  67 => 23,  63 => 22,  44 => 6,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -124,7 +124,7 @@ class __TwigTemplate_43488de22a47552c74b6ada4936f5107167ef6f8e010eb8857299eedf4a
     {% partial \"header.htm\" %}
 
 
-    {{ page }}
+    {% page %}
 
 
     {% partial \"footer.htm\" %}

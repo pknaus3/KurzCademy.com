@@ -1,8 +1,9 @@
-1579806051a:1:{s:12:"register.htm";a:9:{s:8:"fileName";s:12:"register.htm";s:7:"content";s:566:"title = "Register"
+1579806266a:1:{s:12:"register.htm";a:9:{s:8:"fileName";s:12:"register.htm";s:7:"content";s:579:"title = "Register"
 url = "/register"
 layout = "Default"
 is_hidden = 0
 ==
+<p>HI</p>
 <form data-request="onRegister">
     <label>Full Name</label>
     <input name="name" type="text" placeholder="Enter your full name">
@@ -17,7 +18,9 @@ is_hidden = 0
     <input name="password" type="password" placeholder="Choose a password">
 
     <button type="submit">Register</button>
-</form>";s:5:"mtime";i:1579805440;s:6:"markup";s:488:"<form data-request="onRegister">
+</form>
+";s:5:"mtime";i:1579805664;s:6:"markup";s:499:"<p>HI</p>
+<form data-request="onRegister">
     <label>Full Name</label>
     <input name="name" type="text" placeholder="Enter your full name">
 
