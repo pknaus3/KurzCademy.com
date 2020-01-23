@@ -1,0 +1,30 @@
+1579805979a:1:{s:12:"register.htm";a:5:{s:8:"fileName";s:12:"register.htm";s:7:"content";s:490:"<form data-request="onRegister">
+    <label>Full Name</label>
+    <input name="name" type="text" placeholder="Enter your full name">
+
+    <label>Email</label>
+    <input name="email" type="email" placeholder="Enter your email">
+
+    <label>Username</label>
+    <input name="username" placeholder="Pick a login name">
+
+    <label>Password</label>
+    <input name="password" type="password" placeholder="Choose a password">
+
+    <button type="submit">Register</button>
+</form>
+";s:5:"mtime";i:1579805373;s:6:"markup";s:488:"<form data-request="onRegister">
+    <label>Full Name</label>
+    <input name="name" type="text" placeholder="Enter your full name">
+
+    <label>Email</label>
+    <input name="email" type="email" placeholder="Enter your email">
+
+    <label>Username</label>
+    <input name="username" placeholder="Pick a login name">
+
+    <label>Password</label>
+    <input name="password" type="password" placeholder="Choose a password">
+
+    <button type="submit">Register</button>
+</form>";s:4:"code";N;}}

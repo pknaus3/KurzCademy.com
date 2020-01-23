@@ -1,4 +1,4 @@
-1579800347a:1:{s:11:"Default.htm";a:6:{s:8:"fileName";s:11:"Default.htm";s:7:"content";s:1782:"description = "Default Layout"
+1579805993a:1:{s:11:"Default.htm";a:6:{s:8:"fileName";s:11:"Default.htm";s:7:"content";s:1784:"description = "Default Layout"
 ==
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -26,11 +26,12 @@
 
     {{ page }}
 
+
     {% partial "footer.htm" %}
 
   </body>
 </html>
-";s:5:"mtime";i:1579799744;s:6:"markup";s:1744:"<!DOCTYPE html>
+";s:5:"mtime";i:1579799872;s:6:"markup";s:1746:"<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -55,6 +56,7 @@
 
 
     {{ page }}
+
 
     {% partial "footer.htm" %}
 
