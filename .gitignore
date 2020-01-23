@@ -1,2 +1,8 @@
+# OctoberCMS
+/storage
+/vendor
+/modules
+# local files
+.env
 .DS_Store
-*.log
+composer.lock
