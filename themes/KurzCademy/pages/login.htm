@@ -1,10 +1,11 @@
 title = "Login"
-url = "/login"
+url = "/login/"
+layout = "Default"
 is_hidden = 0
 
 [account]
 redirect = "login"
 paramCode = "code"
-forceSecure = "{{ 0 }}"
+forceSecure = "0"
 ==
 {% component 'account' %}

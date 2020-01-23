@@ -1,4 +1,4 @@
-1579811256a:1:{s:11:"Default.htm";a:7:{s:8:"fileName";s:11:"Default.htm";s:7:"content";s:1918:"description = "Default Layout"
+1579811694a:1:{s:11:"Default.htm";a:7:{s:8:"fileName";s:11:"Default.htm";s:7:"content";s:1920:"description = "Default Layout"
 
 [session]
 security = "all"
@@ -25,18 +25,18 @@ security = "all"
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-  {% component 'session' %}
+
+    {% component 'session' %}
 
     {% partial "header.htm" %}
 
-
     {% page %}
-
 
     {% partial "footer.htm" %}
 
   </body>
-</html>";s:5:"mtime";i:1579810626;s:6:"markup";s:1851:"<!DOCTYPE html>
+</html>
+";s:5:"mtime";i:1579811084;s:6:"markup";s:1851:"<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -58,13 +58,12 @@ security = "all"
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-  {% component 'session' %}
+
+    {% component 'session' %}
 
     {% partial "header.htm" %}
 
-
     {% page %}
-
 
     {% partial "footer.htm" %}
 

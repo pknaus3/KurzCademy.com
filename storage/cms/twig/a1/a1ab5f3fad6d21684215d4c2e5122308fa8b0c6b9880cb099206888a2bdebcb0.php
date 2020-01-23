@@ -59,33 +59,32 @@ class __TwigTemplate_43488de22a47552c74b6ada4936f5107167ef6f8e010eb8857299eedf4a
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
   </head>
   <body>
-  ";
-        // line 23
+
+    ";
+        // line 24
         $context['__cms_component_params'] = [];
         echo $this->env->getExtension('Cms\Twig\Extension')->componentFunction("session"        , $context['__cms_component_params']        );
         unset($context['__cms_component_params']);
-        // line 24
+        // line 25
         echo "
     ";
-        // line 25
+        // line 26
         $context['__cms_partial_params'] = [];
         echo $this->env->getExtension('Cms\Twig\Extension')->partialFunction("header.htm"        , $context['__cms_partial_params']        , true        );
         unset($context['__cms_partial_params']);
-        // line 26
+        // line 27
         echo "
-
     ";
         // line 28
         echo $this->env->getExtension('Cms\Twig\Extension')->pageFunction();
         // line 29
         echo "
-
     ";
-        // line 31
+        // line 30
         $context['__cms_partial_params'] = [];
         echo $this->env->getExtension('Cms\Twig\Extension')->partialFunction("footer.htm"        , $context['__cms_partial_params']        , true        );
         unset($context['__cms_partial_params']);
-        // line 32
+        // line 31
         echo "
   </body>
 </html>";
@@ -103,7 +102,7 @@ class __TwigTemplate_43488de22a47552c74b6ada4936f5107167ef6f8e010eb8857299eedf4a
 
     public function getDebugInfo()
     {
-        return array (  89 => 32,  85 => 31,  81 => 29,  79 => 28,  75 => 26,  71 => 25,  68 => 24,  64 => 23,  44 => 6,  37 => 1,);
+        return array (  88 => 31,  84 => 30,  81 => 29,  79 => 28,  76 => 27,  72 => 26,  69 => 25,  65 => 24,  44 => 6,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -130,13 +129,12 @@ class __TwigTemplate_43488de22a47552c74b6ada4936f5107167ef6f8e010eb8857299eedf4a
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
   </head>
   <body>
-  {% component 'session' %}
+
+    {% component 'session' %}
 
     {% partial \"header.htm\" %}
 
-
     {% page %}
-
 
     {% partial \"footer.htm\" %}
 
