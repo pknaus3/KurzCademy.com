@@ -9,4 +9,12 @@
   'RainLab\\User\\Models\\Settings' => 'plugins\\rainlab\\user\\models\\Settings.php',
   'RainLab\\User\\Models\\UserGroup' => 'plugins\\rainlab\\user\\models\\UserGroup.php',
   'RainLab\\User\\Classes\\UserRedirector' => 'plugins\\rainlab\\user\\classes\\UserRedirector.php',
+  'cms\\Controllers\\index' => 'modules\\cms\\controllers\\index.php',
+  'RainLab\\User\\Components\\Session' => 'plugins\\rainlab\\user\\components\\Session.php',
+  'RainLab\\User\\Components\\Account' => 'plugins\\rainlab\\user\\components\\Account.php',
+  'RainLab\\User\\Components\\ResetPassword' => 'plugins\\rainlab\\user\\components\\ResetPassword.php',
+  'system\\Controllers\\settings' => 'modules\\system\\controllers\\settings.php',
+  'cms\\Controllers\\themes' => 'modules\\cms\\controllers\\themes.php',
+  'RainLab\\User\\Models\\MailBlocker' => 'plugins\\rainlab\\user\\models\\MailBlocker.php',
+  'system\\Controllers\\eventlogs' => 'modules\\system\\controllers\\eventlogs.php',
 );
