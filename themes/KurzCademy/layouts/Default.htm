@@ -1,4 +1,5 @@
 description = "Default Layout"
+
 [session]
 security = "all"
 ==
@@ -24,6 +25,7 @@ security = "all"
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
+  {% component 'session' %}
 
     {% partial "header.htm" %}
 

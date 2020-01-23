@@ -45,7 +45,7 @@ class __TwigTemplate_76349af3138bcab281e93d8f19516c25339e75893508bc6e4a468a2b2cf
 ";
         } else {
             // line 5
-            echo "     ?><p>Log in</p><?php
+            echo "     ?><p> <a href=\"Login\">Login</a> </p><?php
 ";
         }
         // line 7
@@ -73,7 +73,7 @@ class __TwigTemplate_76349af3138bcab281e93d8f19516c25339e75893508bc6e4a468a2b2cf
 {% if user %}
     ?><p>Hello {{ user.name }}</p><?php
 {% else %}
-     ?><p>Log in</p><?php
+     ?><p> <a href=\"Login\">Login</a> </p><?php
 {% endif %}
 ?>", "D:\\Web-Development\\htdocs\\KurzCademy.com/themes/KurzCademy/partials/header.htm", "");
     }

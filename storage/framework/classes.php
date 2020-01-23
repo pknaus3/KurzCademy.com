@@ -43,4 +43,10 @@
   'RainLab\\Forum\\Components\\EmbedTopic' => 'plugins\\rainlab\\forum\\components\\EmbedTopic.php',
   'RainLab\\Forum\\Components\\EmbedChannel' => 'plugins\\rainlab\\forum\\components\\EmbedChannel.php',
   'RainLab\\Forum\\Models\\Member' => 'plugins\\rainlab\\forum\\models\\Member.php',
+  'rainlab\\blog\\Controllers\\posts' => 'plugins\\rainlab\\blog\\controllers\\posts.php',
+  'RainLab\\Blog\\Models\\PostImport' => 'plugins\\rainlab\\blog\\models\\PostImport.php',
+  'RainLab\\Blog\\Models\\PostExport' => 'plugins\\rainlab\\blog\\models\\PostExport.php',
+  'backend\\Controllers\\accesslogs' => 'modules\\backend\\controllers\\accesslogs.php',
+  'system\\Controllers\\mailtemplates' => 'modules\\system\\controllers\\mailtemplates.php',
+  'system\\Controllers\\maillayouts' => 'modules\\system\\controllers\\maillayouts.php',
 );

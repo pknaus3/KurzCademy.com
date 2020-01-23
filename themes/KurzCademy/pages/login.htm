@@ -1,5 +1,10 @@
 title = "Login"
 url = "/login"
 is_hidden = 0
+
+[account]
+redirect = "login"
+paramCode = "code"
+forceSecure = "{{ 0 }}"
 ==
 {% component 'account' %}
