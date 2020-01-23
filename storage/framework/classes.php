@@ -17,4 +17,6 @@
   'cms\\Controllers\\themes' => 'modules\\cms\\controllers\\themes.php',
   'RainLab\\User\\Models\\MailBlocker' => 'plugins\\rainlab\\user\\models\\MailBlocker.php',
   'system\\Controllers\\eventlogs' => 'modules\\system\\controllers\\eventlogs.php',
+  'rainlab\\user\\Controllers\\users' => 'plugins\\rainlab\\user\\controllers\\users.php',
+  'rainlab\\user\\Controllers\\usergroups' => 'plugins\\rainlab\\user\\controllers\\usergroups.php',
 );
