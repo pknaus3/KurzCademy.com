@@ -1,29 +1,21 @@
 ==
-  <?php
-    $target_dir = "storage/upload/test/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $FileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-
-    //Check if File is a actual file or fake files
-    if(isset($_POST["submit"])) {
-      $check = getimagesize($_FILES["filetoupload"]["tmp_name"]);
-
-      if ($check !== false) {
-        echo "File is " . $check["mime"].".";
-        $uploadOk = 1;
-
-      } else {
-        echo "File is incorrect.";
-        $uploadOk = 0;
-      }
-    }
-?>
-
-<form method="post" enctype="multipart/form-data">
-  Select file to upload <br />
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <br />
-    <input type="submit" value="Upload file" name="submit">
+<form enctype="multipart/form-data" action="upload.php" method="POST">
+    <p>Upload your file</p>
+    <input type="file" name="uploaded_file"></input><br />
+    <input type="submit" value="Upload"></input>
   </form>
+
+<?PHP
+  if(!empty($_FILES['uploaded_file']))
+  {
+    $path = "storage/upload/test";
+    $path = $path . basename( $_FILES['uploaded_file']['name']);
+
+    if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
+      echo "The file ".  basename( $_FILES['uploaded_file']['name']). 
+      " has been uploaded";
+    } else{
+        echo "There was an error uploading the file, please try again!";
+    }
+  }
+?>

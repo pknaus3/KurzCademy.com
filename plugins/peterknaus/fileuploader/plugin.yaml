@@ -1,6 +1,0 @@
-plugin:
-    name: 'peterknaus.fileuploader::lang.plugin.name'
-    description: 'peterknaus.fileuploader::lang.plugin.description'
-    author: 'Peter Knaus'
-    icon: oc-icon-adjust
-    homepage: ''

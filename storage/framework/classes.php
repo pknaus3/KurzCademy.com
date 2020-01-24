@@ -101,4 +101,5 @@
   'RainLab\\Builder\\Classes\\MigrationModel' => 'plugins\\rainlab\\builder\\classes\\MigrationModel.php',
   'RainLab\\Builder\\Components\\RecordList' => 'plugins\\rainlab\\builder\\components\\RecordList.php',
   'RainLab\\Builder\\Components\\RecordDetails' => 'plugins\\rainlab\\builder\\components\\RecordDetails.php',
+  'RainLab\\User\\Models\\Throttle' => 'plugins\\rainlab\\user\\models\\Throttle.php',
 );
