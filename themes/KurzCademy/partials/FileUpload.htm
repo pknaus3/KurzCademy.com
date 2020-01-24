@@ -1,0 +1,27 @@
+==
+<form method="post" enctype="multipart/form-data">Select file to upload
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload file" name="submit">
+  </form>
+
+  <?php
+    $target_dir = "{{ 'storage/Upload/Test/' }}";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $FileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+
+    //Check if File is a actual file or fake files
+    if(isset($_POST["submit"])) {
+      $check = getimagesize($_FILES["filetoupload"]["tmp_name"]);
+
+      if ($check !== false) {
+        echo "File is " . $check["mime"].".";
+        $uploadOk = 1;
+
+      } else {
+        echo "File is incorrect.";
+        $uploadOk = 0;
+      }
+    }
+  ?>
