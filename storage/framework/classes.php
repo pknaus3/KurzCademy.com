@@ -49,4 +49,8 @@
   'backend\\Controllers\\accesslogs' => 'modules\\backend\\controllers\\accesslogs.php',
   'system\\Controllers\\mailtemplates' => 'modules\\system\\controllers\\mailtemplates.php',
   'system\\Controllers\\maillayouts' => 'modules\\system\\controllers\\maillayouts.php',
+  'responsiv\\uploader\\Plugin' => 'plugins\\responsiv\\uploader\\Plugin.php',
+  'Responsiv\\Uploader\\Traits\\ComponentUtils' => 'plugins\\responsiv\\uploader\\traits\\ComponentUtils.php',
+  'Responsiv\\Uploader\\Components\\FileUploader' => 'plugins\\responsiv\\uploader\\components\\FileUploader.php',
+  'Responsiv\\Uploader\\Components\\ImageUploader' => 'plugins\\responsiv\\uploader\\components\\ImageUploader.php',
 );
