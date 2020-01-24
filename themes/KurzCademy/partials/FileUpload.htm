@@ -1,11 +1,6 @@
 ==
-<form method="post" enctype="multipart/form-data">Select file to upload
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload file" name="submit">
-  </form>
-
   <?php
-    $target_dir = "{{ 'storage/Upload/Test/' }}";
+    $target_dir = "storage/upload/test/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $FileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -24,4 +19,11 @@
         $uploadOk = 0;
       }
     }
-  ?>
+?>
+
+<form method="post" enctype="multipart/form-data">
+  Select file to upload <br />
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <br />
+    <input type="submit" value="Upload file" name="submit">
+  </form>
