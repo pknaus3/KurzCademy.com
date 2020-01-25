@@ -1,6 +1,6 @@
 ==
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#"><img src="assets/Img/logo/KurzCademyLogo.png" alt="Domov"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,9 +9,10 @@
       <a class="nav-item nav-link active" href="#">Domov <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="#">Kurzy</a>
       <a class="nav-item nav-link" href="#">Pricing</a>
-      {% if user %}
+      
+      {% if user %} <!-- Keď je user prihláseny tak zobraz toto -->
         <a class="nav-item nav-link" href="Account">{{user.name}}</a>
-      {% else %}
+      {% else %} <!-- Inak toto -->
         <a class="nav-item nav-link" href="Account">Zaregistrovať sa  / Prihlasiť sa</a>
       {% endif %}
     </div>
