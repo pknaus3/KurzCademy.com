@@ -1,4 +1,4 @@
-description = "Default Layout"
+﻿description = "Default Layout"
 
 [session]
 security = "all"
@@ -20,6 +20,7 @@ security = "all"
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+      <!-- Ajax-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ 'assets/javascript/jquery.js'|theme }}"></script>
     {% framework %}
@@ -33,13 +34,15 @@ security = "all"
   </head>
   <body>
 
-    {% component 'session' %}
+      {% partial "MySql" %}  <!-- Pokus o pripojenie databazy-->
+      
+    {% component 'session' %} <!-- Neviem -->
 
-    {% partial "header.htm" %}
+    {% partial "header.htm" %} <!-- Pripojenie navbaru -->
 
-    {% page %}
+    {% page %} <!-- Sem je vsetko na stranke -->
 
-    {% partial "footer.htm" %}
+    {% partial "footer.htm" %} <!-- Pripojenie footeru -->
 
   </body>
 </html>

@@ -1,6 +1,7 @@
 .KurzStart{
-  background-image: url('themes/KurzCademy/assets/Img/KurzLevels/KurzStart.png');
-  background-size: cover;
+  background-image: url('themes/KurzCademy/assets/Img/KurzLevels/KurzStart.png');  /* Tento riadok nefunguje */
+  background-size: cover; 
+  /* Mato prosim prerob to na responzivne ja sa s tym mrdat teraz nebudem */
   width: 384px;
   height: 384px;
   float: left;

@@ -9,7 +9,7 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="#">Domov <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="kurzy">Kurzy</a>
-      <a class="nav-item nav-link" href="#">Pricing</a>
+      <a class="nav-item nav-link" href="#">Moje kurzy</a>
       
       {% if user %} <!-- Keď je user prihláseny tak zobraz toto -->
         <a class="nav-item nav-link" href="Account">{{user.name}}</a>
@@ -17,6 +17,7 @@
       {% else %} <!-- Inak toto -->
         <a class="nav-item nav-link" href="Account">Zaregistrovať sa  / Prihlasiť sa</a>
       {% endif %}
+
     </div>
   </div>
 </nav>
