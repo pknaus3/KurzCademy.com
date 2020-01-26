@@ -1,4 +1,4 @@
-description = "Default Layout"
+﻿description = "Default Layout"
 
 [session]
 security = "all"
@@ -8,16 +8,24 @@ security = "all"
   <head>
     <meta charset="utf-8">
 
-    <link rel="stylesheet" type="text/css" href="{{ 'assets/CSS/MainStyle.css' | theme }} " />
+    {% put styles %}
+    <link href="themes\KurzCademy\assets\styles\master.css" rel="stylesheet" />
+    {% endput %}
     <link rel="profile" href="http://gmpg.org/xfn/11">
 
                     <!-- Extensions for web (Somethink as bootstrap) -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ 'assets/styles/master.css' | theme }}">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+      <!-- Ajax-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                    <!-- meta Settings -->
+    <script src="{{ 'assets/javascript/jquery.js'|theme }}"></script>
+    {% framework %}
+
+                  <!-- meta Settings - SEO -->
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="KurzCademy je aplikácia na vytváranie a zdieľanie kurzov." />
     <meta name="keywords" content="kurz development, kurzy, editor kurzov, vutvaranie kurzov, vlastne kurzy" />
@@ -26,13 +34,15 @@ security = "all"
   </head>
   <body>
 
-    {% component 'session' %}
+      {% partial "MySql" %}  <!-- Pokus o pripojenie databazy-->
+      
+    {% component 'session' %} <!-- Neviem -->
 
-    {% partial "header.htm" %}
+    {% partial "header.htm" %} <!-- Pripojenie navbaru -->
 
-    {% page %}
+    {% page %} <!-- Sem je vsetko na stranke -->
 
-    {% partial "footer.htm" %}
+    {% partial "footer.htm" %} <!-- Pripojenie footeru -->
 
   </body>
 </html>

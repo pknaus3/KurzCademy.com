@@ -1,0 +1,19 @@
+title = "Hybrid Lab"
+url = "/hybridlab"
+layout = "Default"
+is_hidden = 0
+
+[session]
+security = "user"
+allowedUserGroups[] = "student"
+allowedUserGroups[] = "teacher"
+redirect = "index"
+==
+{% component 'session' %}
+<h1>HybridLab</h1>
+<h3>Témový technologický akcelerátor pre školy</h3>
+
+    {% partial 'overview' %} <!-- Include all quest of students -->
+
+
+    {% partial 'TeacherOverview' %} <!-- Show only if you are Teacher -->
