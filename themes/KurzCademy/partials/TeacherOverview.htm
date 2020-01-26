@@ -1,0 +1,21 @@
+[session]
+security = "all"
+==
+<div class="Students"> <!-- All students -->
+  <div class="Student"> <!-- One student -->
+
+    <?php
+        $sql = "SELECT name FROM users";
+        $result = $conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                echo "Name: " . $row["name"] . "<br>";
+            }
+        } else {
+            echo "0 results";
+        }
+    ?>
+  </div>
+</div>

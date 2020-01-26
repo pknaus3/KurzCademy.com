@@ -1,0 +1,7 @@
+.KurzStart{
+  background-image: url('themes/KurzCademy/assets/Img/KurzLevels/KurzStart.png');
+  background-size: cover;
+  width: 384px;
+  height: 384px;
+  float: left;
+}
