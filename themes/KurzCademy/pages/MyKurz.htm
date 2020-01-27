@@ -15,27 +15,24 @@ redirect = "kurzy"
 
 {% if inGroup('hybridlab') %}  <!-- Ak je student hybridlabu -->
     <!-- Mato a Brano toto su uz vase sracky -->
-
     <!-- Tu zacnite pisat vas kod -->
 
-    HybridLab student
+      HybridLab student
 
     <!-- Tu nech konci -->
 
-  {% elseif inGroup('gameslab') %}
-
-
-   <!-- Ak je student GamesLabu -->
+  {% elseif inGroup('gameslab') %}  <!-- Ak je student GamesLabu -->
     <!-- Mato a Brano toto su uz vase sracky -->
 
     <!-- Tu zacnite pisat vas kod -->
 
-GamesLab
+      GamesLab
+
     <!-- Tu nech konci -->
 
     {% else %}
 
-    <h1>Niesi Student ziadneho kurzu --> <a href="kurzy">Kurzy</a> </h1>
+      <h1>Niesi Student ziadneho kurzu --> <a href="kurzy">Kurzy</a> </h1>
 
 
     {% endif %}
