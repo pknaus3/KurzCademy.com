@@ -9,22 +9,18 @@ Tu zapíšte prosím Váš postup alebo zmenu v kóde
 
       /* ---Poznámky--- */
 
-
       * ---Peter Knaus--- *
 
-       -27.1.2020 - Layout + predpríprava na SEO
-       -27.1.2020 - Formuláre (Žiadosť o kurz, Pridanie do kurzu)
-       -27.1.2020 - Pridané komentáre
-       -27.1.2020 - Vytvotrnie a upravenie účtu
-       -27.1.2020 - Sekcia pre Kurzy
-       -27.1.2020 - Footer
-       -27.1.2020 - Header
-       -27.1.2020 - Vytvorené / stiahnuté obrázky na kurzy, Logo, Wezeo, Postup v KurzCademy
+       -24.1.2020 - Layout + predpríprava na SEO
+       -24.1.2020 - Footer
+       -24.1.2020 - Header
+       -25.1.2020 - Vytvorenie a upravenie účtu
+       -26.1.2020 - Pridané komentáre
+       -26.1.2020 - Sekcia pre Kurzy
+       -26.1.2020 - Formuláre (Žiadosť o kurz, Pridanie do kurzu)
+       -24,25,26.1.2020 - Vytvorené / stiahnuté obrázky na kurzy, Logo, Wezeo, Postup v KurzCademy
 
       * ---Peter Knaus--- *
-
-
-
 
        * ---Branislav Trstenský--- *
 
@@ -32,11 +28,15 @@ Tu zapíšte prosím Váš postup alebo zmenu v kóde
 
 
 
+
+
        * ---Branislav Trstenský--- *
-
-
 
         * ---Matej Sudovský--- *
+
+
+
+
 
 
 
