@@ -7,6 +7,22 @@ Tu zapíšte prosím Váš postup alebo zmenu v kóde
 
       Peter: Maťo sprav nejaký design stránky, Ďakujem.
 
+      Na každej stránke je niečo takéto:
+
+
+      "
+      title = "account"
+      url = "/account/"
+
+      [account]
+      redirect = "Account"
+      paramCode = "code"
+      forceSecure = 0
+      ==
+      "
+
+      Nevšímajte si to, je to iba info pre stránku, HLAVNE TO NEMAŽTE!!!
+
       /* ---Poznámky--- */
 
       * ---Peter Knaus--- *
@@ -19,6 +35,7 @@ Tu zapíšte prosím Váš postup alebo zmenu v kóde
        -26.1.2020 - Sekcia pre Kurzy
        -26.1.2020 - Formuláre (Žiadosť o kurz, Pridanie do kurzu)
        -24,25,26.1.2020 - Vytvorené / stiahnuté obrázky na kurzy, Logo, Wezeo, Postup v KurzCademy
+       -27.1.2020 - Pridané ďalšie komentáre
 
        * ---Peter Knaus--- *
 
