@@ -211,4 +211,5 @@
   'KurtJensen\\Passage\\Models\\Variance' => 'plugins\\kurtjensen\\passage\\models\\Variance.php',
   'KurtJensen\\Passage\\Models\\Key' => 'plugins\\kurtjensen\\passage\\models\\Key.php',
   'kurtjensen\\passage\\Controllers\\keys' => 'plugins\\kurtjensen\\passage\\controllers\\keys.php',
+  'martin\\forms\\Controllers\\exports' => 'plugins\\martin\\forms\\controllers\\exports.php',
 );

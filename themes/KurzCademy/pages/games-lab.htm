@@ -1,16 +1,16 @@
-title = "Hybrid Lab"
-url = "/hybridlab"
+title = "Games Lab"
+url = "/gameslab"
 layout = "Default"
 is_hidden = 0
 
 [session]
-allowedUserGroups[] = "hybridlab"
-allowedUserGroups[] = "hybridlabteacher"
+allowedUserGroups[] = "gameslab"
+allowedUserGroups[] = "gameslabteacher"
 redirect = "index"
 ==
-{% component 'session' %} <!-- student and Teacher access only (HybridLab) -->
+{% component 'session' %} <!-- student and Teacher access only (GamesLab) -->
 
-  {% if inGroup('hybridlab') %}
+  {% if inGroup('gameslab') %}
 
   <!-- Content kurzu -->
 
@@ -21,7 +21,7 @@ redirect = "index"
     <button type="button" name="button">Začať</button>
   </div>
 
-  {% elseif inGroup('hybridlabteacher') %}
+  {% elseif inGroup('gameslabteacher') %}
 
 
 

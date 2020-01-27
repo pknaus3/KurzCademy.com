@@ -6,6 +6,7 @@ Tu zapíšte prosím Váš postup alebo zmenu v kóde
       /* ---Poznámky--- */
 
       Peter: Maťo sprav nejaký design stránky, Ďakujem.
+      Peter: Braňo na koniec chapteru alebo tej jednej sekcie dokumentu by si mohol dať tlačitko ktoré oboznámi učiteľa, že som si prečital túto lekciu a u učiteľa to bude nejak percentuálne zobrazené napr. kurz ma 25 lekcii a ty si u tretej dáš "videl som" a u učitela bude nejaký status bar ktorý mu ukáže že ziak je v 8% lekcie ... (Je to len návrh) 
 
       Na každej stránke je niečo takéto:
 
@@ -34,8 +35,13 @@ Tu zapíšte prosím Váš postup alebo zmenu v kóde
        -26.1.2020 - Pridané komentáre
        -26.1.2020 - Sekcia pre Kurzy
        -26.1.2020 - Formuláre (Žiadosť o kurz, Pridanie do kurzu)
-       -24,25,26.1.2020 - Vytvorené / stiahnuté obrázky na kurzy, Logo, Wezeo, Postup v KurzCademy
+       -24-26.1.2020 - Vytvorené / stiahnuté obrázky na kurzy, Logo, Wezeo, Postup v KurzCademy
        -27.1.2020 - Pridané ďalšie komentáre
+       -27.1.2020 - Pridaný plugin na práva použivateľa, dokumentácia: https://octobercms.com/plugin/kurtjensen-passage
+       -27.1.2020 - Pridané podmienky ak je user v kurze (MyKurz)
+       -27.1.2020 - Vytvorené sekcie pre Hybrid a Games Lab
+
+
 
        * ---Peter Knaus--- *
 
