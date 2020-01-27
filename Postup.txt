@@ -20,7 +20,7 @@ Tu zapíšte prosím Váš postup alebo zmenu v kóde
        -26.1.2020 - Formuláre (Žiadosť o kurz, Pridanie do kurzu)
        -24,25,26.1.2020 - Vytvorené / stiahnuté obrázky na kurzy, Logo, Wezeo, Postup v KurzCademy
 
-      * ---Peter Knaus--- *
+       * ---Peter Knaus--- *
 
        * ---Branislav Trstenský--- *
 
@@ -30,11 +30,9 @@ Tu zapíšte prosím Váš postup alebo zmenu v kóde
 
 
 
-       * ---Branislav Trstenský--- *
+        * ---Branislav Trstenský--- *
 
         * ---Matej Sudovský--- *
-
-
 
 
 
