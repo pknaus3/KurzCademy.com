@@ -23,6 +23,7 @@ security = "all"
       <!-- Ajax-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ 'assets/javascript/jquery.js'|theme }}"></script>
+    {% framework extras %}
     {% framework %}
 
                   <!-- meta Settings - SEO -->
@@ -34,7 +35,11 @@ security = "all"
   </head>
   <body>
 
-      {% partial "MySql" %}  <!-- Pokus o pripojenie databazy-->
+   
+    {% framework extras %}
+    {% framework %}
+
+    {% partial "MySql" %}  <!-- Pokus o pripojenie databazy-->
       
     {% component 'session' %} <!-- Neviem -->
 

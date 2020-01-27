@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\plugins",
+    "\\plugins\\rainlab",
+    "\\plugins\\rainlab\\user",
+    "\\plugins\\rainlab\\user\\components",
+    "\\plugins\\rainlab\\user\\components\\account",
     "\\themes",
     "\\themes\\KurzCademy",
-    "\\themes\\KurzCademy\\assets",
-    "\\themes\\KurzCademy\\assets\\Img",
-    "\\themes\\KurzCademy\\assets\\styles",
-    "\\themes\\KurzCademy\\content",
-    "\\themes\\KurzCademy\\layouts",
     "\\themes\\KurzCademy\\pages",
     "\\themes\\KurzCademy\\partials"
   ],
-  "SelectedNode": "\\themes\\KurzCademy\\partials\\MySql.htm",
+  "SelectedNode": "\\plugins\\rainlab\\user\\components\\Account.php",
   "PreviewInSolutionExplorer": false
 }
