@@ -204,4 +204,11 @@
   'Martin\\Forms\\Traits\\FileUploader' => 'plugins\\martin\\forms\\traits\\FileUploader.php',
   'Martin\\Forms\\Components\\UploadForm' => 'plugins\\martin\\forms\\components\\UploadForm.php',
   'Martin\\Forms\\Components\\EmptyForm' => 'plugins\\martin\\forms\\components\\EmptyForm.php',
+  'kurtjensen\\passage\\Plugin' => 'plugins\\kurtjensen\\passage\\Plugin.php',
+  'KurtJensen\\Passage\\Services\\PassageServiceProvider' => 'plugins\\kurtjensen\\passage\\services\\PassageServiceProvider.php',
+  'KurtJensen\\Passage\\Classes\\KeyRing' => 'plugins\\kurtjensen\\passage\\classes\\KeyRing.php',
+  'kurtjensen\\passage\\Controllers\\variances' => 'plugins\\kurtjensen\\passage\\controllers\\variances.php',
+  'KurtJensen\\Passage\\Models\\Variance' => 'plugins\\kurtjensen\\passage\\models\\Variance.php',
+  'KurtJensen\\Passage\\Models\\Key' => 'plugins\\kurtjensen\\passage\\models\\Key.php',
+  'kurtjensen\\passage\\Controllers\\keys' => 'plugins\\kurtjensen\\passage\\controllers\\keys.php',
 );
