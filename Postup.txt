@@ -1,0 +1,44 @@
+Tu zapíšte prosím Váš postup alebo zmenu v kóde
+
+
+      Poznámky - čo treba spraviť
+
+      /* ---Poznámky--- */
+
+      Peter: Maťo sprav nejaký design stránky, Ďakujem.
+
+      /* ---Poznámky--- */
+
+
+      * ---Peter Knaus--- *
+
+       -27.1.2020 - Layout + predpríprava na SEO
+       -27.1.2020 - Formuláre (Žiadosť o kurz, Pridanie do kurzu)
+       -27.1.2020 - Pridané komentáre
+       -27.1.2020 - Vytvotrnie a upravenie účtu
+       -27.1.2020 - Sekcia pre Kurzy
+       -27.1.2020 - Footer
+       -27.1.2020 - Header
+       -27.1.2020 - Vytvorené / stiahnuté obrázky na kurzy, Logo, Wezeo, Postup v KurzCademy
+
+      * ---Peter Knaus--- *
+
+
+
+
+       * ---Branislav Trstenský--- *
+
+
+
+
+
+       * ---Branislav Trstenský--- *
+
+
+
+        * ---Matej Sudovský--- *
+
+
+
+
+        * ---Matej Sudovský--- *

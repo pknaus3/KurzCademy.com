@@ -4,7 +4,7 @@ security = "all"
 <div class="Students"> <!-- All students -->
 
 
-    {% if users is defined %}
+    {% if users is defined %} <!-- Pokus vypisat vsetkych ziakov v danom kurze -->
       <ul>
           {% for user in users %}
               <li>{{ user.username }}</li>
