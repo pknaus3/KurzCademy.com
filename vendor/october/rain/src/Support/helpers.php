@@ -216,6 +216,7 @@ if (!function_exists('trans')) {
      *
      * @param  string  $id
      * @param  array   $parameters
+     * @param  string  $domain
      * @param  string  $locale
      * @return string
      */
