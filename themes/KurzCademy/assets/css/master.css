@@ -37,7 +37,20 @@ body{
   border-radius: 10px;
   width: 100%;
   height: 100%;
-  padding: 14px;
+  padding: 10px;
+  animation: pupupWindowAnimation 0.25s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes pupupWindowAnimation {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 100%;
+    opacity: 1;
+  }
 }
 
 .popupIframe {

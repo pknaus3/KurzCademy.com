@@ -15,7 +15,8 @@
         <a class="nav-item nav-link" href="Account">{{user.name}}</a>
         <a class="nav-item nav-link" data-request="onLogout" data-request-data="">Odhlásiť sa</a>
       {% else %} <!-- Inak toto -->
-        <a class="nav-item nav-link" href="Account">Zaregistrovať sa  / Prihlasiť sa</a>
+        <button class="nav-item btn btn-secondary" onclick="openPopup('login')">Prihlásiť sa</button>
+        <button class="nav-item ml-1 btn btn-outline-secondary" onclick="openPopup('register')">Zaregistrovať sa</button>
       {% endif %}
 
     </div>
