@@ -18,14 +18,13 @@ function openPopup(url) {
         popupIframe = document.createElement("iframe")
         popupIframe.classList.add("popupIframe")
         popupWindow.appendChild(popupIframe)
-
-        popupIframe.addEventListener("load", () => {
-            if (popupIframe.src == "about:blank") {
-                popupParent.remove()
-            }
-        })
     }
 
     document.body.appendChild(popupParent)
     popupIframe.src = url
+}
+
+function closePopup() {
+    popupIframe.src = ""
+    popupParent.remove()
 }
