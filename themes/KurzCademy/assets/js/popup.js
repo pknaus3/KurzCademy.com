@@ -10,16 +10,22 @@ function openPopup(url) {
     if (popupParent == null) {
         popupParent = document.createElement("div")
         popupParent.classList.add("popupParent")
-        
+
         let popupWindow = document.createElement("div")
         popupWindow.classList.add("popupWindow")
         popupParent.appendChild(popupWindow)
-        
+
         popupIframe = document.createElement("iframe")
         popupIframe.classList.add("popupIframe")
         popupWindow.appendChild(popupIframe)
+
+        popupIframe.addEventListener("load", () => {
+            if (popupIframe.src == "about:blank") {
+                popupParent.remove()
+            }
+        })
     }
-    
+
     document.body.appendChild(popupParent)
     popupIframe.src = url
 }
