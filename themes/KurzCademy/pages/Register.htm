@@ -6,6 +6,10 @@ is_hidden = 0
 [account]
 paramCode = "code"
 forceSecure = 0
+
+[session]
+security = "guest"
+redirect = "popupCancel"
 ==
 {% partial account ~ '::register' %}
 <button class="btn btn-light" onclick="window.parent.closePopup()" >Cancel</button>
