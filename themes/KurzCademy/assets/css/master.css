@@ -1,0 +1,60 @@
+body{
+  background-color: red;
+}
+.kurzContent{
+  float: none;
+}
+.KurzStart{
+  background-image: url('themes/KurzCademy/assets/Img/KurzLevels/KurzStart.png');
+  /* Mato prosim prerob to na responzivne ja sa s tym mrdat teraz nebudem */
+  background-size: cover;
+  width: 384px;
+  height: 384px;
+  float: left;
+}
+.KurzContinue{
+  background-image: url('assets/Img/KurzLevels/KurzContinue.png');
+  background-size: cover;
+  /* Mato prosim prerob to na responzivne ja sa s tym mrdat teraz nebudem */
+  width: 384px;
+  height: 384px;
+  float: left;
+}
+
+/* Classy pre vyskakovacie okna */
+.popupParent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 20px;
+}
+
+.popupWindow {
+  background-color: white;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  animation: pupupWindowAnimation 0.25s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes pupupWindowAnimation {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+.popupIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

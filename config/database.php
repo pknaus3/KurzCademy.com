@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => 'mysql',
+    'default' => 'sqlite',
 
     /*
     |--------------------------------------------------------------------------
@@ -58,8 +58,8 @@ return [
             'host'       => 'localhost',
             'port'       => 3306,
             'database'   => 'octobercms',
-            'username'   => 'root',
-            'password'   => '',
+            'username'   => 'admin',
+            'password'   => 'admin',
             'charset'    => 'utf8mb4',
             'collation'  => 'utf8mb4_unicode_ci',
             'prefix'     => '',
