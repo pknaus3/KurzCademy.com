@@ -3,6 +3,15 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
+    name:
+        label: Kurz
+        searchable: true
+    publisher:
+        label: Autor
+        searchable: true
+    difficulty:
+        label: Náročnosť
+        searchable: true
+    description:
+        label: Popis
         searchable: true

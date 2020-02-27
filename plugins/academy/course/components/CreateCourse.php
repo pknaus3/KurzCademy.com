@@ -7,8 +7,8 @@ class CreateCourse extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'CreateCourse Component',
-            'description' => 'No description provided yet...'
+            'name'        => 'Create Course',
+            'description' => 'Add this to page to create form for new course'
         ];
     }
 
