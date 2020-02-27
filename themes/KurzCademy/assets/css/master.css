@@ -58,3 +58,15 @@ body{
   height: 100%;
   border: none;
 }
+
+.excersize-question {
+  height: 1.5em;
+}
+
+.excersize-question-right {
+  color: green;
+}
+
+.excersize-question-wrong {
+  color: red;
+}
