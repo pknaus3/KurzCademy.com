@@ -1,0 +1,22 @@
+title = "Register"
+url = "/register"
+layout = "ClearLayout"
+is_hidden = 0
+
+[account]
+paramCode = "code"
+forceSecure = 0
+
+[session]
+security = "guest"
+redirect = "popupCancel"
+==
+
+
+{% partial account ~ '::register' %}
+<button class="btn btn-dark" onclick="window.parent.closePopup()" >Cancel</button>
+<!--
+<div>
+	<input type="checkbox" id="" style="margin-right:5px;">I agree with licence...
+</div>
+-->

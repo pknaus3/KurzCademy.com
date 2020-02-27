@@ -1,0 +1,17 @@
+title = "Login"
+url = "/login"
+layout = "ClearLayout"
+is_hidden = 0
+
+[account]
+paramCode = "code"
+forceSecure = 0
+
+[session]
+security = "guest"
+redirect = "popupCancel"
+==
+
+	<h2 style="text-align: center;">Log in</h2>
+	{% partial account ~ '::signin' %}
+	<button class="btn btn-dark" onclick="window.parent.closePopup()" >Cancel</button>
