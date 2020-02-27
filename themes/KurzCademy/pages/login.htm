@@ -12,4 +12,5 @@ security = "guest"
 redirect = "popupCancel"
 ==
 {% partial account ~ '::signin' %}
+{% partial "UserError.htm" %}
 <button class="nav-item nav-link" onclick="window.parent.closePopup()" >Cancel</button>
