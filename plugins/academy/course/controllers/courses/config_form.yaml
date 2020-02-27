@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Course
+
+# Model Form Field configuration
+form: $/academy/course/models/course/fields.yaml
+
+# Model Class name
+modelClass: Academy\Course\Models\Course
+
+# Default redirect location
+defaultRedirect: academy/course/courses
+
+# Create page
+create:
+    title: Create Course
+    redirect: academy/course/courses/update/:id
+    redirectClose: academy/course/courses
+
+# Update page
+update:
+    title: Edit Course
+    redirect: academy/course/courses
+    redirectClose: academy/course/courses
+
+# Preview page
+preview:
+    title: Preview Course

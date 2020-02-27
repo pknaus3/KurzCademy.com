@@ -11,12 +11,6 @@ forceSecure = 0
 security = "guest"
 redirect = "popupCancel"
 ==
-
-
 {% partial account ~ '::register' %}
-<button class="btn btn-dark" onclick="window.parent.closePopup()" >Cancel</button>
-<!--
-<div>
-	<input type="checkbox" id="" style="margin-right:5px;">I agree with licence...
-</div>
--->
+{% partial "UserError.htm" %}
+<button class="nav-item nav-link" onclick="window.parent.closePopup()" >Cancel</button>

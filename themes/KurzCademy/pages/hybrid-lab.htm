@@ -4,6 +4,7 @@ layout = "Default"
 is_hidden = 0
 
 [session]
+security = "all"
 allowedUserGroups[] = "hybridlab"
 allowedUserGroups[] = "hybridlabteacher"
 redirect = "index"
@@ -15,13 +16,19 @@ redirect = "index"
   <!-- Content kurzu -->
 
   <!-- (Som len skusal ak chcete pouzite to) -->
-  <div class="KurzStart">
+  <div class="kurzContent">
+    
+<div class="KurzStart">
     <h2>Začiatok kurzu</h2>
     <p>Pre spustenie klikni na tlačidlo 'Začať'</p>
     <button type="button" name="button">Začať</button>
   </div>
 
+  </div>
+
+
   {% elseif inGroup('hybridlabteacher') %}
+
 
 
 

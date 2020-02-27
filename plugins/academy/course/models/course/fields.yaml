@@ -1,0 +1,16 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+      label: Meno kurzu
+
+    publisher:
+      publisher: Meno autora
+
+    difficulty:
+      label: Náročnosť kurzu
+
+    description:
+      label: Popis kurzu

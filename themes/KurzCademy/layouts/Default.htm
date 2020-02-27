@@ -1,4 +1,4 @@
-﻿description = "Default Layout"
+description = "Default Layout"
 
 [session]
 security = "all"
@@ -10,9 +10,7 @@ security = "all"
 
 
                   <!-- Custom style -->
-    {% put styles %}
-    <link href="themes\KurzCademy\assets\styles\master.css" rel="stylesheet" />
-    {% endput %}
+    <link href="themes/KurzCademy/assets/css/master.css" rel="stylesheet" />
     <link rel="profile" href="http://gmpg.org/xfn/11">
 
                     <!-- Extensions for web (Something as bootstrap, jQuery...) -->
@@ -24,6 +22,7 @@ security = "all"
       <!-- Ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ 'assets/javascript/jquery.js'|theme }}"></script>
+    <script src="themes/KurzCademy/assets/js/popup.js" defer async ></script>
     {% framework extras %}
     {% framework %}
 
@@ -40,8 +39,6 @@ security = "all"
 
     {% framework extras %} <!-- idk if work -->
     {% framework %}        <!-- idk if work -->
-
-    {% partial "MySql" %}  <!-- Pokus o pripojenie databazy-->
 
     {% partial "header.htm" %} <!-- Pripojenie navbaru -->
 
