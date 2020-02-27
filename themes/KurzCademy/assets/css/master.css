@@ -68,3 +68,23 @@ body{
   background: none;
   text-align: center;
 }
+
+.excersize-question {
+  height: 1.5em;
+}
+
+.excersize-question-right {
+  color: green;
+}
+
+.excersize-question-wrong {
+  color: red;
+}
+
+.user-error {
+  border: 1px solid red;
+  padding: 4px;
+  margin: 4px;
+  color: red;
+  border-radius: 2px;
+}
