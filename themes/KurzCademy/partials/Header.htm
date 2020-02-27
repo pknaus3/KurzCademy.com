@@ -9,9 +9,8 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="/">Domov <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="kurzy">Kurzy</a>
-      <a class="nav-item nav-link" href="mojekurzy">Moje kurzy</a>
-
       {% if user %} <!-- Keď je user prihláseny tak zobraz toto -->
+        <a class="nav-item nav-link" href="mojekurzy">Moje kurzy</a>
         <a class="nav-item nav-link" href="Account">{{user.name}}</a>
         <a class="nav-item nav-link" data-request="onLogout" data-request-data="">Odhlásiť sa</a>
       {% else %} <!-- Inak toto -->
