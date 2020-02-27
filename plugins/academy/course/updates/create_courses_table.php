@@ -12,7 +12,10 @@ class CreateCoursesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->timestamps();
-            $table->string('email');
+            $table->string('name');
+            $table->string('publisher');
+            $table->string('difficulty');
+            $table->string('description');
         });
     }
 

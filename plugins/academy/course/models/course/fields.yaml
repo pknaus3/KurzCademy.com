@@ -3,9 +3,14 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
-        disabled: true
+    name:
+      label: Meno kurzu
 
-    email:
-        label: email
+    publisher:
+      publisher: Meno autora
+
+    difficulty:
+      label: Náročnosť kurzu
+
+    description:
+      label: Popis kurzu
