@@ -1,0 +1,22 @@
+tabs:
+    fields:
+        name:
+            label: 'Názov kurzu'
+            span: auto
+            type: text
+            tab: 'Tab 1'
+        description:
+            label: 'Popis kurzu'
+            span: auto
+            type: text
+            tab: 'Tab 1'
+        author:
+            label: 'Autor kurzu'
+            span: auto
+            type: text
+            tab: 'Tab 1'
+        difficulty:
+            label: 'Náročnosť kurzu'
+            span: auto
+            type: text
+            tab: 'Tab 1'

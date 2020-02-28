@@ -1,0 +1,11 @@
+plugin:
+    name: 'kurzcademy.courses::lang.plugin.name'
+    description: 'kurzcademy.courses::lang.plugin.description'
+    author: kurzCademy
+    icon: oc-icon-adjust
+    homepage: ''
+navigation:
+    backend-kurz-editor:
+        label: 'Backend Kurz Editor'
+        url: kurzcademy/courses/createcourse
+        icon: icon-bell

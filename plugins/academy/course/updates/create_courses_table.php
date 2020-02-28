@@ -10,7 +10,6 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('academy_course_courses', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
             $table->timestamps();
             $table->string('name');
             $table->string('publisher');
