@@ -11,13 +11,8 @@ redirect = "index"
 ==
 {% component 'session' %} <!-- student and Teacher access only (HybridLab) -->
 
-  {% if inGroup('hybridlab') %}
-
-  <!-- Content kurzu -->
-
-  <!-- (Som len skusal ak chcete pouzite to) -->
   <div class="kurzContent">
-    
+
 <div class="KurzStart">
     <h2>Začiatok kurzu</h2>
     <p>Pre spustenie klikni na tlačidlo 'Začať'</p>
@@ -25,11 +20,3 @@ redirect = "index"
   </div>
 
   </div>
-
-
-  {% elseif inGroup('hybridlabteacher') %}
-
-
-
-
-  {% endif %}
