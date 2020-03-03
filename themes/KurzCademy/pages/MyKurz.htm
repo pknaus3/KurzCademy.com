@@ -8,37 +8,3 @@ security = "user"
 redirect = "kurzy"
 ==
 {% component 'session' %} <!-- user access only -->
-
-{% if inGroup('hybridlab') or inGroup('gameslab') or inGroup('hybridlabteacher') or inGroup('gameslabteacher') %}
-
-{% if inGroup('hybridlab') or inGroup('hybridlabteacher') %}  <!-- Ak je student alebo ucitel hybridlabu -->
-    <!-- Mato a Brano toto su uz vase sracky -->
-    <!-- Tu zacnite pisat vas kod  (User ktory je v HybridLabe) -->
-
-        <!-- Skuste ho presmerovat na stranku hybridlabu -->
-    <a href="hybridlab">HybridLab</a>
-    <!-- Tu nech konci -->
-
-  {% endif %}
-
-
-  {% if inGroup('gameslab') or inGroup('gameslabteacher') %}  <!-- Ak je student alebo ucitel GamesLabu -->
-    <!-- Mato a Brano toto su uz vase sracky -->
-
-    <!-- Tu zacnite pisat vas kod (User ktory je v GamesLabe) -->
-
-        <!-- Skuste ho presmerovat na stranku Gameslabu -->
-    <a href="gameslab">GamesLab</a>
-    <!-- Tu nech konci -->
-
-    {% endif %}
-
-
-
-
-    {% else %}  <!-- Uzivatel nema ziadne kurzy -->
-      <!-- Tu bude nieco ked typek neni priradeny do ziadneho kurzu -->
-      <h1>Niesi Student ziadneho kurzu --> <a href="kurzy">Kurzy</a> </h1>
-
-
-    {% endif %}
