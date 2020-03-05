@@ -40,25 +40,13 @@ body{
   display: flex;
   background-color: white;
   border-radius: 10px;
-  width: 50%;
-  height: 50%;
+  width: 400px;
+  height: 0;
   padding: 10px;
-  animation: pupupWindowAnimation 0.5s;
-  animation-timing-function: ease-in-out;
   justify-content: center;
-}
-
-@keyframes pupupWindowAnimation {
-  from {
-    height: 0;
-    opacity: 0;
-	filter: alpha(opacity=0);
-  }
-  to {
-    height: 50%;
-    opacity: 1;
-	filter: alpha(opacity=100);
-  }
+  transition-property: height;
+  transition-duration: 0.05s;
+  transition-timing-function: ease-in-out;
 }
 
 .popupIframe {
