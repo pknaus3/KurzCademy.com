@@ -15,6 +15,7 @@ class CreateCoursesTable extends Migration
             $table->string('publisher');
             $table->string('difficulty');
             $table->string('description');
+            $table->string('teacherName');
         });
     }
 
