@@ -11,6 +11,10 @@ function openPopup(url) {
         popupParent = document.createElement("div")
         popupParent.classList.add("popupParent")
 
+        popupParent.addEventListener("click", () => {
+            closePopup()
+        })
+
         let popupWindow = document.createElement("div")
         popupWindow.classList.add("popupWindow")
         popupParent.appendChild(popupWindow)
@@ -23,6 +27,12 @@ function openPopup(url) {
     document.body.appendChild(popupParent)
     popupIframe.src = url
 }
+
+window.addEventListener("keydown", (event)=>{
+    if (event.key == "Escape") {
+        closePopup()
+    }
+})
 
 function closePopup() {
     popupIframe.src = ""
