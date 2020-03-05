@@ -1,12 +1,12 @@
 title = "account"
 url = "/account/"
-layout = "Default"
+layout = "ClearLayout"
 description = "Sign in, registration and account management."
 meta_title = "KurzCademy.com | Účet"
 is_hidden = 0
 
 [account]
-redirect = "Account"
+redirect = "popupCancel"
 paramCode = "code"
 forceSecure = 0
 
@@ -14,5 +14,7 @@ forceSecure = 0
 security = "user"
 redirect = "index"
 ==
+<h2 style="text-align: center;">My account</h2>
 {% component 'session' %}
-{% component 'account' %}  <!-- Includuje user component -->
+<!-- Includuje user component -->
+{% component 'account' %}
