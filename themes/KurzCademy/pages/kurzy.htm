@@ -9,26 +9,29 @@ function onStart() {
 }
 
 ==
-    <script>
-        var courses = parsePHPData(`{{ courses }}`)
-    </script>
-    <div class="card-deck">
-        
-
-        <!-- Vlastny kurz -->
-        <!--
-
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="themes\KurzCademy\assets\Img\KurzPhotos\EditedOwnKurz.png" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Vlastný kurz</h5>
-                    <p class="card-text">Máte záujem stať sa učiteľom vo svojom vlastnom kurze? neváhajte a napíšte nám.</p>
-                    {% if user %}
-                    <a href="newkurz" class="btn btn-primary">Napísať žiadosť</a>
-                    {% else %}
-                    <a href="account" class="btn btn-primary">Prihlasiť sa</a>
-                    {% endif %}
-                </div>
+<div id="courses">
+    <div class="card-deck" v-for="course in courses" :key="course.name">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="themes\KurzCademy\assets\Img\KurzPhotos\HybridLab.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" v-text="course.name"></h5>
+                <p class="card-text" v-text="course.description"></p>
+                {% if user %}
+                <a href="prihlaseniekurz" class="btn btn-primary">Požiadať o pridanie</a>
+                {% else %}
+                <a href="account" class="btn btn-primary">Prihlasiť sa</a>
+                {% endif %}
             </div>
-        -->
+        </div>
     </div>
+</div>
+<script>
+    var courses = parsePHPData(`{{ courses }}`)
+
+    var vm = new Vue({
+        el: "#courses",
+        data: {
+            courses
+        }
+    })
+</script>
