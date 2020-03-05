@@ -40,7 +40,7 @@ body{
   display: flex;
   background-color: white;
   border-radius: 10px;
-  width: 30%;
+  width: 50%;
   height: 50%;
   padding: 10px;
   animation: pupupWindowAnimation 0.5s;
