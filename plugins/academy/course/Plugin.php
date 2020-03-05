@@ -50,10 +50,9 @@ class Plugin extends PluginBase
      */
     public function registerComponents()
     {
-        return []; // Remove this line to activate
 
         return [
-            'Academy\Course\Components\MyComponent' => 'myComponent',
+            'Academy\Course\Components\createcourse' => 'CreateCourse',
         ];
     }
 

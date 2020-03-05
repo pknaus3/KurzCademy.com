@@ -19,7 +19,7 @@ function onStart() {
                 {% if user %}
                 <a href="prihlaseniekurz" class="btn btn-primary">Požiadať o pridanie</a>
                 {% else %}
-                <a href="account" class="btn btn-primary">Prihlasiť sa</a>
+                <a onclick="openPopup('login')" class="btn btn-primary">Prihlasiť sa</a>
                 {% endif %}
             </div>
         </div>
