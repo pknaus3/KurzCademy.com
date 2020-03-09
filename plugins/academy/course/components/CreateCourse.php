@@ -1,6 +1,10 @@
 <?php namespace Academy\Course\Components;
 
 use Cms\Classes\ComponentBase;
+use Model;
+use Db;
+use Input;
+
 
 class CreateCourse extends ComponentBase
 {
@@ -13,22 +17,22 @@ class CreateCourse extends ComponentBase
     }
 
 
-    protected function saveCourse(){
-        $name = input::get('name');
-        $description = input::get('description');
-        $publisher = input::get('publisher');
-        $teacherName = input::get('teacherName');
-        $difficulty = input::get('difficulty');
+    public function onSaveCourse(){
+        echo "string";
+        $name = Input::get('name');
+        $description = Input::get('description');
+        $publisher = Input::get('publisher');
+        $teacherName = Input::get('teacherName');
+        $difficulty = Input::get('difficulty');
 
-        if (input::get('name')==1) {
-          Db::insert('insert into academy_course_courses (name, publisher, difficulty, description) values ($name, $publisher, $difficulty, $description )');
-        }
-        else {
-          echo "Kontaktujte administrátora web stránky";
-        }
-
-
-    }
+    $data = request()->only([
+      'name',
+      'publisher',
+      'difficulty',
+      'description',
+      'teacher_name'
+    ]);
+Db::table('academy_course_courses')->insert($data);    }
 
     public function defineProperties()
     {

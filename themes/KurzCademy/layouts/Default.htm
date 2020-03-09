@@ -45,13 +45,16 @@ security = "all"
     {% component 'session' %} <!-- All user access -->
 
     {% framework extras %} <!-- idk if work -->
-    {% framework %}        <!-- idk if work -->
 
     {% partial "header.htm" %} <!-- Pripojenie navbaru -->
 
     {% page %} <!-- Sem je vsetko na stranke -->
 
     {% partial "footer.htm" %} <!-- Pripojenie footeru -->
+
+    <script src="{{ 'path_to_jquery/jquery.js'|theme }}"></script>
+
+    {% framework %}
 
   </body>
 </html>

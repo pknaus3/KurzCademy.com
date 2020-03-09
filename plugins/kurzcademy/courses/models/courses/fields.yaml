@@ -20,3 +20,16 @@ tabs:
             span: auto
             type: text
             tab: 'Tab 1'
+        CourseThumb:
+            label: 'Course Thumb'
+            mode: image
+            imageWidth: '100'
+            imageHeight: '100'
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            required: 1
+            type: fileupload
+            tab: 'Tab 1'

@@ -22,7 +22,9 @@ class Course extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = [];
+    protected $fillable = [
+      'name','publisher','difficulty','description','teacher_name'
+    ];
 
     /**
      * @var array Validation rules for attributes
@@ -67,6 +69,8 @@ class Course extends Model
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
-    public $attachOne = [];
+    public $attachOne = [
+      'CourseThumb' => 'System\Models\File'
+    ];
     public $attachMany = [];
 }
