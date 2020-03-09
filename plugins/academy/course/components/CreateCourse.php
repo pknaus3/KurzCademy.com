@@ -18,21 +18,15 @@ class CreateCourse extends ComponentBase
 
 
     public function onSaveCourse(){
-        echo "string";
-        $name = Input::get('name');
-        $description = Input::get('description');
-        $publisher = Input::get('publisher');
-        $teacherName = Input::get('teacherName');
-        $difficulty = Input::get('difficulty');
-
-    $data = request()->only([
-      'name',
-      'publisher',
-      'difficulty',
-      'description',
-      'teacher_name'
-    ]);
-Db::table('academy_course_courses')->insert($data);    }
+        $data = request()->only([
+          'name',
+          'publisher',
+          'difficulty',
+          'description',
+          'teacher_name'
+        ]);
+        Db::table('academy_course_courses')->insert($data);
+    }
 
     public function defineProperties()
     {

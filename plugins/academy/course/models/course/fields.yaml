@@ -11,7 +11,6 @@ fields:
       publisher: Meno autora
       required: 1
 
-
     difficulty:
       label: Náročnosť kurzu
       required: 1
@@ -22,7 +21,7 @@ fields:
       required: 1
 
 
-    teacherName:
+    teacher_name:
       label: Meno učiteľa
       required: 1
 
