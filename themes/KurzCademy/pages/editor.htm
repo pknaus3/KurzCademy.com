@@ -1,0 +1,71 @@
+title = "Editor"
+url = "/editor"
+layout = "Default"
+is_hidden = 0
+==
+
+function onRequestUpdate() {
+    $id = Input::get('id');
+
+    $course = Db::table("academy_course_courses")->where('id', $id)->get();
+
+    if (count($course) != 0) {
+        $steps = Db::table("academy_course_" . $id)->get();
+    } else {
+        $steps = [];
+    }
+
+
+    return [
+        'course' => $course,
+        'steps' => $steps
+    ];
+}
+
+==
+<link href="themes/KurzCademy/assets/css/editor.css" rel="stylesheet" />
+<div id="editor">
+    <div id="editorHead">
+        <input id="courseName" v-model="name">
+        <button class="btn btn-outline-secondary">Preview</button>
+        <button class="btn btn-outline-secondary">Nastavenia</button>
+    </div>
+    <div id="editorBody">
+        <div id="editorSteps">
+            <div class="editor-step" v-for="step in steps" :key="step.id">
+                <button v-text="step.name" class="editor-step-name"></button>
+                <button>↑</button>
+                <button>↓</button>
+                <button>X</button>
+            </div>
+            <div id="editorNewStep">
+                <button>+</button>
+            </div>
+        </div>
+        <div id="editorMain">
+            <div v-if="currStep">
+                <div class="form-group">
+                    <label for="stepName">Názov: </label>
+                    <input name="stepName" class="form-control" placeholder="Vložte názov">
+                </div>
+                <div class="form-group">
+                    <label for="stepType">Typ: </label>
+                    <select class="form-control" name="stepType">
+                        <option value="googleDoc">Google Document</option>
+                        <option value="youtube">YouTube Video</option>
+                        <option value="html">HTML</option>
+                        <option value="markdown">Markdown</option>
+                    </select>
+                </div>
+            </div>
+            <div v-else>
+                Vytvorte nový krok pre editovanie
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var editor = new CourseEditor()
+    
+    editor.update()
+</script>
