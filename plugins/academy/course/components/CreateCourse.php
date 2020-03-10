@@ -26,8 +26,8 @@ class CreateCourse extends ComponentBase
           'description',
           'teacher_name'
         ]);
-        Course::create($data);
-        Schema::create('academy_course_' . $data['name'],function($Ctable){
+        $course = Course::create($data);
+        Schema::create('academy_course_' . $course['id'],function($Ctable){
           $Ctable->engine = 'InnoDB';
           $Ctable->increments('id');
           $Ctable->string('step_name');
@@ -35,6 +35,10 @@ class CreateCourse extends ComponentBase
           $Ctable->string('position');
           $Ctable->string('link');
         });
+
+        return [
+            'id' => $course['id']
+        ];
     }
 
 

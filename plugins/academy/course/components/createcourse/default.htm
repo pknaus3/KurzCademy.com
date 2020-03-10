@@ -9,5 +9,5 @@
   <input type="text" class="form-control" name="teacher_name" placeholder="Julius Retzer">
   <h4>Náročnosť kurzu</h4>
   <input type="text" class="form-control" name="difficulty" placeholder="Veľmi ťažká">
-  <button class="btn btn-primary" data-request="onSaveCourse">Odoslať</button>
+  <button class="btn btn-primary" data-request="onSaveCourse" data-request-success="window.parent.location.href = `course?id=${data.id}`">Odoslať</button>
 </form>
