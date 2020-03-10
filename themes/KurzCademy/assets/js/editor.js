@@ -12,7 +12,8 @@
  *  id: number,
  *  step_name: string,
  *  type: "googleDoc" | "youtube" | "html" | "markdown",
- *  link: string
+ *  link: string,
+ *  position: number
  * }} StepData
  */
 
@@ -28,6 +29,10 @@ class CourseEditor {
                 steps: this.steps,
                 name: "Loading...",
                 currStep: null
+            },
+            methods: {
+                deleteStep: (step) => this.deleteStep(step),
+                moveStep: (step, offset) => this.moveStep(step, offset)
             }
         })
         this.id = 0
@@ -57,7 +62,7 @@ class CourseEditor {
                         this.steps = data.steps
 
                         this.vm.name = this.course.name
-                        this.vm.steps = this.steps
+                        this.vm.steps = this.steps.sort((a, b) => a.position - b.position)
                         if (this.steps.length > 0) this.vm.currStep = this.steps[0]
                         resolve()
                     }
@@ -80,16 +85,37 @@ class CourseEditor {
         })
     }
 
-    saveStep() {
-        if (this.vm.currStep == null) return
+    saveStep(/** @type {StepData} */ step) {
         $.request("onSaveStep", {
             data: {
-                ...this.vm.currStep,
+                ...step,
                 courseId: this.id
-            },
-            success: (data) => {
-                debugger;
             }
         })
+    }
+
+    deleteStep(/** @type {StepData} */ step) {
+        $.request("onDeleteStep", {
+            data: {
+                id: step.id,
+                courseId: this.id
+            },
+            success: () => {
+                this.update()
+            }
+        })
+    }
+
+    moveStep(/** @type {StepData} */ step, /** @type {number} */ offset) {
+        var exchange = this.vm.steps[this.vm.steps.indexOf(step) + offset]
+        if (exchange) {
+            var newPosition = exchange.position
+            exchange.position = step.position
+            step.position = newPosition
+            this.vm.steps = this.vm.steps.sort((a, b) => a.position - b.position)
+
+            this.saveStep(exchange)
+            this.saveStep(step)
+        }
     }
 }
