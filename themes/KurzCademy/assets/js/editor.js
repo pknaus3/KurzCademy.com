@@ -118,4 +118,12 @@ class CourseEditor {
             this.saveStep(step)
         }
     }
+
+    saveCourse() {
+        $.request("onSaveCourse", {
+            data: {
+                ...this.course
+            }
+        })
+    }
 }

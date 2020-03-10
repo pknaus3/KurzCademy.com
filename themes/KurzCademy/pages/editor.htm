@@ -56,16 +56,33 @@ function onSaveStep() {
 function onDeleteStep() {
     $id = Input::get("id");
     $courseId = Input::get('courseId');
-
+    
     $stepsTable = "academy_course_" . $courseId;
     Db::table($stepsTable)->where('id', $id)->delete();
+}
+
+function onSaveCourse() {
+    $id = Input::get("id");
+    $description = Input::get('description');
+    $difficulty = Input::get('difficulty');
+    $name = Input::get('name');
+    $publisher = Input::get('publisher');
+    $teacher_name = Input::get('teacher_name');
+
+    Db::table("academy_course_courses")->where('id', $id)->update([
+        'description' => $description,
+        'difficulty' => $difficulty,
+        'name' => $name,
+        'publisher' => $publisher,
+        'teacher_name' => $teacher_name
+    ]);
 }
 
 ==
 <link href="themes/KurzCademy/assets/css/editor.css" rel="stylesheet" />
 <div id="editor">
     <div id="editorHead">
-        <input id="courseName" v-model="name">
+        <input id="courseName" v-model="name" onchange="editor.course.name = this.value; editor.saveCourse()">
         <button class="btn btn-outline-secondary">Preview</button>
         <button class="btn btn-outline-secondary">Nastavenia</button>
     </div>
