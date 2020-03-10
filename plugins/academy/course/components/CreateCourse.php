@@ -2,8 +2,8 @@
 
 use Cms\Classes\ComponentBase;
 use Model;
+use Academy\Course\Models\Course;
 use Db;
-use Input;
 
 
 class CreateCourse extends ComponentBase
@@ -25,7 +25,7 @@ class CreateCourse extends ComponentBase
           'description',
           'teacher_name'
         ]);
-        Db::table('academy_course_courses')->insert($data);
+        Course::create($data);
     }
 
     public function defineProperties()
