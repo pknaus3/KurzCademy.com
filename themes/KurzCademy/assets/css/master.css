@@ -79,6 +79,6 @@ body{
 
 .course-card {
   width: 300px;
-  display: inline-block;
+  display: inline-block !important;
   margin-left: 4px;
 }

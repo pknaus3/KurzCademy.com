@@ -4,12 +4,28 @@ layout = "Default"
 is_hidden = 0
 ==
 
-<div class="container-fluid">
+function onStart() {
+	$this["course"] = Db::table("academy_course_courses")->where('id', $_GET['id'])->get();
+}
+
+==
+
+<div class="container-fluid" id="course">
 	<div class="row">
 		<div class="col-4">
 			<img class="" src="themes\KurzCademy\assets\Img\KurzLevels\coursePicture.png">
-			<h2>Course Name<h2>
+			<h2 v-text="course.name"></h2>
 			<div class="" style="width: 100%;height: 5px; border-top: 1px solid black; margin-bottom: 10px;"></div>
+			
+			<p>
+				<div>Autor: <span v-text="course.publisher"></span></div>
+				<div>Učiteľ: <span v-text="course.teacher_name"></span></div>
+				<div>Obtiažnosť: <span v-text="course.difficulty"></span></div>
+			</p>
+
+			<p v-text="course.description">
+
+			</p>
 
 			<div style="width: 50px; height:50px; border-radius: 25px; border: 2px solid #000000; margin-bottom: 10px;">
 				<!--<img src="">-->
@@ -24,3 +40,17 @@ is_hidden = 0
 		</div>
 	</div>
 </div>
+
+<script>
+	/** @type {Array} */
+    var courses = parsePHPData(`{{ course }}`)
+
+	if (courses.length == 0) location.href = "courseNotFound"
+
+    var vm = new Vue({
+        el: "#course",
+        data: {
+            course: courses[0]
+        }
+    })
+</script>
