@@ -64,7 +64,7 @@ function onSaveStep() {
     <div id="editorBody">
         <div id="editorSteps">
             <div class="editor-step" v-for="step in steps" :key="step.id">
-                <button v-text="step.step_name" class="editor-step-name"></button>
+                <button v-text="step.step_name" @click="currStep = step" class="editor-step-name"></button>
                 <button>↑</button>
                 <button>↓</button>
                 <button>X</button>
