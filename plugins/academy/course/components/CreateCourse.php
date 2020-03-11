@@ -23,8 +23,8 @@ class CreateCourse extends ComponentBase
           'name',
           'publisher',
           'difficulty',
-          'description',
-          'teacher_name'
+		  'description',
+		  'teacher_name'
         ]);
         $course = Course::create($data);
         Schema::create('academy_course_' . $course['id'],function($Ctable){
