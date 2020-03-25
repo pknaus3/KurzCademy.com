@@ -87,7 +87,6 @@ class ComposerStaticInitf13230f720fe273cde9a336d003c996c
         'O' => 
         array (
             'October\\Rain\\' => 13,
-            'October\\Demo\\' => 13,
         ),
         'M' => 
         array (
@@ -132,6 +131,7 @@ class ComposerStaticInitf13230f720fe273cde9a336d003c996c
         'C' => 
         array (
             'Cron\\' => 5,
+            'Creativeorange\\Gravatar\\' => 24,
             'Composer\\Installers\\' => 20,
             'Cms\\' => 4,
         ),
@@ -292,10 +292,6 @@ class ComposerStaticInitf13230f720fe273cde9a336d003c996c
         array (
             0 => __DIR__ . '/..' . '/october/rain/src',
         ),
-        'October\\Demo\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/plugins/october/demo',
-        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -375,6 +371,10 @@ class ComposerStaticInitf13230f720fe273cde9a336d003c996c
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
+        ),
+        'Creativeorange\\Gravatar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/creativeorange/gravatar/src',
         ),
         'Composer\\Installers\\' => 
         array (

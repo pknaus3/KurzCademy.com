@@ -1,4 +1,15 @@
 <?php return array (
+  'creativeorange/gravatar' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Creativeorange\\Gravatar\\GravatarServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Gravatar' => 'Creativeorange\\Gravatar\\Facades\\Gravatar',
+    ),
+  ),
   'jenssegers/date' => 
   array (
     'providers' => 
