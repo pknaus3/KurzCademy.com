@@ -1,0 +1,35 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    course_name:
+        label: 'Vyber kurz'
+        options: getDropdownOptions
+        showSearch: true
+        span: auto
+        placeholder: Kurzy
+        type: dropdown
+        tab: 'tab1'
+    video_link:
+        label: 'Link na video:'
+        span: auto
+        type: text
+        tab: 'Tab 1'
+    docs_link:
+        label: 'Link na dokument:'
+        span: auto
+        type: text
+        tab: 'Tab 1'
+    custom_text:
+        label: 'Zadajte vlastný text:'
+        span: auto
+        type: richeditor
+        tab: 'Tab 1'
+    step_position:
+        label: 'Zadajte pozíciu kroku: '
+        span: auto
+        type: text
+        tab: 'Tab 1'
+
+
