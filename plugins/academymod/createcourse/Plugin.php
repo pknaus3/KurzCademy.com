@@ -16,9 +16,9 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'createCourse',
-            'description' => 'No description provided yet...',
-            'author'      => 'academyMod',
+            'name'        => 'Course',
+            'description' => 'Plugin slúži na tvorbu a editáciu kurzov',
+            'author'      => 'KurzCademy.com',
             'icon'        => 'icon-leaf'
         ];
     }

@@ -5,3 +5,6 @@
 1.0.3:
     - Foreign table
     - create_editors_table.php
+1.0.4:
+    - Vytvorenie nového stĺpca v tabulke
+    - Vytvorená funkcia

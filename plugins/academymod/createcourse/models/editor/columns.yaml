@@ -6,3 +6,10 @@ columns:
     id:
         label: ID
         searchable: true
+    course_name:
+        label: Názov kurzu
+        searcable: true
+    step_name:
+        label: Názov kroku
+        searchable: true
+

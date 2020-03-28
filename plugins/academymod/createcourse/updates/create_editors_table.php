@@ -13,6 +13,7 @@ class CreateEditorsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('course_name');
+            $table->string('step_name');
             $table->string('video_link');
             $table->string('docs_link');
             $table->string('custom_text');

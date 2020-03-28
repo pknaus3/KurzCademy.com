@@ -1,6 +1,7 @@
 <?php namespace Academymod\Createcourse\Models;
 
 use Model;
+use BackendAuth;
 
 /**
  * editor Model
@@ -56,13 +57,22 @@ class Editor extends Model
         'created_at',
         'updated_at'
     ];
-    public function getDropdownOptions($fieldName, $value, $formData)
+    public function getDropdownOptions()
     {
-        $courses = CreateCourse::all();
-            foreach ($courses as $course){
-                return[$course->name => $course->name];
-            }
+        $user = BackendAuth::getUser()->login;
+        $courses = CreateCourse::where('publisher',$user);
+        $course = $courses->pluck('name','name');
+
+        if(CreateCourse::all()->count() >= 1) {
+            return $course;
+        }
+        else
+        {
+            return ['' => "---none---"];
+        }
     }
+
+
 
     /**
      * @var array Relations

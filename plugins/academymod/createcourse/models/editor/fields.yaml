@@ -5,12 +5,19 @@
 fields:
     course_name:
         label: 'Vyber kurz'
+        required: 1
         options: getDropdownOptions
         showSearch: true
         span: auto
         placeholder: Kurzy
         type: dropdown
         tab: 'tab1'
+    step_name:
+        label: 'Názov kroku: '
+        required: 1
+        span: auto
+        type: text
+        tab: 'tab 1'
     video_link:
         label: 'Link na video:'
         span: auto
@@ -28,6 +35,7 @@ fields:
         tab: 'Tab 1'
     step_position:
         label: 'Zadajte pozíciu kroku: '
+        required: 1
         span: auto
         type: text
         tab: 'Tab 1'
