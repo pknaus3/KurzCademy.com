@@ -1,10 +1,10 @@
-#editor {
+.viewer {
     height: calc(100vh - 98px - 208px);
     display: flex;
     flex-direction: column;
 }
 
-#editorHead {
+.viewer-head {
     flex: 0 0 25px;
     display: flex;
     flex-direction: row;
@@ -13,92 +13,76 @@
     padding-right: 0;
 }
 
-#editorHead > * {
+.viewer-head > * {
     margin-right: 4px;
 }
 
-#editorHead > button {
+.viewer-head > button {
     margin-top: 6px;
     margin-bottom: 6px;
 }
 
-#courseName {
+.course-name {
     flex: 1 1;
     border: none;
     font-size: 20px;
 }
 
-#editorBody {
+.viewer-body {
     flex: 1 1;
     display: flex;
     flex-direction: row;
 }
 
-#editorSteps {
+.viewer-steps {
     flex: 0 0 200px;
     overflow: hidden;
     overflow-y: scroll;
     border-right: 1px solid black;
 }
 
-.editor-step {
+.viewer-step {
     display: flex;
     flex-direction: row;
     height: 20px;
 }
 
-.editor-step > * {
+.viewer-step > * {
     background-color: white;
 }
 
-.editor-step > :disabled {
+.viewer-step > :disabled {
     opacity: 0.5;
 }
 
-.editor-step > button {
+.viewer-step > button {
     line-height: 14px;
 }
 
-.editor-step-name {
+.viewer-step-name {
     flex: 1 1;
     text-align: left;
 }
 
-.editor-step-name:disabled {
+.viewer-step-name:disabled {
     opacity: 1;
     background-color: lightgreen;
     color: black;
 }
 
-#editorMain {
+.viewer-main {
     padding: 10px;
     flex: 1 1;
 }
 
-#editorMain > div {
+.viewer-main > div {
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-#editorCode {
+.viewer-course-not-found {
     flex: 1 1;
-    display: flex;
-    flex-direction: column;
-}
-
-#editorCode > textarea {
-    flex: 1 1;
-    resize: none;
-}
-
-#editorNewStep {
-    margin-top: 4px;
-    display: flex;
-    justify-content: center;
-}
-
-#editorNewStep > button {
-    height: 20px;
-    line-height: 14px;
+    text-align: center;
+    padding-top: 25vh;
 }
