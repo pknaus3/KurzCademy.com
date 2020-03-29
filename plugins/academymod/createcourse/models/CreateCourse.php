@@ -60,14 +60,7 @@ class CreateCourse extends Model
         'updated_at'
     ];
     /* This function show only courses which belongTo his owner */
-    public function getPublisherOnly($field){
-        $user = User::getUser()->login;
-        $courses = CreateCourse::where('publisher',$user)
-                               ->orwhere('teacher_name',$user);
-        $course = $courses->pluck($field);
 
-        return [$course];
-    }
 
     /**
      * @var array Relations
