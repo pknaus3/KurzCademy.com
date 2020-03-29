@@ -1,5 +1,6 @@
 <?php namespace RainLab\User\Models;
 
+use AcademyMod\CreateCourse\Models\CreateCourse;
 use Str;
 use Auth;
 use Mail;
@@ -446,4 +447,6 @@ class User extends UserBase
     {
         $this->password = $this->password_confirmation = Str::random(static::getMinPasswordLength());
     }
+
+    public $belongsToMany = [CreateCourse::class];
 }

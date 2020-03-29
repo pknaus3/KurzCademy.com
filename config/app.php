@@ -136,9 +136,9 @@ return [
         // 'Illuminate\Html\HtmlServiceProvider', // Example
 
         'System\ServiceProvider',
-        Creativeorange\Gravatar\GravatarServiceProvider::class
+
     ]),
-    
+
 
     /*
     |--------------------------------------------------------------------------
@@ -154,7 +154,7 @@ return [
     'aliases' => array_merge(include(base_path('modules/system/aliases.php')), [
 
         // 'Str' => 'Illuminate\Support\Str', // Example
-     "Gravatar" => Creativeorange\Gravatar\Facades\Gravatar::class
+
 
     ]),
 

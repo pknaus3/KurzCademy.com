@@ -9,7 +9,7 @@ list: $/academymod/createcourse/models/createcourse/columns.yaml
 modelClass: AcademyMod\CreateCourse\Models\CreateCourse
 
 # List Title
-title: Manage Create Courses
+title: Zoznam kurzov
 
 # Link URL for each record
 recordUrl: academymod/createcourse/createcourse/update/:id

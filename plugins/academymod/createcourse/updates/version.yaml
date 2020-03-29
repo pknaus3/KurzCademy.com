@@ -8,3 +8,6 @@
 1.0.4:
     - Vytvorenie nového stĺpca v tabulke
     - Vytvorená funkcia
+1.0.5:
+    - Many to many relation created
+    - course_users_pivot.php

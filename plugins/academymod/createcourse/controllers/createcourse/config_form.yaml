@@ -16,16 +16,16 @@ defaultRedirect: academymod/createcourse/createcourse
 
 # Create page
 create:
-    title: Create Create Course
+    title: Vytvoriť kurz
     redirect: academymod/createcourse/createcourse/update/:id
     redirectClose: academymod/createcourse/createcourse
 
 # Update page
 update:
-    title: Edit Create Course
+    title: Editovať kurz
     redirect: academymod/createcourse/createcourse
     redirectClose: academymod/createcourse/createcourse
 
 # Preview page
 preview:
-    title: Preview Create Course
+    title: Náhľad kurzu

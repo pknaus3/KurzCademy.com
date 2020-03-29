@@ -60,10 +60,11 @@ class Editor extends Model
     public function getDropdownOptions()
     {
         $user = BackendAuth::getUser()->login;
-        $courses = CreateCourse::where('publisher',$user);
+        $courses = CreateCourse::where('publisher',$user)
+                               ->orwhere('teacher_name',$user);
         $course = $courses->pluck('name','name');
 
-        if(CreateCourse::all()->count() >= 1) {
+        if($courses->count() >= 1) {
             return $course;
         }
         else

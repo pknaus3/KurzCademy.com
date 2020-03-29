@@ -1,6 +1,7 @@
 <?php namespace AcademyMod\CreateCourse\Models;
 
 use Model;
+use RainLab\User\Models\User;
 
 /**
  * createCourse Model
@@ -58,6 +59,15 @@ class CreateCourse extends Model
         'created_at',
         'updated_at'
     ];
+    /* This function show only courses which belongTo his owner */
+    public function getPublisherOnly($field){
+        $user = User::getUser()->login;
+        $courses = CreateCourse::where('publisher',$user)
+                               ->orwhere('teacher_name',$user);
+        $course = $courses->pluck($field);
+
+        return [$course];
+    }
 
     /**
      * @var array Relations
@@ -65,7 +75,7 @@ class CreateCourse extends Model
     public $hasOne = [];
     public $hasMany = [Editor::class];
     public $belongsTo = [];
-    public $belongsToMany = [];
+    public $belongsToMany = [User::class];
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
