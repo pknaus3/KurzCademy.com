@@ -136,6 +136,8 @@ return [
         // 'Illuminate\Html\HtmlServiceProvider', // Example
 
         'System\ServiceProvider',
+        Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class
+
 
     ]),
 
@@ -154,6 +156,7 @@ return [
     'aliases' => array_merge(include(base_path('modules/system/aliases.php')), [
 
         // 'Str' => 'Illuminate\Support\Str', // Example
+        'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class
 
 
     ]),
