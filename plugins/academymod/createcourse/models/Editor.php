@@ -62,7 +62,7 @@ class Editor extends Model
         $user = BackendAuth::getUser()->login;
         $courses = CreateCourse::where('publisher',$user)
                                ->orwhere('teacher_name',$user);
-        $course = $courses->pluck('name','name');
+        $course = $courses->pluck('name','id');
 
         if ($courses->count() >= 1) {
             return $course;

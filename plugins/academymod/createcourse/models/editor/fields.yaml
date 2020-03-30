@@ -3,7 +3,7 @@
 # ===================================
 
 fields:
-    course_name:
+    course_id:
         label: 'Vyber kurz'
         required: 1
         options: getDropdownOptions
