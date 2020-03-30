@@ -64,7 +64,7 @@ class Editor extends Model
                                ->orwhere('teacher_name',$user);
         $course = $courses->pluck('name','name');
 
-        if($courses->count() >= 1) {
+        if ($courses->count() >= 1) {
             return $course;
         }
         else
