@@ -1,5 +1,6 @@
 <?php namespace AcademyMod\CreateCourse;
 
+use AcademyMod\CreateCourse\Models\CreateCourse;
 use Backend;
 use System\Classes\PluginBase;
 
@@ -73,6 +74,8 @@ class Plugin extends PluginBase
             ],
         ];
     }
+
+
 
     /**
      * Registers back-end navigation items for this plugin.

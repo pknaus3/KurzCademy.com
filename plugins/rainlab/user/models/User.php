@@ -448,5 +448,5 @@ class User extends UserBase
         $this->password = $this->password_confirmation = Str::random(static::getMinPasswordLength());
     }
 
-    
+
 }

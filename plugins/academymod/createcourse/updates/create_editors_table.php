@@ -12,13 +12,13 @@ class CreateEditorsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->timestamps();
-            $table->string('course_name');
+            $table->integer('course_id');
             $table->string('step_name');
             $table->string('video_link');
             $table->string('docs_link');
             $table->string('custom_text');
             $table->integer('step_position');
-            $table->foreign('course_name')->references('name')->on('academymod_createcourse_create_courses');
+            $table->foreign('course_id')->references('id')->on('academymod_createcourse_create_courses');
         });
     }
 
