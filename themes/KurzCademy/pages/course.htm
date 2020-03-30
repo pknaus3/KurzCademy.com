@@ -9,8 +9,12 @@ function onStart() {
     if (count($courses)) {
         $course = $courses;
         $this["course"] = $course;
-        $steps = Db::table("academymod_createcourse_editors")->where('course_name', $course[0]->name)->get();
+        $steps = Db::table("academymod_createcourse_editors")->where('course_id', $_GET['id'])->get();
+
         $this["steps"] = $steps;
+    } else {
+        $this["course"] = "null";
+        $this["steps"] = "[]";
     }
 }
 
@@ -53,5 +57,5 @@ function onStart() {
 </div>
 
 <script>
-    var viewer = new CourseViewer(parsePHPData(`{{ course }}`), parsePHPData(`{{ steps }}`))
+    var viewer = new CourseViewer({{ course|raw }}, {{ steps|raw }})
 </script>

@@ -26,7 +26,7 @@ function onStart() {
     </div>
 </div>
 <script>
-    var courses = parsePHPData(`{{ courses }}`)
+    var courses = {{ courses|raw }}
 
     var vm = new Vue({
         el: "#courses",
