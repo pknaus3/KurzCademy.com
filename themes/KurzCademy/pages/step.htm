@@ -1,0 +1,96 @@
+title = "Step"
+url = "/step"
+layout = "ClearLayout"
+is_hidden = 0
+
+==
+
+function onStart() {
+    $steps = Db::table("academymod_createcourse_editors")->where('id', $_GET['id'])->get();
+
+    if (count($steps) > 0) {
+        $this["found"] = true;
+        $this["step"] = $steps[0];
+        $this["name"] = $steps[0]->step_name;
+        $this["videoUrl"] = $steps[0]->video_link;
+        $this["googleDocUrl"] = $steps[0]->docs_link;
+        $this["customText"] = $steps[0]->custom_text;
+    }
+}
+
+==
+
+<link href="themes/KurzCademy/assets/css/stepViewer.css" rel="stylesheet" />
+
+{% if found %}
+<div class="step-container">
+    <h2>{{ name }}</h2>
+    <div class="btn-group btn-group-toggle mb-2" id="stateButtons" data-toggle="buttons">
+        {% if videoUrl %}
+        <label class="btn btn-secondary" onclick="setState('video')">
+            <input type="radio" name="state" autocomplete="off"> Video
+        </label>
+        {% endif %}
+        {% if googleDocUrl %}
+        <label class="btn btn-secondary" onclick="setState('document')">
+            <input type="radio" name="state" autocomplete="off"> Document
+        </label>
+        {% endif %}
+        {% if customText %}
+        <label class="btn btn-secondary" onclick="setState('custom')">
+            <input type="radio" name="state" autocomplete="off"> Text
+        </label>
+        {% endif %}
+    </div><br>
+
+    {% if videoUrl %}
+    <iframe 
+        src="https://www.youtube.com/embed/{{ videoUrl }}"
+        class="video" 
+        hidden 
+        id="video" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+    {% endif %}
+    {% if googleDocUrl %}
+    <iframe 
+        src="{{ googleDocUrl }}" 
+        class="document" 
+        id="document" 
+        hidden 
+        frameborder="0" 
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+    {% endif %}
+    <div id="customText" hidden>
+        {{ customText|raw }}
+    </div>
+</div>
+
+<script>
+    var video = document.getElementById("video")
+    var googleDoc = document.getElementById("document")
+    var customText = document.getElementById("customText")
+
+    function setState(/** @type {"video" | "document" | "custom"} */ state) {
+        if (video) video.hidden = state != "video"
+        if (googleDoc) googleDoc.hidden = state != "document"
+        if (customText) customText.hidden = state != "custom"
+    }
+
+    var stateButtons = [...document.getElementById("stateButtons").children]
+
+    if (stateButtons.length > 0) stateButtons[0].classList.add("active")
+
+    if (video) video.hidden = false
+    else if (googleDoc) googleDoc.hidden = false
+    else customText.hidden = false
+</script>
+{% else %}
+<div class="error-div">
+    <h3>
+        Krok nebol nájdený<br>
+    </h3>
+</div>
+{% endif %}
