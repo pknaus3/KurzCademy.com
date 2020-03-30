@@ -44,7 +44,7 @@
 .viewer-step {
     display: flex;
     flex-direction: row;
-    height: 20px;
+    height: 30px;
 }
 
 .viewer-step > * {
@@ -71,9 +71,30 @@
 }
 
 .viewer-main {
-    padding: 10px;
     flex: 1 1;
+    position: relative;
 }
+
+.viewer-iframe {
+    height: 100%;
+}
+
+.viewer-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.viewer-no-step {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 100px;
+}
+
 
 .viewer-main > div {
     height: 100%;

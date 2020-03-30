@@ -1,0 +1,32 @@
+title = "Step"
+url = "/step"
+layout = "ClearLayout"
+is_hidden = 0
+
+==
+
+function onStart() {
+    $steps = Db::table("academymod_createcourse_editors")->where('id', $_GET['id'])->get();
+
+    if (count($steps) > 0) {
+        $this["found"] = true;
+        $this["step"] = $steps[0];
+        $this["name"] = $steps[0]->step_name;
+    }
+}
+
+==
+
+<link href="themes/KurzCademy/assets/css/stepViewer.css" rel="stylesheet" />
+
+{% if found %}
+<div>
+    <h2>{{ name }}</h2>
+</div>
+{% else %}
+<div class="error-div">
+    <h3>
+        Krok nebol nájdený<br>
+    </h3>
+</div>
+{% endif %}

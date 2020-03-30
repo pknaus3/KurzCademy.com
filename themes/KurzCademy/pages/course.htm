@@ -5,7 +5,13 @@ is_hidden = 0
 ==
 
 function onStart() {
-	$this["course"] = Db::table("academymod_createcourse_create_courses")->where('id', $_GET['id'])->get();
+    $courses = Db::table("academymod_createcourse_create_courses")->where('id', $_GET['id'])->get();
+    if (count($courses)) {
+        $course = $courses;
+        $this["course"] = $course;
+        $steps = Db::table("academymod_createcourse_editors")->where('course_name', $course[0]->name)->get();
+        $this["steps"] = $steps;
+    }
 }
 
 ==
@@ -20,12 +26,20 @@ function onStart() {
         <div class="viewer-body">
             <div class="viewer-steps">
                 <div class="viewer-step" v-for="step in steps" :key="step.id">
-                    <button v-text="step.step_name" @click="currStep = step" class="viewer-step-name" :disabled="step == currStep"></button>
+                    <button v-text="step.step_name" @click="selectStep(step)" class="viewer-step-name" :disabled="step == currStep"></button>
                 </div>
             </div>
             <div class="viewer-main">
                 <div v-if="currStep">
-                    <span v-text="currStep.label"></span>
+                    <iframe :src="`/step?id=${currStep.id}`" class="viewer-iframe" frameborder="0" @load="loading = false" v-show="!loading"></iframe>
+                    <div class="viewer-loading spinner-border text-primary" v-if="loading"></div>
+                </div>
+                <div v-else>
+                    <div class="viewer-no-step">
+                        <h3>
+                            Zvoľte krok na zobrazenie
+                        </h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,5 +53,5 @@ function onStart() {
 </div>
 
 <script>
-    var viewer = new CourseViewer(parsePHPData(`{{ course }}`))
+    var viewer = new CourseViewer(parsePHPData(`{{ course }}`), parsePHPData(`{{ steps }}`))
 </script>
