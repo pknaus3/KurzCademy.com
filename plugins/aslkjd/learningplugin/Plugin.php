@@ -1,4 +1,4 @@
-<?php namespace Kurzcademy\Courses;
+<?php namespace Aslkjd\Learningplugin;
 
 use System\Classes\PluginBase;
 

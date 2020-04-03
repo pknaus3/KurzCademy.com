@@ -1,5 +1,6 @@
 <?php namespace AcademyMod\CreateCourse\Models;
 
+use Academymod\Createcourse\Components\HomeWork;
 use Model;
 use RainLab\User\Models\User;
 
@@ -69,11 +70,14 @@ class CreateCourse extends Model
     public $hasMany = [Editor::class];
     public $belongsTo = [];
     public $belongsToMany = [User::class];
-    public $morphTo = [];
+    public $morphTo = [
+        'attachment' => []
+    ];
     public $morphOne = [];
     public $morphMany = [];
     public $attachOne = [
-        'CourseThumb' => 'System\Models\File'
+        'CourseThumb' => 'System\Models\File',
+        'HomeWork' => 'System\Models\File'
     ];
     public $attachMany = [];
 }

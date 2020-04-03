@@ -11,3 +11,5 @@
 1.0.5:
     - Many to many relation created
     - course_users_pivot.php
+1.0.6:
+    - Component "File Upload"

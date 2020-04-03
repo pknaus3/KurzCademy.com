@@ -1,9 +1,9 @@
-<?php namespace Kurzcademy\Courses\Controllers;
+<?php namespace Aslkjd\Learningplugin\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
 
-class CreateCourse extends Controller
+class Learn extends Controller
 {
     public $implement = [    ];
     

@@ -39,5 +39,10 @@ fields:
         span: auto
         type: text
         tab: 'Tab 1'
+    homework:
+        label: 'Krok s úlohou'
+        span: auto
+        type: checkbox
+
 
 

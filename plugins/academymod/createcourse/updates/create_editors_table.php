@@ -19,6 +19,7 @@ class CreateEditorsTable extends Migration
             $table->string('custom_text');
             $table->integer('step_position');
             $table->foreign('course_id')->references('id')->on('academymod_createcourse_create_courses');
+            $table->boolean('homework')->default('false');
         });
     }
 

@@ -1,11 +1,11 @@
-<?php namespace Kurzcademy\Courses\Models;
+<?php namespace Aslkjd\Learningplugin\Models;
 
 use Model;
 
 /**
  * Model
  */
-class Courses extends Model
+class Learn extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
@@ -19,7 +19,7 @@ class Courses extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'kurzcademy_courses_';
+    public $table = 'aslkjd_learningplugin_learning';
 
     /**
      * @var array Validation rules
