@@ -1,4 +1,4 @@
-<?php namespace AcademyMod\CreateCourse\Controllers;
+<?php namespace AcademyMod\Course\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
@@ -6,7 +6,7 @@ use Backend\Classes\Controller;
 /**
  * Create Course Back-end Controller
  */
-class CreateCourse extends Controller
+class Course extends Controller
 {
     public $implement = [
         'Backend.Behaviors.FormController',
@@ -20,6 +20,6 @@ class CreateCourse extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('AcademyMod.CreateCourse', 'createcourse', 'createcourse');
+        BackendMenu::setContext('AcademyMod.Course', 'course', 'course');
     }
 }

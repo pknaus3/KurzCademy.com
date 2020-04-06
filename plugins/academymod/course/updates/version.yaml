@@ -1,10 +1,8 @@
 1.0.1: First version of createCourse
 1.0.2:
     - create Model, controller, fields, colummns
-    - create_create_courses_table.php
 1.0.3:
     - Foreign table
-    - create_editors_table.php
 1.0.4:
     - Vytvorenie nového stĺpca v tabulke
     - Vytvorená funkcia
@@ -13,3 +11,8 @@
     - course_users_pivot.php
 1.0.6:
     - Component "File Upload"
+1.0.7:
+    - I hate U Jules, in good word
+    - rename all files from createCourse -> Course
+    - academymod_courses.php
+    - academymod_steps

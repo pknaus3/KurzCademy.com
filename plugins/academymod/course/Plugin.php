@@ -1,11 +1,11 @@
-<?php namespace AcademyMod\CreateCourse;
+<?php namespace AcademyMod\Course;
 
-use AcademyMod\CreateCourse\Models\CreateCourse;
+use AcademyMod\Course\Models\Course;
 use Backend;
 use System\Classes\PluginBase;
 
 /**
- * createCourse Plugin Information File
+ * course Plugin Information File
  */
 class Plugin extends PluginBase
 {
@@ -53,7 +53,7 @@ class Plugin extends PluginBase
     {
 
         return [
-            'AcademyMod\CreateCourse\Components\HomeWork' => 'HomeWork',
+            'AcademyMod\Course\Components\HomeWork' => 'HomeWork',
         ];
     }
 
@@ -67,8 +67,8 @@ class Plugin extends PluginBase
         return []; // Remove this line to activate
 
         return [
-            'academymod.createcourse.some_permission' => [
-                'tab' => 'createCourse',
+            'academymod.course.some_permission' => [
+                'tab' => 'course',
                 'label' => 'Some permission'
             ],
         ];
@@ -85,18 +85,18 @@ class Plugin extends PluginBase
     {
 
         return [
-            'createcourse' => [
+            'course' => [
                 'label'       => 'Vytvoriť kurz',
-                'url'         => Backend::url('academymod/createcourse/CreateCourse'),
+                'url'         => Backend::url('academymod/course/Course'),
                 'icon'        => 'icon-leaf',
-                'permissions' => ['academymod.createcourse.*'],
+                'permissions' => ['academymod.course.*'],
                 'order'       => 500,
             ],
-            'Editor' => [
+            'Steps' => [
                 'label'       => 'Editovať kurz',
-                'url'         => Backend::url('academymod/createcourse/Editor'),
+                'url'         => Backend::url('academymod/course/Steps'),
                 'icon'        => 'icon-leaf',
-                'permissions' => ['academymod.createcourse.*'],
+                'permissions' => ['academymod.course.*'],
                 'order'       => 500,
             ],
         ];

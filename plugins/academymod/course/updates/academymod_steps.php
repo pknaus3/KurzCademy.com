@@ -4,11 +4,11 @@ use Schema;
 use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 
-class CreateEditorsTable extends Migration
+class CreateStepssTable extends Migration
 {
     public function up()
     {
-        Schema::create('academymod_createcourse_editors', function (Blueprint $table) {
+        Schema::create('academymod_steps', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->timestamps();
@@ -18,13 +18,14 @@ class CreateEditorsTable extends Migration
             $table->string('docs_link');
             $table->string('custom_text');
             $table->integer('step_position');
-            $table->foreign('course_id')->references('id')->on('academymod_createcourse_create_courses');
             $table->boolean('homework')->default('false');
+
+            $table->foreign('course_id')->references('id')->on('academymod_courses');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('academymod_createcourse_editors');
+        Schema::dropIfExists('academymod_steps');
     }
 }

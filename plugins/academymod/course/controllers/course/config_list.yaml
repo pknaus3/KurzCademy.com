@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/academymod/createcourse/models/createcourse/columns.yaml
+list: $/academymod/course/models/course/columns.yaml
 
 # Model Class name
-modelClass: AcademyMod\CreateCourse\Models\CreateCourse
+modelClass: AcademyMod\Course\Models\Course
 
 # List Title
 title: Zoznam kurzov
 
 # Link URL for each record
-recordUrl: academymod/createcourse/createcourse/update/:id
+recordUrl: academymod/course/course/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

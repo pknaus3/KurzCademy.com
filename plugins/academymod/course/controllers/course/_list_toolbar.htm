@@ -1,22 +1,21 @@
 <div data-control="toolbar">
     <a
-        href="<?= Backend::url('academymod/createcourse/editor/create') ?>"
+        href="<?= Backend::url('academymod/course/course/create') ?>"
         class="btn btn-primary oc-icon-plus">
-        Vytvoriť krok
+        Vytvoriť kurz
     </a>
-
 
     <button
         class="btn btn-danger oc-icon-trash-o"
         disabled="disabled"
         onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
         data-request="onDelete"
-        data-request-confirm="Si si istý že chceš vymazať tento krok?"
+        data-request-confirm="Si si istý že chceš vymazať tento kurz?"
         data-trigger-action="enable"
         data-trigger=".control-list input[type=checkbox]"
         data-trigger-condition="checked"
         data-request-success="$(this).prop('disabled', 'disabled')"
         data-stripe-load-indicator>
-        Vymazať krok
+        Zmazať kurz
     </button>
 </div>

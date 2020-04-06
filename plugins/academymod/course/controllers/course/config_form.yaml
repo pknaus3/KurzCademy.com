@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Course
+
+# Model Form Field configuration
+form: $/academymod/course/models/course/fields.yaml
+
+# Model Class name
+modelClass: AcademyMod\Course\Models\Course
+
+# Default redirect location
+defaultRedirect: academymod/course/course
+
+# Create page
+create:
+    title: Vytvoriť kurz
+    redirect: academymod/course/course/update/:id
+    redirectClose: academymod/course/course
+
+# Update page
+update:
+    title: Editovať kurz
+    redirect: academymod/course/course
+    redirectClose: academymod/course/course
+
+# Preview page
+preview:
+    title: Náhľad kurzu

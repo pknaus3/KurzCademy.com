@@ -5,7 +5,7 @@ is_hidden = 0
 ==
 
 function onStart() {
-    $this["courses"] = Db::table("academymod_createcourse_create_courses")->get();
+    $this["courses"] = Db::table("academymod_courses")->get();
 }
 
 ==

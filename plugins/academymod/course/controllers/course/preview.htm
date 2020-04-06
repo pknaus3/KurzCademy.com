@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('academymod/createcourse/createcourse') ?>">Create Course</a></li>
+        <li><a href="<?= Backend::url('academymod/course/course') ?>">Create Course</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -14,6 +14,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('academymod/createcourse/createcourse') ?>" class="btn btn-default">Vrátiť sa na vytvorenie kurzu</a></p>
+    <p><a href="<?= Backend::url('academymod/course/course') ?>" class="btn btn-default">Vrátiť sa na vytvorenie kurzu</a></p>
 
 <?php endif ?>

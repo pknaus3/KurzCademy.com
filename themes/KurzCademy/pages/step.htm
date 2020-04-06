@@ -6,7 +6,7 @@ is_hidden = 0
 ==
 
 function onStart() {
-    $steps = Db::table("academymod_createcourse_editors")->where('id', $_GET['id'])->get();
+    $steps = Db::table("academymod_steps")->where('id', $_GET['id'])->get();
 
     if (count($steps) > 0) {
         $this["found"] = true;
@@ -44,23 +44,23 @@ function onStart() {
     </div><br>
 
     {% if videoUrl %}
-    <iframe 
+    <iframe
         src="https://www.youtube.com/embed/{{ videoUrl }}"
-        class="video" 
-        hidden 
-        id="video" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+        class="video"
+        hidden
+        id="video"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     {% endif %}
     {% if googleDocUrl %}
-    <iframe 
-        src="{{ googleDocUrl }}" 
-        class="document" 
-        id="document" 
-        hidden 
-        frameborder="0" 
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+    <iframe
+        src="{{ googleDocUrl }}"
+        class="document"
+        id="document"
+        hidden
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     {% endif %}
     <div id="customText" class="document" hidden>

@@ -1,14 +1,14 @@
-<?php namespace AcademyMod\CreateCourse\Updates;
+<?php namespace AcademyMod\Course\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 
-class CreateCreateCoursesTable extends Migration
+class CreateCoursesTable extends Migration
 {
     public function up()
     {
-        Schema::create('academymod_createcourse_create_courses', function (Blueprint $table) {
+        Schema::create('academymod_courses', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->timestamps();
@@ -22,6 +22,6 @@ class CreateCreateCoursesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('academymod_createcourse_create_courses');
+        Schema::dropIfExists('academymod_courses');
     }
 }

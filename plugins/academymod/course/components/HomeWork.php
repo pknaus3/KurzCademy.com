@@ -1,6 +1,6 @@
-<?php namespace Academymod\Createcourse\Components;
+<?php namespace Academymod\Course\Components;
 
-use AcademyMod\CreateCourse\Models\CreateCourse;
+use AcademyMod\Course\Models\Course;
 use Cms\Classes\ComponentBase;
 use Illuminate\Support\Facades\Input;
 
@@ -19,7 +19,7 @@ class HomeWork extends ComponentBase
         return [];
     }
     public function onSubmit(){
-        $course = Createcourse::find(1);
+        $course = Course::find(1);
         $fileFromPost = Input::file('file');
         $course->homeWorks()->create(['data' => $fileFromPost ]);
     }

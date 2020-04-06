@@ -1,19 +1,20 @@
-<?php namespace Academymod\Createcourse\Models;
+<?php namespace AcademyMod\Course\Models;
 
+use Academymod\course\Components\HomeWork;
 use Model;
-use BackendAuth;
+use RainLab\User\Models\User;
 
 /**
- * editor Model
+ * course Model
  */
-class Editor extends Model
+class Course extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'academymod_createcourse_editors';
+    public $table = 'academymod_courses';
 
     /**
      * @var array Guarded fields
@@ -23,7 +24,9 @@ class Editor extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name','publisher','difficulty','description','teacher_name','CourseThumb'
+    ];
 
     /**
      * @var array Validation rules for attributes
@@ -57,34 +60,25 @@ class Editor extends Model
         'created_at',
         'updated_at'
     ];
-    public function getDropdownOptions()
-    {
-        $user = BackendAuth::getUser()->login;
-        $courses = CreateCourse::where('publisher',$user)
-                               ->orwhere('teacher_name',$user);
-        $course = $courses->pluck('name','id');
-
-        if ($courses->count() >= 1) {
-            return $course;
-        }
-        else
-        {
-            return ['' => "---none---"];
-        }
-    }
-
+    /* This function show only courses which belongTo his owner */
 
 
     /**
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [];
-    public $belongsTo = [CreateCourse::class];
-    public $belongsToMany = [];
-    public $morphTo = [];
+    public $hasMany = [Steps::class];
+    public $belongsTo = [];
+    public $belongsToMany = [User::class];
+    public $morphTo = [
+        'attachment' => []
+    ];
     public $morphOne = [];
     public $morphMany = [];
-    public $attachOne = [];
-    public $attachMany = [];
+    public $attachOne = [
+        'CourseThumb' => 'System\Models\File'
+    ];
+    public $attachMany = [
+        'homeWorks' => 'System\Models\File'
+    ];
 }

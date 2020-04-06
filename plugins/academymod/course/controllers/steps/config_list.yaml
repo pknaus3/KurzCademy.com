@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/academymod/createcourse/models/editor/columns.yaml
+list: $/academymod/course/models/Steps/columns.yaml
 
 # Model Class name
-modelClass: Academymod\Createcourse\Models\Editor
+modelClass: Academymod\Course\Models\Steps
 
 # List Title
-title: Manage Editors
+title: Manage Stepss
 
 # Link URL for each record
-recordUrl: academymod/createcourse/editor/update/:id
+recordUrl: academymod/course/Steps/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

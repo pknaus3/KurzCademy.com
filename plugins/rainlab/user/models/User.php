@@ -1,6 +1,6 @@
 <?php namespace RainLab\User\Models;
 
-use AcademyMod\CreateCourse\Models\CreateCourse;
+use AcademyMod\Course\Models\Course;
 use Str;
 use Auth;
 use Mail;

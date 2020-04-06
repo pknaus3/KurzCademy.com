@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('academymod/createcourse/createcourse') ?>">Create Course</a></li>
+        <li><a href="<?= Backend::url('academymod/course/course') ?>">Create Course</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -20,7 +20,7 @@
                     data-request="onSave"
                     data-request-data="redirect:0"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="Saving CreateCourse..."
+                    data-load-indicator="Saving Course..."
                     class="btn btn-primary">
                     <u>U</u>ložiť
                 </button>
@@ -29,7 +29,7 @@
                     data-request="onSave"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="Saving CreateCourse..."
+                    data-load-indicator="Saving Course..."
                     class="btn btn-default">
                     Uložiť a zavrieť
                 </button>
@@ -37,11 +37,11 @@
                     type="button"
                     class="oc-icon-trash-o btn-icon danger pull-right"
                     data-request="onDelete"
-                    data-load-indicator="Deleting CreateCourse..."
-                    data-request-confirm="Delete this createcourse?">
+                    data-load-indicator="Deleting Course..."
+                    data-request-confirm="Delete this course?">
                 </button>
                 <span class="btn-text">
-                    alebo <a href="<?= Backend::url('academymod/createcourse/createcourse') ?>">Zrušiť</a>
+                    alebo <a href="<?= Backend::url('academymod/course/course') ?>">Zrušiť</a>
                 </span>
             </div>
         </div>
@@ -51,6 +51,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('academymod/createcourse/createcourse') ?>" class="btn btn-default">Vrátiť sa na vytvorenie kurzu</a></p>
+    <p><a href="<?= Backend::url('academymod/course/course') ?>" class="btn btn-default">Vrátiť sa na vytvorenie kurzu</a></p>
 
 <?php endif ?>
