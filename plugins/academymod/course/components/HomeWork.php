@@ -20,7 +20,7 @@ class HomeWork extends ComponentBase
     }
     public function onSubmit(){
 
-        $course = Course::find(1); #Select course with ID
+        $course = Course::find(post('id')); #Select course with ID
         $fileFromPost = Input::file('file'); #Load uploaded file
         $course->homeWorks()->create(['data' => $fileFromPost ]); #Save it and write into DB
     }
