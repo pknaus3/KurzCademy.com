@@ -59,15 +59,16 @@ class Steps extends Model
     ];
     public function getDropdownOptions()
     {
-        $user = BackendAuth::getUser()->login;
-        $courses = Course::where('publisher',$user)
-                               ->orwhere('teacher_name',$user);
-        $course = $courses->pluck('name','id');
 
-        if ($courses->count() >= 1) {
+        $user = BackendAuth::getUser()->login; #Get user login
+        $courses = Course::where('publisher',$user) # select course where publisher is equal user login
+                               ->orwhere('teacher_name',$user); # or teacher_name is equal user login
+        $course = $courses->pluck('name','id'); # write all course [ 'id' => 'name' ]
+
+        if ($courses->count() >= 1) { # write only if is more than one course
             return $course;
         }
-        else
+        else # else write 'No results found'
         {
             return ['' => "---none---"];
         }
