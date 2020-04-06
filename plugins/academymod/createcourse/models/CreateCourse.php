@@ -76,8 +76,9 @@ class CreateCourse extends Model
     public $morphOne = [];
     public $morphMany = [];
     public $attachOne = [
-        'CourseThumb' => 'System\Models\File',
-        'HomeWork' => 'System\Models\File'
+        'CourseThumb' => 'System\Models\File'
     ];
-    public $attachMany = [];
+    public $attachMany = [
+        'homeWorks' => 'System\Models\File'
+    ];
 }

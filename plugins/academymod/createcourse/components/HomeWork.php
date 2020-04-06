@@ -1,6 +1,6 @@
 <?php namespace Academymod\Createcourse\Components;
 
-use Backend\Controllers\Auth;
+use AcademyMod\CreateCourse\Models\CreateCourse;
 use Cms\Classes\ComponentBase;
 use Illuminate\Support\Facades\Input;
 
@@ -19,19 +19,8 @@ class HomeWork extends ComponentBase
         return [];
     }
     public function onSubmit(){
-
-        $file = new System\Models\File;
-        $file->data = Input::file('file');
-        $file->save();
-
-        // Attach the uploaded file to your model
-        $model->HomeWork()->add($file);
-        // The above line assumes you have proper attachOne or attachMany relationships defined on your model - in this case, I have named the relationship simply as "file"
-
-        $model->file_path = url('/') . $model->HomeWork->getPath();
-        $model->save();
-
-        return Redirect::back();
-
+        $course = Createcourse::find(1);
+        $fileFromPost = Input::file('file');
+        $course->homeWorks()->create(['data' => $fileFromPost ]);
     }
 }

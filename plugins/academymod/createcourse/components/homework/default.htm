@@ -1,5 +1,9 @@
-{{ form_open({files: true, request: onSubmit}) }}
+<form method="post" enctype="multipart/form-data" action="{{ url('component-test') }}">
+    <input type="hidden" name="_handler" value="onSubmit">
+    {{ form_token() }}
+    {{ form_sessionKey() }}
+
     <label>Nahraj súbor</label>
     <input type="file" name="file" placeholder="Nahraj úlohu">
     <input type="submit" name="submit">
-{{ form_close() }}
+</form>
