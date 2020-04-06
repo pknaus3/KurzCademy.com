@@ -70,10 +70,7 @@
         ]
     },
     "config": {
-        "preferred-install": "dist",
-        "platform": {
-            "php": "7.0.8"
-        }
+        "preferred-install": "dist"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
