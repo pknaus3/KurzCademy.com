@@ -3,8 +3,9 @@ url = "/step"
 layout = "ClearLayout"
 is_hidden = 0
 
+[HomeWork]
 ==
-
+<?php
 function onStart() {
     $steps = Db::table("academymod_steps")->where('id', $_GET['id'])->get();
 
@@ -15,11 +16,11 @@ function onStart() {
         $this["videoUrl"] = $steps[0]->video_link;
         $this["googleDocUrl"] = $steps[0]->docs_link;
         $this["customText"] = $steps[0]->custom_text;
+        $this["homework"] = $steps[0]->homework;
     }
 }
-
+?>
 ==
-
 <link href="themes/KurzCademy/assets/css/stepViewer.css" rel="stylesheet" />
 
 {% if found %}
@@ -39,6 +40,11 @@ function onStart() {
         {% if customText %}
         <label class="btn btn-secondary" onclick="setState('custom')">
             <input type="radio" name="state" autocomplete="off"> Text
+        </label>
+        {% endif %}
+        {% if homework %}
+        <label class="btn btn-secondary" onclick="setState('homework')">
+            <input type="radio" name="state" autocomplete="off"> Úloha
         </label>
         {% endif %}
     </div><br>
@@ -63,20 +69,29 @@ function onStart() {
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     {% endif %}
+    {% if customText %}
     <div id="customText" class="document" hidden>
         {{ customText|raw }}
     </div>
+    {% endif %}
+    {% if homework %}
+    <div id="homework" hidden>
+        {% component 'HomeWork' %}
+    </div>
+    {% endif %}
 </div>
 
 <script>
     var video = document.getElementById("video")
     var googleDoc = document.getElementById("document")
     var customText = document.getElementById("customText")
+    var homework = document.getElementById("homework")
 
-    function setState(/** @type {"video" | "document" | "custom"} */ state) {
+    function setState(/** @type {"video" | "document" | "custom" | "homework"} */ state) {
         if (video) video.hidden = state != "video"
         if (googleDoc) googleDoc.hidden = state != "document"
         if (customText) customText.hidden = state != "custom"
+        if (homework) homework.hidden = state != "homework"
     }
 
     var stateButtons = [...document.getElementById("stateButtons").children]
@@ -85,7 +100,8 @@ function onStart() {
 
     if (video) video.hidden = false
     else if (googleDoc) googleDoc.hidden = false
-    else customText.hidden = false
+    else if (customText) customText.hidden = false
+    else if (homework) homework.hidden = false
 </script>
 {% else %}
 <div class="error-div">
