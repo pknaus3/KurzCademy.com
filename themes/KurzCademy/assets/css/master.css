@@ -90,8 +90,8 @@ body{
 .expand-menu > div {
  overflow: hidden;
  height: 0;
- position: absolute; 
- top: 2rem; 
+ position: absolute;
+ top: 2rem;
  left: 0;
  transition: height ease-in-out 0.1s;
 }
@@ -102,4 +102,8 @@ body{
 
 .expand-menu:hover > div > * {
   padding: 0;
+}
+.mainpage-img{
+  width: 430px;
+  opacity: 0.8;
 }
