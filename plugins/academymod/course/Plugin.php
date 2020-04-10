@@ -2,6 +2,7 @@
 
 use AcademyMod\Course\Models\Course;
 use Backend;
+use RainLab\User\Facades\Auth;
 use System\Classes\PluginBase;
 
 /**

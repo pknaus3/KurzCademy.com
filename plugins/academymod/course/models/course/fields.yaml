@@ -43,9 +43,12 @@ fields:
         type: fileupload
         tab: 'Vytvoriť kurz'
     teacher_name:
-        label: Učiteľ
+        label: Meno učiteľa
+        options: getTeacherName
+        showSearch: true
         span: auto
-        type: text
+        placeholder: --Vyber učiteľa--
+        type: dropdown
         tab: 'Vytvoriť kurz'
 
 

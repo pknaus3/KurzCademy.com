@@ -2,6 +2,7 @@
 
 use Model;
 use BackendAuth;
+use RainLab\User\Facades\Auth;
 
 /**
  * Steps Model
@@ -60,7 +61,7 @@ class Steps extends Model
     public function getDropdownOptions()
     {
 
-        $user = BackendAuth::getUser()->login; #Get user login
+        $user = Auth::getUser()->id; #Get user login
         $courses = Course::where('publisher',$user) # select course where publisher is equal user login
                                ->orwhere('teacher_name',$user); # or teacher_name is equal user login
         $course = $courses->pluck('name','id'); # write all course [ 'id' => 'name' ]

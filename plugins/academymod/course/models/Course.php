@@ -62,6 +62,11 @@ class Course extends Model
     ];
     /* This function show only courses which belongTo his owner */
 
+    public function getTeacherName(){
+        $users = User::all()->pluck('name', 'id');
+        return $users;
+    }
+
 
     /**
      * @var array Relations
