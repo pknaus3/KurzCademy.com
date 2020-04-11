@@ -68,6 +68,11 @@ class Course extends Model
     }
 
 
+    #public function getUserName($value, $column, $record){
+     #   $user = User::where('id', $record->teacher_name)->first();
+      #  return $user->get();
+    #}
+
     /**
      * @var array Relations
      */

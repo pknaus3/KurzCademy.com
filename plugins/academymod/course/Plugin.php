@@ -1,6 +1,6 @@
 <?php namespace AcademyMod\Course;
 
-use AcademyMod\Course\Models\Course;
+use AcademyMod\Course\Models\Course as Course;
 use Backend;
 use RainLab\User\Facades\Auth;
 use System\Classes\PluginBase;
@@ -55,6 +55,8 @@ class Plugin extends PluginBase
 
         return [
             'AcademyMod\Course\Components\HomeWork' => 'HomeWork',
+            'Academymod\Course\Components\Course' => 'Course',
+            'Academymod\Course\Components\Steps' => 'Steps'
         ];
     }
 
@@ -102,4 +104,5 @@ class Plugin extends PluginBase
             ],
         ];
     }
+
 }
