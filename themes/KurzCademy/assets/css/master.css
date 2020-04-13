@@ -103,7 +103,47 @@ body{
 .expand-menu:hover > div > * {
   padding: 0;
 }
-.mainpage-img{
-  width: 430px;
-  opacity: 0.8;
+
+.mainpage > .row > .col-md,.col{
+	color: #5f5b78;
+}
+
+.mainpage > .row > .col-md,.col > h3{
+	color: #362965;
+}
+
+.mainpage > .row > .col-md > p{
+	margin: 0px;
+
+}
+
+.mainpage > .row > .col-md-3,.col-md-9 > div{
+	color: #362965;
+}
+
+.mainpage > .row > .col-md-3 > div > h4{
+	margin: 0px;
+}
+.mainpage > .row > .col-md-9 > div > h4{
+	margin: 0px;
+}
+
+.mainpage-learnthis{
+	width: 50px;
+	height: 50px;
+}
+.mainpage-our-courses{
+	color: #362965;
+	margin: 20px 0px 20px 0px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 50px;
+}
+.form-subscribe{
+	background-color: #fff;
+	padding: 5px;
+	width: 400px;
+	border: 1px solid #f0f0f0;
+	border-radius: 2px;
 }
