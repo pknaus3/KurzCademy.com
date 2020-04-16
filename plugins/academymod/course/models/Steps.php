@@ -58,22 +58,6 @@ class Steps extends Model
         'created_at',
         'updated_at'
     ];
-    public function getDropdownOptions()
-    {
-
-        $user = Auth::getUser()->id; #Get user login
-        $courses = Course::where('publisher',$user) # select course where publisher is equal user login
-                               ->orwhere('teacher_name',$user); # or teacher_name is equal user login
-        $course = $courses->pluck('name','id'); # write all course [ 'id' => 'name' ]
-
-        if ($courses->count() >= 1) { # write only if is more than one course
-            return $course;
-        }
-        else # else write 'No results found'
-        {
-            return ['' => "---none---"];
-        }
-    }
 
 
 
@@ -82,7 +66,9 @@ class Steps extends Model
      */
     public $hasOne = [];
     public $hasMany = [];
-    public $belongsTo = [Course::class];
+    public $belongsTo = [
+        'course' => Course::class
+    ];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
