@@ -132,6 +132,11 @@ body{
 	width: 50px;
 	height: 50px;
 }
+
+.mainpage-ficurky{
+	height: 150px;
+	width: 300px;
+}
 .mainpage-our-courses{
 	color: #362965;
 	display: flex;
@@ -139,13 +144,14 @@ body{
 	align-items: left;
 	justify-content: center;
 	height: 18vw;
+	margin-bottom: 10px;
+	min-height: 200px;
 }
 .mainpage-our-courses:hover{
 	text-decoration: none;
 	color: #362965;
 }
 .mainpage-our-courses > div{
-	width: 50%;
 	display: flex;
 	align-self: left;
 	flex-direction: column;
@@ -153,9 +159,8 @@ body{
 }
 .mainpage-our-courses > div > img{
 	display: flex;
-	align-self: right;
 	height: 110%;
-	width: 80%;
+	width: 100%;
 	margin-top: -10.8%;
 }
 .form-subscribe{
