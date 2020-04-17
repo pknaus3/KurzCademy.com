@@ -134,11 +134,29 @@ body{
 }
 .mainpage-our-courses{
 	color: #362965;
-	margin: 20px 0px 20px 0px;
 	display: flex;
+	flex-direction: row;
+	align-items: left;
+	justify-content: center;
+	height: 18vw;
+}
+.mainpage-our-courses:hover{
+	text-decoration: none;
+	color: #362965;
+}
+.mainpage-our-courses > div{
+	width: 50%;
+	display: flex;
+	align-self: left;
 	flex-direction: column;
 	justify-content: center;
-	padding-left: 50px;
+}
+.mainpage-our-courses > div > img{
+	display: flex;
+	align-self: right;
+	height: 110%;
+	width: 80%;
+	margin-top: -10.8%;
 }
 .form-subscribe{
 	background-color: #fff;
