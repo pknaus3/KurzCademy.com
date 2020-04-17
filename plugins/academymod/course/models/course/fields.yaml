@@ -39,7 +39,6 @@ fields:
             mode: crop
             extension: auto
         span: auto
-        required: 1
         type: fileupload
         tab: 'Vytvoriť kurz'
     teacher_name:

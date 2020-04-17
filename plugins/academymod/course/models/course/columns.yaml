@@ -18,4 +18,3 @@ columns:
     teacher_name:
         label: Meno učiteľa
         searchable: true
-        valueFrom: getUserName

@@ -77,9 +77,13 @@ class Course extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [Steps::class];
+    public $hasMany = [
+      'steps' => Steps::class
+    ];
     public $belongsTo = [];
-    public $belongsToMany = [User::class];
+    public $belongsToMany = [
+        'user' => User::class
+    ];
     public $morphTo = [
         'attachment' => []
     ];
