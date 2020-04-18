@@ -36,16 +36,6 @@ body{
 
 }
 
-.toggler-icon{
-	display: inline-block;
-	width: 1.5em;
-	height: 1.5em;
-	vertical-align: middle;
-	content: "";
-	background: no-repeat center center;
-	background-size: 100% 100%;
-}
-
 .popupWindow {
   display: flex;
   background-color: white;
@@ -65,6 +55,13 @@ body{
   border: none;
   background: none;
   text-align: center;
+}
+
+.footer-img{
+	height: 16px;
+	width: 16px;
+	opacity: 40%;
+	margin-left: 5px;
 }
 
 .excersize-question {
@@ -143,9 +140,12 @@ body{
 	height: 50px;
 }
 
-.mainpage-ficurky{
-	height: 150px;
+img.mainpage-ficurky{
+	height: 180px;
 	width: 300px;
+}
+div.mainpage-ficurky{
+	padding: 0% 10% 0% 10%;
 }
 .mainpage-our-courses{
 	color: #362965;
@@ -153,9 +153,9 @@ body{
 	flex-direction: row;
 	align-items: left;
 	justify-content: center;
-	height: 18vw;
+	height: 14vw;
 	margin-bottom: 10px;
-	min-height: 200px;
+	min-height: 180px;
 }
 .mainpage-our-courses:hover{
 	text-decoration: none;

@@ -1,10 +1,15 @@
 ==
 <!-- Bootstrap navbar -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm">
+
 {% if this.page.url == '/' %} <!-- Keď je zobrazená hlavná stránka, zobraz: -->
 
 <nav class="d-flex justify-content-between navbar navbar-expand-lg navbar-light">
 	<div>
-		<a class="navbar-brand" href="#"><img src="" class="img-fluid" alt="logo here"></a>
+		<a class="navbar-brand" href="#"><img style="height: 50px" src="themes/KurzCademy/assets/Img/logo/KurzCademyLogoBezTextu.png" class="img-fluid" alt="logo here"></a>
 	</div>
 	<div>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,8 +17,21 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-				<p class="nav-item nav-link" style="margin: 2% 2% 0% 0%; width: 150px;">Ešte nemáš účet?</p>
-				<button class="nav-item btn btn-secondary" style="width: 150px;" onclick="openPopup('register')">Registruj sa</button>
+				{% if user %}
+				<p class="nav-item nav-link" style="color: #fff;">Prihlásený ako</p>
+				<div class="dropleft">
+					<a class="nav-item nav-link dropdown-toggle"style="margin-right: 45px; color: #fff;" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<b>{{user.name}}</b>
+					</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+				  	<a class="dropdown-item" onclick="openPopup('Account')">Nastavenia</a>
+				  	<a class="dropdown-item" data-request="onLogout" data-request-data="">Odhlásiť sa</a>
+			    	</div>
+				</div>
+				{% else %}
+				<p class="nav-item nav-link" style="margin: 2% 2% 0% 0%; width: 150px; color: #fff;">Ešte nemáš účet?</p>
+				<button class="nav-item btn btn-primary" style="width: 160px; margin-right: 45px; border: 1px solid #fff; background-color: #575eed;" onclick="openPopup('register')">Registruj sa</button>
+				{% endif %}
 			</div>
 		</div>
 	</div>
@@ -63,6 +81,11 @@
 </nav>
 
 {% endif %}
+
+</div>
+<div class="col-sm-1"></div>
+</div>
+</div>
 <!--
 {% if this.page.url == '/kurzy' %}
 	<a>kurzy</a>
