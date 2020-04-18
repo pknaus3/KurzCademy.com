@@ -2,84 +2,36 @@ title = "Kurzy"
 url = "/kurzy"
 layout = "Default"
 is_hidden = 0
-
-[builderList RetrieveCourses]
-modelClass = "AcademyMod\Course\Models\Course"
-scope = "-"
-scopeValue = "{{ :scope }}"
-displayColumn = "name"
-noRecordsMessage = "Neni vytvorený žiadny kurz"
-detailsPage = "-"
-detailsKeyColumn = "id"
-detailsUrlParameter = "id"
-pageNumber = "{{ :page }}"
 ==
-<?php
+
 function onStart() {
     $this["courses"] = Db::table("academymod_courses")->get();
 }
-?>
+
 ==
-{% set records = RetrieveCourses.records %}
-{% set displayColumn = RetrieveCourses.displayColumn %}
-{% set noRecordsMessage = RetrieveCourses.noRecordsMessage %}
-{% set detailsPage = RetrieveCourses.detailsPage %}
-{% set detailsKeyColumn = RetrieveCourses.detailsKeyColumn %}
-{% set detailsUrlParameter = RetrieveCourses.detailsUrlParameter %}
-
-
-
 <div id="courses">
     <div class="courses-container">
-        {% for record in records %}
-        
-            <div class="card course-card" v-for="course in courses">
-                <img class="card-img-top" src="{{ record.CourseThumb.path }}" alt="Card image cap">
-                <div class="card-body">
-                    {# Use spaceless tag to remove spaces inside the A tag. #}
-                    {% spaceless %}
-                        <h5 class="card-title">{{ record.name }}</h5>
-                        <p class="card-text"> {{ record.description }} </p>
-                        {% if user %}
-                            <!-- <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}"> -->
-                            <a class="btn btn-primary" href="course?id={{ record.id }}">Začať</a>
-                        {% else %}
-                            <a href="login" class="btn btn-primary">Prihlasiť sa</a>
-                        {% endif %}              
-                    {% endspaceless %}
-                
-                </div>
+        <div class="card course-card" v-for="course in courses" :key="course.name">
+            <img class="card-img-top" src="themes\KurzCademy\assets\Img\KurzPhotos\HybridLab.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" v-text="course.name"></h5>
+                <p class="card-text" v-text="course.description"></p>
+                {% if user %}
+                <a class="btn btn-primary" :href="`course?id=${course.id}`">Začať</a>
+                {% else %}
+                <a onclick="openPopup('login')" class="btn btn-primary">Prihlasiť sa</a>
+                {% endif %}
             </div>
-
-        {% else %}
-            <h2>{{ noRecordsMessage }}</h2>
-        {% endfor %}
+        </div>
     </div>
 </div>
-
-
-
-
-{% if records.lastPage > 1 %}
-    <ul class="pagination">
-        {% if records.currentPage > 1 %}
-            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
-        {% endif %}
-
-        {% for page in 1..records.lastPage %}
-            <li class="{{ records.currentPage == page ? 'active' : null }}">
-                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
-            </li>
-        {% endfor %}
-
-        {% if records.lastPage > records.currentPage %}
-            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
-        {% endif %}
-    </ul>
-{% endif %}
-
 <script>
     var courses = {{ courses|raw }}
 
-    
+    var vm = new Vue({
+        el: "#courses",
+        data: {
+            courses
+        }
+    })
 </script>

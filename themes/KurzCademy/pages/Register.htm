@@ -1,10 +1,9 @@
 title = "Register"
 url = "/register"
-layout = "Default"
+layout = "ClearLayout"
 is_hidden = 0
 
 [account]
-redirect = "Account"
 paramCode = "code"
 forceSecure = 0
 
@@ -13,3 +12,5 @@ security = "guest"
 redirect = "popupCancel"
 ==
 {% partial account ~ '::register' %}
+{% partial "UserError.htm" %}
+<button class="nav-item nav-link btn btn-dark" onclick="window.parent.closePopup()" >Cancel</button>
