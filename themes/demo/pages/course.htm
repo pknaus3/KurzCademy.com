@@ -1,0 +1,60 @@
+title = "Course"
+url = "/course"
+layout = "Default"
+is_hidden = 0
+==
+<?php
+function onStart() {
+    $courses = Db::table("academy_course_courses")->where('id', $_GET['id'])->get();
+    if (count($courses)) {
+        $course = $courses;
+        $this["course"] = $course;
+        $steps = Db::table("academy_course_steps")->where('course_id', $_GET['id'])->get();
+
+        $this["steps"] = $steps;
+    } else {
+        $this["course"] = "null";
+        $this["steps"] = "[]";
+    }
+}
+?>
+==
+<link href="{{'assets/css/courseViewer.css'|theme}}" rel="stylesheet" />
+
+<div id="viewer" class="viewer">
+    <template v-if="course">
+        <div class="viewer-head">
+            <span v-text="course.name" class="course-name"></span>
+        </div>
+        <div class="viewer-body">
+            <div class="viewer-steps">
+                <div class="viewer-step" v-for="step in steps" :key="step.id">
+                    <button v-text="step.step_name" @click="selectStep(step)" class="viewer-step-name" :disabled="step == currStep"></button>
+                </div>
+            </div>
+            <div class="viewer-main">
+                <div v-if="currStep">
+                    <iframe :src="`/step?id=${currStep.id}`" class="viewer-iframe" frameborder="0" @load="loading = false" v-show="!loading"></iframe>
+                    <div class="viewer-loading spinner-border text-primary" v-if="loading"></div>
+                </div>
+                <div v-else>
+                    <div class="viewer-no-step">
+                        <h3>
+                            Zvoľte krok na zobrazenie
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <div v-else class="viewer-course-not-found">
+        <h3>
+            Kurz nebol nájdený<br>
+        </h3>
+        <a href="/kurzy" class="btn btn-primary mt-2">Naspäť</a>
+    </div>
+</div>
+
+<script>
+    var viewer = new CourseViewer({{ course|raw }}, {{ steps|raw }})
+</script>

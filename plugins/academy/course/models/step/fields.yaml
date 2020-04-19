@@ -1,0 +1,33 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    course:
+        label: Vyber kurz
+        type: relation
+        span: auto
+    step_name:
+        label: Názov kroku
+        type: text
+        span: auto
+    video_link:
+        label: Link na video
+        type: text
+        span: auto
+    docs_link:
+        label: Link na google docs
+        type: text
+        span: auto
+    custom_text:
+        label: Spravte si vlastný štýl kroku
+        type: richeditor
+    step_position:
+        label: Pozícia kroku
+        type: number
+        span: auto
+    homework:
+        label: Krok s úlohou?
+        type: checkbox
+        span: auto
+

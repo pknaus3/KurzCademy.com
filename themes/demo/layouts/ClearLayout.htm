@@ -1,7 +1,3 @@
-description = "Default Layout"
-
-[session]
-security = "all"
 ==
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -10,8 +6,9 @@ security = "all"
 
 
                   <!-- Custom style -->
-    <link href="{{'assets/css/master.css'|theme}}" rel="stylesheet" />
+    <link href="assets/css/master.css" rel="stylesheet" />
     <link rel="profile" href="http://gmpg.org/xfn/11">
+    <script src="assets/js/excersize.js" defer async ></script>
 
                     <!-- Extensions for web (Something as bootstrap, jQuery...) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -20,15 +17,7 @@ security = "all"
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
       <!-- Ajax -->
-    <script src="{{'assets/js/jquery.min.js'|theme}}"></script> <!-- Ajax -->
-    
-    <!-- Frontend -->
-    <script src="{{'assets/js/popup.js'|theme}}" defer async ></script>
-    <script src="{{'assets/js/courseViewer.js'|theme}}"></script>
-
-    <!-- External lib -->
-    <script src="{{'assets/js/vue.js'|theme}}"></script> <!-- Vue.js -->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     {% framework extras %}
     {% framework %}
 
@@ -38,20 +27,19 @@ security = "all"
     <meta name="keywords" content="kurz development, kurzy, editor kurzov, vutvaranie kurzov, vlastne kurzy" />
     <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+      body {
+        margin: 4px;
+      }
+    </style>
   </head>
   <body>
 
-    {% component 'session' %} <!-- All user access -->
+    {% page %} <!-- Sem je vsetko na stranke -->
 
-    {% framework extras %} 
+    {% framework extras %}
 
-    {% partial "header.htm" %} <!-- Pripojenie navbaru -->
-
-    {% page %} <!-- Sem sa zobrazuje všetko čo je v pages -->
-
-    {% partial "footer.htm" %} <!-- Pripojenie footeru -->
-
-    {% scripts %}
 
   </body>
 </html>

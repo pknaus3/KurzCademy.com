@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', true),
+    'debug' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => 'http://localhost',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,6 +73,12 @@ return [
     | by the translation service provider. You are free to set this value
     | to any of the locales which will be supported by the application.
     |
+    | WARNING: Avoid setting this to a locale that is not supported by the
+    | backend yet, as this can cause issues in the backend.
+    |
+    | Currently supported backend locales are listed in
+    | Backend\Models\Preference->getLocaleOptions())
+    |
     */
 
     'locale' => 'en',
@@ -101,7 +107,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'RbaPIiMfwb5KLwz0auLfCIwF88CTYcOr'),
+    'key' => '0bZFFozAgkLl06HcNUO4elXvm8vqoGWx',
 
     'cipher' => 'AES-256-CBC',
 
@@ -136,11 +142,7 @@ return [
         // 'Illuminate\Html\HtmlServiceProvider', // Example
 
         'System\ServiceProvider',
-        Creativeorange\Gravatar\GravatarServiceProvider::class
-
-
     ]),
-
 
     /*
     |--------------------------------------------------------------------------
@@ -156,8 +158,6 @@ return [
     'aliases' => array_merge(include(base_path('modules/system/aliases.php')), [
 
         // 'Str' => 'Illuminate\Support\Str', // Example
-        'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class
-
 
     ]),
 
