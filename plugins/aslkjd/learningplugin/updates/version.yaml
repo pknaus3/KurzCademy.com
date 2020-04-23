@@ -1,8 +1,0 @@
-1.0.1:
-    - 'Initialize plugin.'
-1.0.2:
-    - 'Created table aslkjd_learningplugin_learning'
-    - builder_table_create_aslkjd_learningplugin_learning.php
-1.0.3:
-    - 'Updated table aslkjd_learningplugin_learning'
-    - builder_table_update_aslkjd_learningplugin_learning.php

@@ -1,6 +1,0 @@
-1.0.1:
-    - First version of course
-    - Create tables for courses and steps
-    - create_steps_table.php
-    - create_courses_table.php
-    - seed.php

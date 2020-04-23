@@ -1,6 +1,0 @@
-plugin:
-    name: 'aslkjd.learningplugin::lang.plugin.name'
-    description: 'aslkjd.learningplugin::lang.plugin.description'
-    author: aslkjd
-    icon: oc-icon-adjust
-    homepage: ''
