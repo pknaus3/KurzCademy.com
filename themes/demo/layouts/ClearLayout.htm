@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+  <head>
     <meta charset="utf-8">
 
 
                   <!-- Custom style -->
-    <link href="themes/KurzCademy/assets/css/master.css" rel="stylesheet" />
+    <link href="{{'assets/css/master.css'|theme}}" rel="stylesheet" />
     <link rel="profile" href="http://gmpg.org/xfn/11">
-    <script src="themes/KurzCademy/assets/js/excersize.js" defer async ></script>
 
                     <!-- Extensions for web (Something as bootstrap, jQuery...) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -17,8 +17,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
       <!-- Ajax -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{'assets/js/jquery.min.js'|theme}}"></script> <!-- Ajax -->
     <script src="{{ 'assets/javascript/jquery.js'|theme }}"></script>
+
+    <!-- Frontend -->
+    <script src="{{'assets/js/popup.js'|theme}}" defer async ></script>
+    <script src="{{'assets/js/phpDataParser.js'|theme}}"></script>
+    <script src="{{'assets/js/courseViewer.js'|theme}}"></script>
+
+    <!-- External lib -->
+    <script src="{{'assets/js/vue.js'|theme}}"></script> <!-- Vue.js -->
+
     {% framework extras %}
     {% framework %}
 
@@ -28,7 +37,6 @@
     <meta name="keywords" content="kurz development, kurzy, editor kurzov, vutvaranie kurzov, vlastne kurzy" />
     <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <style>
       body {
         margin: 4px;
