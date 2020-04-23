@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Step
+
+# Model Form Field configuration
+form: $/academy/course/models/step/fields.yaml
+
+# Model Class name
+modelClass: Academy\Course\Models\Step
+
+# Default redirect location
+defaultRedirect: academy/course/step
+
+# Create page
+create:
+    title: Create Step
+    redirect: academy/course/step/update/:id
+    redirectClose: academy/course/step
+
+# Update page
+update:
+    title: Edit Step
+    redirect: academy/course/step
+    redirectClose: academy/course/step
+
+# Preview page
+preview:
+    title: Preview Step

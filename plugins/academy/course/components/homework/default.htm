@@ -1,0 +1,11 @@
+<form method="post" enctype="multipart/form-data" >
+    <!-- calling function onSbumit -->
+    <input type="hidden" name="_handler" value="onSubmit">
+    {{ form_token() }}
+    {{ form_sessionKey() }}
+
+    <!-- Upload form -->
+    <label>Nahraj súbor</label>
+    <input type="file" name="file" placeholder="Nahraj úlohu">
+    <input type="submit" name="submit">
+</form>
