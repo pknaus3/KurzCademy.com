@@ -20,6 +20,7 @@ function onStart() {
 ?>
 ==
 <link href="{{ 'assets/css/courseViewer.css' | theme}}" rel="stylesheet" />
+
 <div id="viewer" class="viewer">
     <template v-if="course">
         <div class="viewer-head">
@@ -63,3 +64,9 @@ function onStart() {
 	    {% endif %}
     )
 </script>
+
+<style>
+    .footer {
+        display: none !important;
+    }
+</style>
