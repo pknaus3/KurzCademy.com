@@ -26,7 +26,7 @@
 
 class CourseViewer {
 
-    constructor(/** @type {CourseData[]} */ course, /** @type {StepData[] | null} */ steps) {
+    constructor(/** @type {CourseData[]} */ course, /** @type {StepData[] | null} */ steps, /** @type {boolean} */ loggedIn) {
         if (course) {
             this.courseData = course[0]
         } else {
@@ -54,7 +54,8 @@ class CourseViewer {
                 steps: this.steps,
                 currStep: null,
                 found: this.courseData != null,
-                loading: false
+                loading: false,
+                loggedIn: loggedIn
             },
             el: "#viewer",
             methods: {
