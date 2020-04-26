@@ -107,7 +107,7 @@ return [
     |
     */
 
-    'key' => 'YsZnguVGO5iC8Z1OB4TsJ8hxr1CLEVpZ',
+    'key' => 'gKHQgND7v2xmqb2VzyeszUze7zFngkwC',
 
     'cipher' => 'AES-256-CBC',
 

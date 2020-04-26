@@ -1,5 +1,11 @@
-h3,h4,h5{
+h3,h4{
 	color: #362965 !important;
+}
+h5{
+	color: #ffffff;
+}
+.course-title{
+	background-color: #575EED !important;
 }
 .record-list .list-title h3 {
     margin-left: 10px;
@@ -26,7 +32,7 @@ h3,h4,h5{
   padding: 0 20px 0 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
+  justify-content: apace-between;
 }
 .record-list .list-title {
   width: 356px;
@@ -36,8 +42,7 @@ h3,h4,h5{
   overflow: hidden;
   transition-duration: 300ms;
   overflow: hidden;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+  border-radius: 10px;
   height: 438px;
   color: #031D5B;
 }
