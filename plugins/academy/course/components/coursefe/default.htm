@@ -1,0 +1,31 @@
+<form method="post" enctype="multipart/form-data" >
+    <!-- calling function onSbumit -->
+    <input type="hidden" name="_handler" value="onSubmit">
+    {{ form_token() }}
+    {{ form_sessionKey() }}
+
+    <!-- Course name-->
+    <label>Názov kurzu</label>
+    <input type="text" name="name" placeholder="JavaScript">
+
+    <!-- Teacher Name -->
+    <!-- Author name -->
+    <!-- Description -->
+    <label>Popis Kurzu</label>
+    <input type="text">
+
+    <!-- Difficulty -->
+    <label>Náročnosť</label>
+    <select name="difficulty">
+        <option value="easy">Ľahká</option>
+        <option value="Medium">Stredná</option>
+        <option value="Hard">Ťažká</option>
+    </select>
+
+    <!-- Course thumb -->
+    <label>Nahraj súbor</label>
+    <input type="image" name="file" placeholder="Nahraj úlohu">
+
+    <!-- Submit Button-->
+    <input type="submit" name="submit">
+</form>
