@@ -29,24 +29,10 @@ function onStart() {
     <h2 class="mt-2 mb-3">{{ name }}</h2>
 
     {% if videoUrl %}
-    <iframe
-        src="https://www.youtube.com/embed/{{ videoUrl }}"
-        class="video"
-        hidden
-        id="video"
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/{{ videoUrl }}" class="video mb-3" hidden id="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     {% endif %}
     {% if googleDocUrl %}
-    <iframe
-        src="{{ googleDocUrl }}"
-        class="document"
-        id="document"
-        hidden
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
+    <iframe src="{{ googleDocUrl }}" class="document" id="document" hidden frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     {% endif %}
     {% if customText %}
     <div id="customText" class="document" hidden>
@@ -69,7 +55,8 @@ function onStart() {
     function setState(/** @type {"video" | "document" | "custom" | "homework"} */ state) {
         if (video) video.hidden = state != "video"
         if (googleDoc) googleDoc.hidden = state != "document"
-        if (customText) customText.hidden = state != "custom"
+        if (customText && !video) customText.hidden = state != "custom"
+        if (customText && video) customText.hidden = state != "video"
         if (homework) homework.hidden = state != "homework"
     }
 
@@ -79,16 +66,16 @@ function onStart() {
 
         if (video) ret.push({ label: "Video", value: "video" })
         if (googleDoc) ret.push({ label: "Dokument", value: "document" })
-        if (customText) ret.push({ label: "Text", value: "custom" })
+        if (customText && !video) ret.push({ label: "Text", value: "custom" })
         if (homework) ret.push({ label: "Úloha", value: "homework" })
 
         return ret
     }
 
-    if (video) video.hidden = false
-    else if (googleDoc) googleDoc.hidden = false
-    else if (customText) customText.hidden = false
-    else if (homework) homework.hidden = false
+    if (video) setState("video")
+    else if (googleDoc) setState("document")
+    else if (customText) setState("custom")
+    else if (homework) setState("homework")
 </script>
 {% else %}
 <div class="error-div">
