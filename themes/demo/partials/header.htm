@@ -9,8 +9,16 @@
 	<div class="d-flex" style="/*width: 84px;*/">
 		<a class="navbar-brand" style="margin: 0px; padding: 0px" href="/"><img class="" style="height: 50px" src="{{'assets/Img/logo/KurzCademyLogoBezTextu.png'|theme}}" alt="logo here"></a>
 			{% if this.page.url != '/' %}
+				{% if this.page.url == '/kurzy' %}
+			<a class="nav-item nav-link active" href="/kurzy">Kurzy</a>
+				{% else %}
 			<a class="nav-item nav-link" href="/kurzy">Kurzy</a>
+				{% endif %}
+				{% if this.page.url == '/mojekurzy' %}
+			<a class="nav-item nav-link disabled active" href="/mojekurzy">Moje kurzy</a>
+				{% else %}
 			<a class="nav-item nav-link disabled" href="/mojekurzy">Moje kurzy</a>
+				{% endif %}
 			{% endif %}
 	</div>
 	<div>
