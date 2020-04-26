@@ -88,30 +88,30 @@ pageNumber = "{{ :page }}"
 				<h2><b>Naše kurzy</b></h2>
 			</div>
 		</div>
-		
+
     {% set records = RetrieveCourses.records %}
     {% set displayColumn = RetrieveCourses.displayColumn %}
     {% set noRecordsMessage = RetrieveCourses.noRecordsMessage %}
     {% set detailsPage = RetrieveCourses.detailsPage %}
     {% set detailsKeyColumn = RetrieveCourses.detailsKeyColumn %}
     {% set detailsUrlParameter = RetrieveCourses.detailsUrlParameter %}
-    
-    
-    
+
+
+
     <div id="courses">
             <ul class="record-list home-record-list">
                 {% for record in records %}
                     <a href="course?id={{ record.id }}" v-for="course in courses" data-aos="fade-up" data-aos-duration="500" class="aos-init aos-animate">
                         <li class="list-title course-title">
                             <img class="list-title-header-image" src="{{ record.courseThumb.path }}" alt="Course Thumb">
-    
+
                                 {# Use spaceless tag to remove spaces inside the A tag. #}
                                 {% spaceless %}
                                     <h4>{{ record.name }}</h4>
                                     <h5></p>{{ record.description|raw }}</p></h5>
-                                    <!-- <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}"> -->      
+                                    <!-- <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}"> -->
                                 {% endspaceless %}
-    
+
                         </li>
                     </a>
                 {% else %}
@@ -119,10 +119,10 @@ pageNumber = "{{ :page }}"
                 {% endfor %}
             </ul>
     </div>
-    
 
 
-		
+
+
 		<div class="row" style="margin-top: 30px">
 			<div class="col-md d-flex justify-content-center">
 				<button class="btn btn-wtite" style="border: 1px solid #f0f0f0; padding: 20px 40px 20px 40px; margin-bottom: 80px;" onclick="location.href='/kurzy'">Všetky kurzy</button>
@@ -144,148 +144,3 @@ pageNumber = "{{ :page }}"
 <div class="col-sm-1"></div>
 </div>
 </div>
-
-
-
-
-<style>
-    
-.record-list {
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.record-list .list-title {
-  width: 356px;
-  display: inline-block;
-  text-decoration: none;
-  margin-bottom: 40px;
-  overflow: hidden;
-  transition-duration: 300ms;
-  overflow: hidden;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  height: 438px;
-  color: #031D5B;
-}
-.record-list .list-title .list-title-header-image {
-  width: 100%;
-  height: 228px;
-  margin-bottom: 30px;
-  object-fit: cover;
-}
-.record-list .list-title h4 {
-  margin-left: 5%;
-}
-.record-list .list-title h5 {
-  display: block;
-  width: 90%;
-  margin: 20px auto 0 auto;
-}
-.record-list .list-title h5 * {
-  font-family: "BwModelicaLightCondensed";
-  font-size: 16px;
-  line-height: 25px;
-  margin: 0;
-}
-.record-list .list-title a:hover {
-  text-decoration: none;
-}
-.record-list .empty-box {
-  width: 356px;
-  height: 0;
-  list-style-type: none;
-}
-.record-list .course-title {
-  background-color: #ffffff;
-  box-shadow: 0 0 0px 0 #E9E9E9;
-}
-.record-list .course-title:hover {
-  box-shadow: 0 0 150px 0 #E9E9E9;
-}
-.record-list .blog-title {
-  border-radius: 10px;
-  transition-duration: 300ms !important;
-  color: #FFFFFF;
-  height: 450px;
-}
-.record-list .blog-title h3 {
-  font-family: "BwModelicaBoldCondensed";
-  font-size: 20px;
-  max-width: 90%;
-  margin: auto;
-}
-.record-list .blog-title p {
-  max-width: 90%;
-  margin: 10px 0 0 0;
-}
-.record-list .blog-title p * {
-  font-family: "BwModelicaLightCondensed" !important;
-  font-size: 14px important;
-  color: white;
-  line-height: 25px !important;
-  font-style: normal;
-}
-.record-list .blog-title:hover {
-  background-color: #6fccf7;
-  transform: scale(1.01);
-}
-
-@media screen and (max-width: 1300px) {
-  .record-list {
-    justify-content: space-around;
-  }
-  .record-list .list-title {
-    margin: 30px;
-  }
-}
-@media screen and (max-width: 1300px) and (max-width: 1100px) {
-  .record-list .list-title {
-    margin: 0px;
-  }
-}
-@media screen and (max-width: 1300px) and (max-width: 900px) {
-  .record-list .list-title {
-    margin: 70px;
-  }
-}
-@media screen and (max-width: 600px) {
-  .record-list .list-title {
-    width: 90vw;
-    margin: 0;
-  }
-  .record-list .list-title .list-title-header-image {
-    width: 90vw;
-    height: calc(90vw / 1.5614);
-  }
-  .record-list .empty-box {
-    display: none;
-  }
-}
-@media screen and (max-width: 400px) {
-  .record-list .list-title {
-    overflow: hidden;
-    width: 100%;
-    height: auto;
-    padding-bottom: 50px;
-    margin-bottom: 20px;
-  }
-  .record-list .list-title h3 {
-    margin-left: 10px;
-    font-size: 16px;
-  }
-  .record-list .list-title h4 {
-    background-color: white !important;
-    padding: 0;
-    margin-left: 10px;
-    display: inline;
-  }
-  .record-list .list-title h5 {
-    margin-left: 15px;
-  }
-  .record-list .list-title h5 * {
-    font-size: 12px;
-  }
-}
-</style>
