@@ -11,6 +11,8 @@ fields:
         label: Názov kroku
         type: text
         span: auto
+        attributes:
+            maxlength: '20'
     video_link:
         label: Link na video
         type: text
