@@ -19,8 +19,6 @@ fields:
         label: 'popis kurzu'
         type: richeditor
         span: auto
-        attributes:
-            maxlength: '185'
     teacher:
         label: 'meno učiteľa'
         span: auto
