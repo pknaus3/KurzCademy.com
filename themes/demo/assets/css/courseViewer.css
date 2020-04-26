@@ -8,7 +8,7 @@
     flex: 0 0 47px;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #DEDFE3;
     padding: 4px;
     padding-right: 0;
 }
@@ -38,17 +38,21 @@
     flex: 0 0 200px;
     overflow: hidden;
     overflow-y: scroll;
-    border-right: 1px solid black;
+    border-right: 1px solid #DEDFE3;
 }
 
 .viewer-step {
     display: flex;
     flex-direction: row;
-    height: 30px;
+    height: 49px;
+    padding: 4px;
 }
 
 .viewer-step > * {
     background-color: white;
+    border: 2px solid #DEDFE3;
+    border-radius: 4px;
+    color: #5F5B78;
 }
 
 .viewer-step > :disabled {
@@ -66,8 +70,9 @@
 
 .viewer-step-name:disabled {
     opacity: 1;
-    background-color: lightgreen;
-    color: black;
+    background-color: #E9E4FF;
+    border-color: #575EED;
+    color: #5F5B78;
 }
 
 .viewer-main {
