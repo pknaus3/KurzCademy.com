@@ -34,7 +34,7 @@ function onStart() {
             </div>
             <div class="viewer-main">
                 <div v-if="currStep">
-                    <iframe :src="`/step?id=${currStep.id}`" class="viewer-iframe" frameborder="0" @load="loading = false" v-show="!loading"></iframe>
+                    <iframe :src="`/step?id=${currStep.id}&loggedIn=${loggedIn}`" class="viewer-iframe" frameborder="0" @load="loading = false" v-show="!loading"></iframe>
                     <div class="viewer-loading spinner-border text-primary" v-if="loading"></div>
                 </div>
                 <div v-else>
@@ -56,5 +56,17 @@ function onStart() {
 </div>
 
 <script>
-    var viewer = new CourseViewer({{ course|raw }}, {{ steps|raw }})
+    var viewer = new CourseViewer({{ course|raw }}, {{ steps|raw }},
+        {% if user %}
+        true
+        {% else %}
+        false
+	    {% endif %}
+    )
 </script>
+
+<style>
+    .footer {
+        display: none !important;
+    }
+</style>

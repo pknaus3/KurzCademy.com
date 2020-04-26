@@ -8,6 +8,7 @@ is_hidden = 0
 <?php
 function onStart() {
     $steps = Db::table("academy_course_steps")->where('id', $_GET['id'])->get();
+    $this["loggedIn"] = $_GET["loggedIn"] == "true";
 
     if (count($steps) > 0) {
         $this["found"] = true;
@@ -42,7 +43,7 @@ function onStart() {
             <input type="radio" name="state" autocomplete="off"> Text
         </label>
         {% endif %}
-        {% if homework %}
+        {% if homework and loggedIn %}
         <label class="btn btn-secondary" onclick="setState('homework')">
             <input type="radio" name="state" autocomplete="off"> Úloha
         </label>
@@ -74,7 +75,7 @@ function onStart() {
         {{ customText|raw }}
     </div>
     {% endif %}
-    {% if homework %}
+    {% if homework and loggedIn %}
     <div id="homework" hidden>
         {% component 'homework' %}
     </div>

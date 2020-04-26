@@ -1,5 +1,5 @@
 .viewer {
-    height: calc(100vh - 98px - 208px);
+    height: calc(100vh - 66px);
     display: flex;
     flex-direction: column;
 }
