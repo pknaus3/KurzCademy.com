@@ -39,8 +39,7 @@ function onStart() {
             </div>
             <div class="viewer-main">
                 <div v-if="currStep">
-                    <iframe :src="`/step?id=${currStep.id}&loggedIn=${loggedIn}`" class="viewer-iframe" frameborder="0" @load="loading = false" v-show="!loading" ref="iframe"></iframe>
-                    <div class="viewer-loading spinner-border text-primary" v-if="loading"></div>
+                    <iframe :src="`/step?id=${currStep.id}&loggedIn=${loggedIn}`" class="viewer-iframe" frameborder="0" @load="loading = false" ref="iframe"></iframe>
                 </div>
                 <div v-else>
                     <div class="viewer-no-step">
