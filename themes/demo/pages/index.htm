@@ -107,7 +107,7 @@ pageNumber = "{{ :page }}"
     
                                 {# Use spaceless tag to remove spaces inside the A tag. #}
                                 {% spaceless %}
-                                    <h4 style="background-color: rgba(31, 31, 31, 0.15); color: rgb(31, 31, 31)">{{ record.name }}</h4>
+                                    <h4>{{ record.name }}</h4>
                                     <h5></p>{{ record.description|raw }}</p></h5>
                                     <!-- <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}"> -->      
                                 {% endspaceless %}
