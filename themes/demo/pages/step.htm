@@ -27,28 +27,6 @@ function onStart() {
 {% if found %}
 <div class="step-container">
     <h2>{{ name }}</h2>
-    <div class="btn-group btn-group-toggle mb-2" id="stateButtons" data-toggle="buttons">
-        {% if videoUrl %}
-        <label class="btn btn-secondary" onclick="setState('video')">
-            <input type="radio" name="state" autocomplete="off"> Video
-        </label>
-        {% endif %}
-        {% if googleDocUrl %}
-        <label class="btn btn-secondary" onclick="setState('document')">
-            <input type="radio" name="state" autocomplete="off"> Document
-        </label>
-        {% endif %}
-        {% if customText %}
-        <label class="btn btn-secondary" onclick="setState('custom')">
-            <input type="radio" name="state" autocomplete="off"> Text
-        </label>
-        {% endif %}
-        {% if homework and loggedIn %}
-        <label class="btn btn-secondary" onclick="setState('homework')">
-            <input type="radio" name="state" autocomplete="off"> Úloha
-        </label>
-        {% endif %}
-    </div><br>
 
     {% if videoUrl %}
     <iframe
@@ -95,9 +73,17 @@ function onStart() {
         if (homework) homework.hidden = state != "homework"
     }
 
-    var stateButtons = [...document.getElementById("stateButtons").children]
+    function getAvalible() {
+        /** @type {Array<{label : string, value: string}>} */
+        var ret = []
 
-    if (stateButtons.length > 0) stateButtons[0].classList.add("active")
+        if (video) ret.push({ label: "Video", value: "video" })
+        if (googleDoc) ret.push({ label: "Dokument", value: "document" })
+        if (customText) ret.push({ label: "Text", value: "customText" })
+        if (homework) ret.push({ label: "Úloha", value: "homework" })
+
+        return ret
+    }
 
     if (video) video.hidden = false
     else if (googleDoc) googleDoc.hidden = false

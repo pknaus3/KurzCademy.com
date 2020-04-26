@@ -24,7 +24,12 @@ function onStart() {
 <div id="viewer" class="viewer">
     <template v-if="course">
         <div class="viewer-head">
-            <span v-text="course.name" class="course-name"></span>
+            <div v-text="course.name" class="course-name"></div>
+            <div id="stateButtons" data-toggle="buttons" v-if="buttons">
+                <label v-for="(button, index) in buttons" :class="button.value == active ? 'btn btn-primary' : 'btn btn-light'" class="mr-2 mb-0" @click="setState(button.value)">
+                    <input type="radio" name="state" autocomplete="off" class="d-none"><span v-text="button.label"></span>
+                </label>
+            </div>
         </div>
         <div class="viewer-body">
             <div class="viewer-steps">
@@ -34,7 +39,7 @@ function onStart() {
             </div>
             <div class="viewer-main">
                 <div v-if="currStep">
-                    <iframe :src="`/step?id=${currStep.id}&loggedIn=${loggedIn}`" class="viewer-iframe" frameborder="0" @load="loading = false" v-show="!loading"></iframe>
+                    <iframe :src="`/step?id=${currStep.id}&loggedIn=${loggedIn}`" class="viewer-iframe" frameborder="0" @load="loading = false" v-show="!loading" ref="iframe"></iframe>
                     <div class="viewer-loading spinner-border text-primary" v-if="loading"></div>
                 </div>
                 <div v-else>
@@ -56,12 +61,12 @@ function onStart() {
 </div>
 
 <script>
-    var viewer = new CourseViewer({{ course|raw }}, {{ steps|raw }},
-        {% if user %}
-        true
-        {% else %}
-        false
-	    {% endif %}
+    var viewer = new CourseViewer({{ course| raw }}, {{ steps | raw }},
+    {% if user %}
+    true
+    {% else %}
+    false
+    {% endif %}
     )
 </script>
 

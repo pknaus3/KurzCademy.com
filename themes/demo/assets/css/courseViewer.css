@@ -1,11 +1,11 @@
 .viewer {
-    height: calc(100vh - 66px);
+    height: calc(100vh - 72px);
     display: flex;
     flex-direction: column;
 }
 
 .viewer-head {
-    flex: 0 0 25px;
+    flex: 0 0 47px;
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid black;
@@ -25,7 +25,7 @@
 .course-name {
     flex: 1 1;
     border: none;
-    font-size: 20px;
+    font-size: 35px;
 }
 
 .viewer-body {

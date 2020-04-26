@@ -55,13 +55,29 @@ class CourseViewer {
                 currStep: null,
                 found: this.courseData != null,
                 loading: false,
-                loggedIn: loggedIn
+                loggedIn: loggedIn,
+                buttons: null,
+                active: ""
             },
             el: "#viewer",
             methods: {
                 selectStep(/** @type {StepData} */ step) {
                     this.currStep = step
                     this.loading = true
+                    this.buttons = null
+                },
+                setState(/** @type {string} */ state) {
+                    this.$refs.iframe.contentWindow.setState(state)
+                    this.active = state
+                }
+            },
+            watch: {
+                loading(newValue, oldValue) {
+                    if (oldValue == true && newValue == false) {
+                        this.buttons = this.$refs.iframe.contentWindow.getAvalible()
+                        if (this.buttons.length > 0) this.active = this.buttons[0].value
+                        else this.active = ""
+                    }
                 }
             }
         })
