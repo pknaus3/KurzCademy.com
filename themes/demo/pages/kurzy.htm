@@ -41,9 +41,7 @@ function onStart() {
             		<h4 style="color: rgb(31, 31, 31)" class="list-title"><b>{{ record.name }}</b></h4>
             		<h5><p> {{ record.description|raw }} </p></h5>
                     {% endspaceless %}
-					<a class="btn btn-primary" href="course?id={{ record.id }}">Začať</a>
         		</li>
-				<li></li>
       		</a>
             {% else %}
 			<li class="no-data">{{ noRecordsMessage }}</li>

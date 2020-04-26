@@ -51,7 +51,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Academy\Course\Components\homework' => 'homework',
+            'Academy\Course\Components\Homework' => 'homework',
         ];
     }
 
