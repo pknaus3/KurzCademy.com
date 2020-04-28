@@ -62,9 +62,27 @@ class CourseViewer {
             el: "#viewer",
             methods: {
                 selectStep(/** @type {StepData} */ step) {
+                    if (this.currStep == step) return
                     this.currStep = step
                     this.loading = true
                     this.buttons = null
+                    this.$nextTick(() => {
+                        if (this.$refs.iframe.contentWindow) this.$refs.iframe.contentWindow.location.replace(`/step?id=${this.currStep.id}&loggedIn=${this.loggedIn}`)
+                        else this.$refs.iframe.src = `/step?id=${this.currStep.id}&loggedIn=${this.loggedIn}`
+                    })
+
+                    let targetHash = "#" + step.id
+                    if (location.hash) {
+                        if (location.hash != targetHash) {
+                            console.log("Setting hash", location.hash, targetHash)
+                            location.hash = targetHash
+                        }
+                    } else {
+                        if (steps.indexOf(step) != 0) {
+                            console.log("Setting hash", location.hash, targetHash)
+                            location.hash = targetHash
+                        }
+                    }
                 },
                 setState(/** @type {string} */ state) {
                     this.$refs.iframe.contentWindow.setState(state)
@@ -81,5 +99,23 @@ class CourseViewer {
                 }
             }
         })
+
+        this.hashUpdate()
+
+        window.addEventListener("hashchange", (event) => {
+            this.hashUpdate()
+        })
+    }
+
+    hashUpdate() {
+        if (location.hash) {
+            let id = location.hash.substr(1)
+            let stepIndex = this.steps.findIndex(v => v.id.toString() == id)
+
+            if (stepIndex != -1) this.vm.selectStep(this.steps[stepIndex])
+            else console.error("Step with the id selected in hash does not exist", id, this.steps)
+        } else {
+            if (this.steps.length > 0) this.vm.selectStep(this.steps[0])
+        }
     }
 }
