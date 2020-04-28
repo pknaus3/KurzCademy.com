@@ -35,10 +35,10 @@
 }
 
 .viewer-steps {
-    flex: 0 0 200px;
     overflow: hidden;
     overflow-y: scroll;
     border-right: 1px solid #DEDFE3;
+    min-width: 200px;
 }
 
 .viewer-step {
@@ -57,10 +57,6 @@
 
 .viewer-step > :disabled {
     opacity: 0.5;
-}
-
-.viewer-step > button {
-    line-height: 14px;
 }
 
 .viewer-step-name {
