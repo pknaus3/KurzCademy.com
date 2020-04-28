@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Check Box
+
+# Model Form Field configuration
+form: $/academy/course/models/checkbox/fields.yaml
+
+# Model Class name
+modelClass: Academy\Course\Models\CheckBox
+
+# Default redirect location
+defaultRedirect: academy/course/checkbox
+
+# Create page
+create:
+    title: Create Check Box
+    redirect: academy/course/checkbox/update/:id
+    redirectClose: academy/course/checkbox
+
+# Update page
+update:
+    title: Edit Check Box
+    redirect: academy/course/checkbox
+    redirectClose: academy/course/checkbox
+
+# Preview page
+preview:
+    title: Preview Check Box

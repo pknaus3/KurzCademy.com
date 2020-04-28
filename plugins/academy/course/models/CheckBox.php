@@ -4,16 +4,16 @@ use Model;
 use RainLab\User\Models\User;
 
 /**
- * step Model
+ * checkBox Model
  */
-class Step extends Model
+class CheckBox extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'academy_course_steps';
+    public $table = 'academy_course_check_boxes';
 
     /**
      * @var array Guarded fields
@@ -62,11 +62,10 @@ class Step extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [
-        'checkboxes' => CheckBox::class,
-    ];
+    public $hasMany = [];
     public $belongsTo = [
-        'course' => Course::class,
+        'user' => User::class,
+        'step' => Step::class
     ];
     public $belongsToMany = [];
     public $morphTo = [];

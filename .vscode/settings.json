@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "${workspaceFolder}\\storage/database.sqlite",
+            "dialect": "SQLite",
+            "name": "KurzCademy local"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

@@ -4,3 +4,6 @@
     - create_steps_table.php
     - create_courses_table.php
     - seed.php
+1.0.2:
+    - CheckBoxes
+    - create_check_boxes_table.php

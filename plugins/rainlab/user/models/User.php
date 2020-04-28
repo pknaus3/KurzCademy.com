@@ -8,6 +8,7 @@ use Event;
 use October\Rain\Auth\Models\User as UserBase;
 use RainLab\User\Models\Settings as UserSettings;
 use October\Rain\Auth\AuthException;
+use Academy\Course\Models\CheckBox;
 
 class User extends UserBase
 {
@@ -38,6 +39,10 @@ class User extends UserBase
 
     public $attachOne = [
         'avatar' => \System\Models\File::class
+    ];
+
+    public $hasMany = [
+        'checkboxes' => CheckBox::class,
     ];
 
     /**

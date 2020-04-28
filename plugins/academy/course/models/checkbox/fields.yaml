@@ -1,0 +1,21 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    user:
+        label: Používateľ
+        type: relation
+        span: auto
+    step:
+        label: Krok
+        type: relation
+        span: auto
+        nameFrom: step_name
+    is_checked:
+        label: Zaškrtnutý krok
+        type: checkbox
+        span: auto

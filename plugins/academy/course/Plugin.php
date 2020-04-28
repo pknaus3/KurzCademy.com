@@ -94,6 +94,13 @@ class Plugin extends PluginBase
                 'permissions' => ['academy.course.*'],
                 'order'       => 500,
             ],
+            'checkbox' => [
+                'label'       => 'Zaškrtnuté kroky',
+                'url'         => Backend::url('academy/course/checkbox'),
+                'icon'        => 'icon-leaf',
+                'permissions' => ['academy.course.*'],
+                'order'       => 500,
+            ],
         ];
     }
 }
