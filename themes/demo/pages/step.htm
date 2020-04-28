@@ -27,7 +27,7 @@ function onStart() {
 
 {% if found %}
 <div class="step-container">
-    <h2 class="mt-2 mb-3">{{ name }}</h2>
+    <h2 class="mt-2 mb-3" id="header">{{ name }}</h2>
 
     {% if videoUrl %}
     <iframe src="https://www.youtube.com/embed/{{ videoUrl }}" class="video mb-3" hidden id="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -52,6 +52,7 @@ function onStart() {
     var googleDoc = document.getElementById("document")
     var customText = document.getElementById("customText")
     var homework = document.getElementById("homework")
+    var header = document.getElementById("header")
 
     function setState(/** @type {"video" | "document" | "custom" | "homework"} */ state) {
         if (video) video.hidden = state != "video"
@@ -59,6 +60,8 @@ function onStart() {
         if (customText && !video) customText.hidden = state != "custom"
         if (customText && video) customText.hidden = state != "video"
         if (homework) homework.hidden = state != "homework"
+
+        header.hidden = state == "document"
     }
 
     function getAvalible() {
