@@ -33,8 +33,8 @@ function onStart() {
         </div>
         <div class="viewer-body">
             <div class="viewer-steps">
-                <div class="viewer-step" v-for="step in steps" :key="step.id">
-                    <button v-text="step.step_name" @click="selectStep(step)" class="viewer-step-name" :disabled="step == currStep"></button>
+                <div class="viewer-step" v-for="(step, index) in steps" :key="step.id">
+                    <button v-text="(index + 1) + '. ' + step.step_name" @click="selectStep(step)" class="viewer-step-name" :disabled="step == currStep"></button>
                 </div>
             </div>
             <div class="viewer-main">
