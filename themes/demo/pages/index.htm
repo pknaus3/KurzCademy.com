@@ -99,26 +99,26 @@ pageNumber = "{{ :page }}"
 
 
     <div id="courses">
-            <ul class="record-list home-record-list">
-                {% for record in records %}
-                    <a href="course?id={{ record.id }}" v-for="course in courses" data-aos="fade-up" data-aos-duration="500" class="aos-init aos-animate">
-                        <li class="list-title course-title">
-                            <img class="list-title-header-image" src="{{ record.courseThumb.path }}" alt="Course Thumb">
-
-                                {# Use spaceless tag to remove spaces inside the A tag. #}
-                                {% spaceless %}
-                                    <h4 style="background-color: rgba(31, 31, 31, 0.15); color: rgb(31, 31, 31)">{{ record.name }}</h4>
-                                    <h5></p>{{ record.description|raw }}</p></h5>
-                                    <!-- <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}"> -->
-                                {% endspaceless %}
-
-                        </li>
-                    </a>
-                {% else %}
-                    <h2>{{ noRecordsMessage }}</h2>
-                {% endfor %}
-            </ul>
-    </div>
+		<div class="courses-container">
+			<ul class="record-list home-record-list">
+		  {% for record in records %}
+				  <a href="course?id={{ record.id }}" data-aos="fade-up" data-aos-duration="500" class="aos-init aos-animate" v-for="course in courses">
+					<li class="list-title course-title">
+						  <img src="{{ record.courseThumb.path }}" class="list-title-header-image">
+						{# Use spaceless tag to remove spaces inside the A tag. #}
+							{% spaceless %}
+							<h4 class="list-title"><b>{{ record.name }}</b></h4>
+							<h5><p> {{ record.description|raw }} </p></h5>
+							{% endspaceless %}
+					</li>
+				  </a>
+				<div style="width: 10px;"></div><!-- medzera -->
+				{% else %}
+				<li class="no-data">{{ noRecordsMessage }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
 
 
 
