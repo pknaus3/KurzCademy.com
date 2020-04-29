@@ -16,7 +16,6 @@ fields:
     why:
         label: Úvodné slovo
         type: richeditor
-        span: auto
     video_link:
         label: Link na video
         type: text
@@ -35,4 +34,8 @@ fields:
     homework:
         label: Krok s úlohou?
         type: checkbox
+        span: auto
+    keywords:
+        label: klúčové slová
+        type: text
         span: auto

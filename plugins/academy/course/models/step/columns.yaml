@@ -14,6 +14,6 @@ columns:
         searchable: true
         relation: course
         select: name
-    why:
-        label: Úvodné slovo
+    keywords:
+        label: Kľúčové slová
         searchable: true
