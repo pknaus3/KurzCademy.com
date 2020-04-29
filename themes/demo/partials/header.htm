@@ -1,80 +1,69 @@
 ==
 <!-- Bootstrap navbar -->
-<div class="container-fluid">
-<div class="row">
-<div class="col-sm-1"></div>
-<div class="col-sm">
 
-<nav class="d-flex justify-content-between navbar navbar-expand-lg navbar-light">
-	<div class="d-flex" style="/*width: 84px;*/">
-		<a class="navbar-brand" style="margin: 0px; padding: 0px" href="/"><img class="" style="height: 50px" src="{{'assets/Img/logo/KurzCademyLogoBezTextu.png'|theme}}" alt="logo here"></a>
+<nav class="container-fluid">
+	<div class="row">
+		<div class="col-1">
+			<a class="navbar-brand" style="margin: 0px; padding: 0px" href="/"><img class="" style="height: 50px" src="{{'assets/Img/logo/KurzCademyLogoBezTextu.png'|theme}}" alt="logo here"></a>
+		</div>
+		<div class="col navbar navbar-expand-lg navbar-light">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
 			{% if this.page.url != '/' %}
+
+			<div style="height: 40px;"></div>
+				<hr/ class="show-on-phone">
+
 				{% if this.page.url == '/kurzy' %}
-			<a class="nav-item nav-link active" href="/kurzy">Kurzy</a>
+					<a class="nav-item nav-link active" href="/kurzy">Kurzy</a>
 				{% else %}
-			<a class="nav-item nav-link" href="/kurzy">Kurzy</a>
+					<a class="nav-item nav-link" href="/kurzy">Kurzy</a>
 				{% endif %}
+
 				{% if this.page.url == '/mojekurzy' %}
-			<a class="nav-item nav-link disabled active" href="/mojekurzy">Moje kurzy</a>
+					<a class="nav-item nav-link disabled active" href="/mojekurzy">Moje kurzy</a>
 				{% else %}
-			<a class="nav-item nav-link disabled" href="/mojekurzy">Moje kurzy</a>
+					<a class="nav-item nav-link disabled" href="/mojekurzy">Moje kurzy</a>
 				{% endif %}
+
+				<hr/ class="show-on-phone">
+				<a class="nav-item nav-link show-on-phone" href="/excersize-test">Otvoriť editor</a>
+				<a class="nav-item nav-link show-on-phone" href="/Account">{{ user.name }}</a>
+				<a class="nav-item nav-link show-on-phone btn btn-secondary" href="#" data-request="onLogout" data-request-data="">Odhlásiť sa</a>
+
 			{% endif %}
-	</div>
-	<div>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-			<div class="navbar-nav">
-					{% if this.page.url == '/' %}
-
-				{% if user %}
-				<p class="nav-item nav-link" style="color: #fff;">Prihlásený ako</p>
-				<div class="dropdown">
-					<a class="nav-item nav-link dropdown-toggle"style="margin-right: 45px; color: #fff;" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<b>{{user.name}}</b>
-					</a>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-				  	<a class="dropdown-item" onclick="openPopup('Account')">Nastavenia</a>
-				  	<a class="dropdown-item" data-request="onLogout" data-request-data="">Odhlásiť sa</a>
-			    	</div>
-				</div>
-				{% else %}
-				<p class="nav-item nav-link" style="margin: 2% 2% 0% 0%; width: 150px; color: #fff;">Ešte nemáš účet?</p>
-				<button class="nav-item btn btn-primary" style="width: 160px; margin-right: 45px; border: 1px solid #fff; background-color: #575eed;" onclick="location.href='register'">Registruj sa</button>
-				{% endif %}
-
-					{% else %}
-
-				{% if user %}
-				<p class="nav-item nav-link" style="color: #5f5b78;">Prihlásený ako</p>
-				<div class="dropdown">
-					<a class="nav-item nav-link dropdown-toggle"style="margin-right: 45px; color: #5f5b78;" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<b>{{user.name}}</b>
-					</a>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-				  	<a class="dropdown-item" href="account">Nastavenia</a>
-				  	<a class="dropdown-item" data-request="onLogout" data-request-data="">Odhlásiť sa</a>
-			    	</div>
-				</div>
-				{% else %}
-				<p class="nav-item nav-link" style="margin: 2% 2% 0% 0%; width: 150px; color: #fff;">Ešte nemáš účet?</p>
-				<button class="nav-item btn btn-primary" style="width: 160px; margin-right: 4px; border: 1px solid #fff; background-color: #575eed;" onclick="location.href='login'">Prihlás sa</button>
-				<button class="nav-item btn btn-primary" style="width: 160px; margin-right: 45px; border: 1px solid #fff; background-color: #575eed;" onclick="location.href='register'">Registruj sa</button>
-				{% endif %}
-
-					{% endif %}
 
 			</div>
+		</div>
+		<div class="col-3 d-flex justify-content-end">
 
+			{% if user %}
+
+				{% if this.page.url != '/' %}
+					<a class="align-self-center hide-on-phone" href="/excersize-test">Otvoriť editor</a>
+					<div style="width: 10px;"></div>
+				{% endif %}
+				<a class="align-self-center hide-on-phone" href="/Account"><img class="user-avatar" src="{{ user.avatar.path }}" alt="{{ user.name }}"></a>
+				<a class="align-self-start show-on-phone" style="margin-top: 2px;" href="/Account"><img class="user-avatar" src="{{ user.avatar.path }}" alt="{{ user.name }}"></a>
+			{% else %}
+
+				{% if this.page.url != '/' %}
+					<button class="btn btn-secondary mainpage-btn" onclick="location.href='login'">Prihlásiť sa</button>
+				{% else %}
+					<h6 class="align-self-center hide-on-phone" style="color: #ffffff; margin: 2px 10px 0 0;">Ešte nemáš účet?</h6>
+				{% endif %}
+
+				<button class="btn btn-secondary mainpage-btn" style="" onclick="location.href='register'">Registruj sa</button>
+			{% endif %}
+
+			<button class="navbar-toggler show-on-phone d-flex" style="height: 50px;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<img class="nav-toggle" src="{{'assets/Img/otherLogos/triplebar.png'|theme}}">
+			</button>
+
+		</div>
 	</div>
 </nav>
 
-</div>
-<div class="col-sm-1"></div>
-</div>
-</div>
 <!--
 {% if this.page.url == '/kurzy' %}
 	<a>kurzy</a>
