@@ -13,6 +13,10 @@ fields:
         span: auto
         attributes:
             maxlength: '25'
+    why:
+        label: Úvodné slovo
+        type: richeditor
+        span: auto
     video_link:
         label: Link na video
         type: text

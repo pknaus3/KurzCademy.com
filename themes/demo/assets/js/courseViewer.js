@@ -9,7 +9,7 @@
  *  description: string,
  *  teacher_name: string
  * }} CourseData
- * 
+ *
  * @typedef {{
  *  id: number,
  *  created_at: Date,

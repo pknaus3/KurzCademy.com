@@ -14,6 +14,7 @@ class CreateStepsTable extends Migration
             $table->timestamps();
             $table->integer('course_id');
             $table->string('step_name');
+            $table->string('why');
             $table->string('video_link');
             $table->string('docs_link');
             $table->string('custom_text');
