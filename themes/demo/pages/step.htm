@@ -53,6 +53,11 @@ function onStart() {
         {% component 'homework' %}
     </div>
     {% endif %}
+
+    <div class="go-buttons">
+        <a class="btn btn-outline-secondary" id="prev" hidden>◁ Späť</a>
+        <a class="btn btn-outline-secondary" id="next" hidden>Ďalej ▷</a>
+    </div>
 </div>
 
 <script>
@@ -96,6 +101,23 @@ function onStart() {
     if (googleDoc) {
         googleDoc.contentDocument.body.innerHTML = document.getElementById("documentSrc").innerHTML
         documentResize()
+    }
+
+    /** @type {HTMLAnchorElement} */
+    var next = document.getElementById("next")
+    /** @type {HTMLAnchorElement} */
+    var prev = document.getElementById("prev")
+
+    function setNavLinks(/** @type {string | null} */ prevUrl, /** @type {string | null} */ nextUrl) {
+        if (prevUrl) {
+            prev.hidden = false
+            prev.href = prevUrl
+        }
+
+        if (nextUrl) {
+            next.hidden = false
+            next.href = nextUrl
+        }
     }
 
 </script>

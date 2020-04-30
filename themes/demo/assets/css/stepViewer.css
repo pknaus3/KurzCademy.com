@@ -31,3 +31,13 @@ body {
 .document {
     width: calc(100% - 10px);
 }
+
+.go-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.go-buttons > * {
+    margin-left: 4px;
+}
