@@ -25,11 +25,6 @@ function onStart() {
     <template v-if="course">
         <div class="viewer-head">
             <div v-text="course.name" class="course-name"></div>
-            <div id="stateButtons" data-toggle="buttons" v-if="buttons">
-                <label v-for="(button, index) in buttons" :class="button.value == active ? 'btn btn-primary' : 'btn btn-light'" class="mr-2 mb-0" @click="setState(button.value)">
-                    <input type="radio" name="state" autocomplete="off" class="d-none"><span v-text="button.label"></span>
-                </label>
-            </div>
         </div>
         <div class="viewer-body">
             <div class="viewer-steps">

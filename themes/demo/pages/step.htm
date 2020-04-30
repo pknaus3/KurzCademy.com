@@ -1,7 +1,7 @@
 title = "Step"
 url = "/step"
 layout = "ClearLayout"
-is_hidden = 0
+is_ = 0
 
 [homework]
 ==
@@ -22,6 +22,8 @@ function onStart() {
         }
         $this["customText"] = $steps[0]->custom_text;
         $this["homework"] = $steps[0]->homework;
+
+        $this["why"] = $steps[0]->why;
     }
 }
 ?>
@@ -30,27 +32,40 @@ function onStart() {
 <base target="_parent">
 
 {% if found %}
-<div class="step-container">
-    <h2 class="mt-2 mb-3" id="header">{{ name }}</h2>
-
-    {% if videoUrl %}
-    <iframe src="https://www.youtube.com/embed/{{ videoUrl }}" class="video mb-3" hidden id="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    {% endif %}
-    {% if googleDocUrl %}
-    <iframe src="" class="document" id="document" style="height: 0;" hidden frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-    <template id="documentSrc">
-        {{ googleDocUrl|raw }}
-    </template>
-    {% endif %}
-    {% if customText %}
-    <div id="customText" class="document" hidden>
-        {{ customText|raw }}
+<div class="step-container" data-spy="scroll" data-target=".navigation" data-offset="100">
+    <div id="why">
+        <h2 class="mt-2 mb-3" id="header">{{ name }}</h2>
+        {{ why|raw }}
     </div>
-    {% endif %}
+    <div id="guide">
+        {% if videoUrl %}
+        <iframe src="https://www.youtube.com/embed/{{ videoUrl }}" class="video mb-3" id="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% endif %}
+        {% if customText %}
+        <div id="customText" class="document">
+            {{ customText|raw }}
+        </div>
+        {% endif %}
+        {% if googleDocUrl %}
+        <iframe src="" class="document" id="document" style="height: 0;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <template id="documentSrc">
+            {{ googleDocUrl|raw }}
+            <style>
+                body {
+                    margin: 0 !important;
+                }
+            </style>
+        </template>
+        {% endif %}
+    </div>
     {% if homework and loggedIn %}
-    <div id="homework" hidden>
-        {% component 'homework' %}
+    <div id="faq">
+        {% if homework and loggedIn %}
+        <div id="homework">
+            {% component 'homework' %}
+        </div>
+        {% endif %}
     </div>
     {% endif %}
 
@@ -60,6 +75,14 @@ function onStart() {
     </div>
 </div>
 
+<nav class="navbar navigation">
+    <ul class="nav navbar-nav">
+        <li><a href="#why" target="_self" class="nav-link">Why</a></li>
+        <li><a href="#guide" target="_self" class="nav-link">Guide</a></li>
+        <li><a href="#faq" target="_self" class="nav-link">FAQ</a></li>
+    </ul>
+</nav>
+
 <script>
     var video = document.getElementById("video")
     /** @type {HTMLIFrameElement} */
@@ -67,36 +90,11 @@ function onStart() {
     var customText = document.getElementById("customText")
     var homework = document.getElementById("homework")
     var header = document.getElementById("header")
-
-    function setState(/** @type {"video" | "document" | "custom" | "homework"} */ state) {
-        if (video) video.hidden = state != "video"
-        if (googleDoc) googleDoc.hidden = state != "document"
-        if (customText && !video) customText.hidden = state != "custom"
-        if (customText && video) customText.hidden = state != "video"
-        if (homework) homework.hidden = state != "homework"
-    }
-
-    function getAvalible() {
-        /** @type {Array<{label : string, value: string}>} */
-        var ret = []
-
-        if (video) ret.push({ label: "Video", value: "video" })
-        if (googleDoc) ret.push({ label: "Dokument", value: "document" })
-        if (customText && !video) ret.push({ label: "Text", value: "custom" })
-        if (homework) ret.push({ label: "Úloha", value: "homework" })
-
-        return ret
-    }
+    var faq = document.getElementById("faq")
 
     function documentResize() {
         googleDoc.style.height = `calc(${getComputedStyle(googleDoc.contentDocument.body).height} + 16px)`
     }
-
-
-    if (video) setState("video")
-    else if (googleDoc) setState("document")
-    else if (customText) setState("custom")
-    else if (homework) setState("homework")
 
     if (googleDoc) {
         googleDoc.contentDocument.body.innerHTML = document.getElementById("documentSrc").innerHTML

@@ -55,9 +55,7 @@ class CourseViewer {
                 currStep: null,
                 found: this.courseData != null,
                 loading: false,
-                loggedIn: loggedIn,
-                buttons: null,
-                active: ""
+                loggedIn: loggedIn
             },
             el: "#viewer",
             methods: {
@@ -92,10 +90,6 @@ class CourseViewer {
             watch: {
                 loading(newValue, oldValue) {
                     if (oldValue == true && newValue == false) {
-                        this.buttons = this.$refs.iframe.contentWindow.getAvalible()
-                        if (this.buttons.length > 0) this.active = this.buttons[0].value
-                        else this.active = ""
-
                         this.$refs.iframe.contentWindow.setNavLinks(
                             this.steps.indexOf(this.currStep) > 0 ? `/course${location.search}#${this.steps[this.steps.indexOf(this.currStep) - 1].id}` : null,
                             this.steps.indexOf(this.currStep) < this.steps.length - 1 ? `/course${location.search}#${this.steps[this.steps.indexOf(this.currStep) + 1].id}` : null,

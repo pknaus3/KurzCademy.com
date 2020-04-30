@@ -14,12 +14,13 @@ body {
 }
 
 .step-container {
-    padding: 5px;
+    position: relative;
+    padding: calc(50vw - 450px);
+    padding-top: 4px;
+    padding-bottom: 0;
     height: 100vh;
-    width: 900px;
-    max-width: 95vw;
-    margin: auto;
-    /*box-shadow: 0 0 10px grey;*/
+    overflow: auto;
+    margin: 0;
 }
 
 .video {
@@ -40,4 +41,30 @@ body {
 
 .go-buttons > * {
     margin-left: 4px;
+}
+.navigation {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+.navigation > * {
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation > .nav > * {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.navigation > .nav > * > * {
+    display: block;
+    width: 100%;
+    padding-right: 4px;
+    border-right: 2px solid lightgrey;
+}
+
+.navigation > .nav > * > .active {
+    border-right: 2px solid var(--primary);
 }
