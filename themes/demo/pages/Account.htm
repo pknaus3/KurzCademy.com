@@ -18,6 +18,20 @@ redirect = "login"
 <!-- Includuje user component -->
 {% component 'account' %}
 <br>
-<img src="{{ user.avatar.path }}" style="width: 200px; height: 200px;" alt="No image preview">
+<img src="" style="width: 200px; height: 200px; cursor: pointer;" alt="No image preview" id="avatar" class="form-control" hidden onclick="uploader.click()">
 <br>
 <a data-request="onLogout" data-request-data="">Sign out</a>
+
+<script>
+    var avatarPath = "{{ user.avatar.path }}"
+    /** @type {HTMLInputElement} */
+    var uploader = document.querySelector("body > div.void-sides > form > div:nth-child(7) > input")
+    /** @type {HTMLImageElement} */
+    var avatarElement = document.getElementById("avatar")
+
+    uploader.hidden = true
+    uploader.parentElement.appendChild(avatarElement)
+
+    avatarElement.src = avatarPath || "https://fonts.gstatic.com/s/i/materialicons/publish/v5/24px.svg"
+    avatarElement.hidden = false
+</script>
