@@ -20,7 +20,6 @@ class CreateStepsTable extends Migration
             $table->string('custom_text');
             $table->integer('step_position');
             $table->boolean('homework')->default('false');
-            $table->string('keywords');
         });
     }
 

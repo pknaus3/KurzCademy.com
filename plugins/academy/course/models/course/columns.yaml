@@ -22,4 +22,8 @@ columns:
         searchable: true
         relation: teacher
         select: name
+    keywords:
+        label: klúčové slová
+        type: text
+        span: auto
 

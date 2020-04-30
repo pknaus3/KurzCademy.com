@@ -35,7 +35,4 @@ fields:
         label: Krok s úlohou?
         type: checkbox
         span: auto
-    keywords:
-        label: klúčové slová
-        type: text
-        span: auto
+

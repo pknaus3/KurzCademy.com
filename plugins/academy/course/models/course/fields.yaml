@@ -35,3 +35,7 @@ fields:
         imageWidth: '100'
         imageHeight: '100'
         type: fileupload
+    keywords:
+        label: klúčové slová
+        type: text
+        span: auto

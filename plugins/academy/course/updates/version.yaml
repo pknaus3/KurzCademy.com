@@ -1,9 +1,12 @@
 1.0.1:
-    - First version of course
-    - Create tables for courses and steps
+    - 'First version of course'
+    - 'Create tables for courses and steps'
     - create_steps_table.php
     - create_courses_table.php
     - seed.php
 1.0.2:
     - CheckBoxes
     - create_check_boxes_table.php
+1.0.3:
+    - 'Updated table academy_course_courses'
+    - builder_table_update_academy_course_courses.php
