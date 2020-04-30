@@ -30,6 +30,4 @@ body {
 
 .document {
     width: calc(100% - 10px);
-    height: 100vh;
-    overflow: auto;
 }

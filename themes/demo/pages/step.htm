@@ -15,7 +15,11 @@ function onStart() {
         $this["step"] = $steps[0];
         $this["name"] = $steps[0]->step_name;
         $this["videoUrl"] = $steps[0]->video_link;
-        $this["googleDocUrl"] = $steps[0]->docs_link;
+        if ($steps[0]->docs_link) {
+            $this["googleDocUrl"] = file_get_contents($steps[0]->docs_link);
+        } else {
+            $this["googleDocUrl"] = "";
+        }
         $this["customText"] = $steps[0]->custom_text;
         $this["homework"] = $steps[0]->homework;
     }
@@ -33,7 +37,11 @@ function onStart() {
     <iframe src="https://www.youtube.com/embed/{{ videoUrl }}" class="video mb-3" hidden id="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     {% endif %}
     {% if googleDocUrl %}
-    <iframe src="{{ googleDocUrl }}" class="document" id="document" hidden frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe src="" class="document" id="document" style="height: 0;" hidden frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <template id="documentSrc">
+        {{ googleDocUrl|raw }}
+    </template>
     {% endif %}
     {% if customText %}
     <div id="customText" class="document" hidden>
@@ -49,6 +57,7 @@ function onStart() {
 
 <script>
     var video = document.getElementById("video")
+    /** @type {HTMLIFrameElement} */
     var googleDoc = document.getElementById("document")
     var customText = document.getElementById("customText")
     var homework = document.getElementById("homework")
@@ -60,8 +69,6 @@ function onStart() {
         if (customText && !video) customText.hidden = state != "custom"
         if (customText && video) customText.hidden = state != "video"
         if (homework) homework.hidden = state != "homework"
-
-        header.hidden = state == "document"
     }
 
     function getAvalible() {
@@ -76,10 +83,21 @@ function onStart() {
         return ret
     }
 
+    function documentResize() {
+        googleDoc.style.height = `calc(${getComputedStyle(googleDoc.contentDocument.body).height} + 16px)`
+    }
+
+
     if (video) setState("video")
     else if (googleDoc) setState("document")
     else if (customText) setState("custom")
     else if (homework) setState("homework")
+
+    if (googleDoc) {
+        googleDoc.contentDocument.body.innerHTML = document.getElementById("documentSrc").innerHTML
+        documentResize()
+    }
+
 </script>
 {% else %}
 <div class="error-div">
