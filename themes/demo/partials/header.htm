@@ -27,7 +27,6 @@
 				{% endif %}
 
 				<hr/ class="show-on-phone">
-				<a class="nav-item nav-link show-on-phone" href="/excersize-test">Otvoriť editor</a>
 				<a class="nav-item nav-link show-on-phone" href="/Account">{{ user.name }}</a>
 				<a class="nav-item nav-link show-on-phone btn btn-secondary" href="#" data-request="onLogout" data-request-data="">Odhlásiť sa</a>
 
@@ -40,7 +39,6 @@
 			{% if user %}
 
 				{% if this.page.url != '/' %}
-					<a class="align-self-center hide-on-phone" href="/excersize-test">Otvoriť editor</a>
 					<div style="width: 10px;"></div>
                 {% endif %}
                 {% if user.avatar %}
