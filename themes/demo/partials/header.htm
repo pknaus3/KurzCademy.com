@@ -42,12 +42,12 @@
 					<div style="width: 10px;"></div>
                 {% endif %}
                 {% if user.avatar %}
-				<a class="align-self-center hide-on-phone" href="/Account"><img class="user-avatar" src="{{ user.avatar.path }}" alt="{{ user.name }}"></a>
-                <a class="align-self-start show-on-phone" style="margin-top: 2px;" href="/Account"><img class="user-avatar" src="{{ user.avatar.path }}" alt="{{ user.name }}"></a>
+    				<a class="align-self-center hide-on-phone" href="/Account"><img class="user-avatar" src="{{ user.avatar.path }}" alt="{{ user.name }}"></a>
+                    <a class="align-self-start show-on-phone" style="margin-top: 2px;" href="/Account"><img class="user-avatar" src="{{ user.avatar.path }}" alt="{{ user.name }}"></a>
                 {% else %}
-                <a class="nav-item nav-link align-self-center " href="/Account">
-                    <b>{{user.name}}</b>
-                </a>
+                    <a class="nav-item nav-link align-self-center " href="/Account">
+                        <b>{{user.name}}</b>
+                    </a>
                 {% endif %}
 			{% else %}
 
