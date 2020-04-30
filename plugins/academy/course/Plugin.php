@@ -52,6 +52,7 @@ class Plugin extends PluginBase
     {
         return [
             'Academy\Course\Components\Homework' => 'homework',
+            'Academy\Course\Components\Excel' => 'excel',
         ];
     }
 
