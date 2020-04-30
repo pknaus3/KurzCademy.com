@@ -21,23 +21,25 @@ class Excel extends ComponentBase
 
     public function onSubmit() {
         $file = Input::file('file');
-        $file = $file->toArray();
-        dd(file_get_contents($file['realPath']));
+        $fileContent = file_get_contents($file->getRealPath());
+        var_dump($fileContent);
+        self::_inserData($fileContent);
     }
-    public function inserData($data){
-        $file = $data;
-        $file = json_decode($file);
+    static function _inserData($fileContent){
+        $step = json_decode($fileContent);
+        var_dump($step);
 
-        Step::create([
-            'course_id' => $file['course_id'],
-            'step_name' => $file['step_name'],
-            'why' => $file['why'],
-            'video_link' => $file['video_link'],
-            'docs_link' => $file['docs_link'],
-            'custom_text' => $file['custom_text'],
-            'step_position' => $file['step_position'],
-            'homework' => $file['homework'],
-        ]);
+        $req = new Step();
+        $req->course_id = $fileContent['course_id'];
+        $req->step_name = $fileContent['step_name'];
+        $req->why = $fileContent['why'];
+        $req->video_link = $fileContent['video_link'];
+        $req->docs_link = $fileContent['docs_link'];
+        $req->custom_text = $fileContent['custom_text'];
+        $req->step_position = $fileContent['step_position'];
+        $req->homework = $fileContent['homework'];
+        $req->save();
+
     }
 
 }
