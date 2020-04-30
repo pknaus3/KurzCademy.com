@@ -108,3 +108,7 @@
     text-align: center;
     padding-top: 25vh;
 }
+
+.void-sides {
+    padding: 0 !important;
+}
