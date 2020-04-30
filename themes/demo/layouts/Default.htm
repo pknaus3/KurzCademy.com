@@ -44,14 +44,52 @@ security = "all"
 
     {% component 'session' %} <!-- All user access -->
 
+	<div class="container-fluid">
+		<div class="row">
 
-	<div class="void-sides" style="min-height: calc(100vh - 90px);">
-    	{% partial "header.htm" %} <!-- Pripojenie navbaru -->
+			{% if this.page.url == '/' %}
+				<div class="col-sm-1"></div>
+			{% endif %}
 
-		{% page %} <!-- Sem je vsetko na stranke -->
+			{% if this.page.url == '/account/' %}
+				<div class="col-sm-1"></div>
+			{% endif %}
+
+			{% if this.page.url == '/Register' %}
+				<div class="col-sm-1"></div>
+			{% endif %}
+
+			{% if this.page.url == '/Login' %}
+				<div class="col-sm-1"></div>
+			{% endif %}
+
+			<div class="col">
+
+				{% partial "header.htm" %} <!-- Pripojenie navbaru -->
+
+				{% page %} <!-- Sem je vsetko na stranke -->
+
+			    {% partial "footer.htm" %} <!-- Pripojenie footeru -->
+
+			</div>
+
+			{% if this.page.url == '/' %}
+				<div class="col-sm-1"></div>
+			{% endif %}
+
+			{% if this.page.url == '/account/' %}
+				<div class="col-sm-1"></div>
+			{% endif %}
+
+			{% if this.page.url == '/Register' %}
+				<div class="col-sm-1"></div>
+			{% endif %}
+
+			{% if this.page.url == '/Login' %}
+				<div class="col-sm-1"></div>
+			{% endif %}
+		</div>
 	</div>
-
-    {% partial "footer.htm" %} <!-- Pripojenie footeru -->
 
     {% scripts %}
 
