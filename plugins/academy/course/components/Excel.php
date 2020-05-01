@@ -22,37 +22,38 @@ class Excel extends ComponentBase
     }
 
     public function onSubmit() {
-        $file = Input::file('file');
+        $file        = Input::file('file');
         $fileContent = file_get_contents($file->getRealPath());
-        $json = explode("\r\n", $fileContent);
-        foreach ($json as $key => $value){
-            $json[$key] = explode(',',$value);
+        $csv         = explode("\r\n", $fileContent);
+
+        foreach ($csv as $lineNumber => $line){
+            $csv[$lineNumber] = explode(',',$line);
         }
 
-        $keys = $json[0];
-        unset($json[0]);
-        $x = [];
-        foreach ($json as $value){
-            if (count($keys) == count($value)){
-                self::_inserData(array_combine($keys, $value));
+        $keys = $csv[0];
+        unset($csv[0]);
+
+        foreach ($csv as $stepData){
+            if (count($keys) == count($stepData)){
+                self::_inserData(array_combine($keys, $stepData));
             }
         }
-
+        \Flash::succes('Uploaded');
 
     }
     static function _inserData($fileContent){
         $req = new Step();
-        $req->course_id = $fileContent['course_id'];
-        $req->step_name = $fileContent['step_name'];
-        $req->why = $fileContent['why'];
-        $req->video_link = $fileContent['video_link'];
-        $req->docs_link = $fileContent['docs_link'];
-        $req->custom_text = $fileContent['custom_text'];
+
+        $req->course_id     = $fileContent['course_id'];
+        $req->step_name     = $fileContent['step_name'];
+        $req->why           = $fileContent['why'];
+        $req->video_link    = $fileContent['video_link'];
+        $req->docs_link     = $fileContent['docs_link'];
+        $req->custom_text   = $fileContent['custom_text'];
         $req->step_position = $fileContent['step_position'];
-        $req->homework = $fileContent['homework'];
+        $req->homework      = $fileContent['homework'];
 
         $req->save();
-
     }
 
 }
