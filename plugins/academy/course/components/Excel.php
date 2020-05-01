@@ -24,22 +24,23 @@ class Excel extends ComponentBase
     public function onSubmit() {
         $file = Input::file('file');
         $fileContent = file_get_contents($file->getRealPath());
-        //var_dump($fileContent);
-        self::_inserData($fileContent);
+        $json = explode("\r\n", $fileContent);
+        foreach ($json as $key => $value){
+            $json[$key] = explode(',',$value);
+        }
 
-        $json = '﻿{"courseId":1,"test":5}';
+        $keys = $json[0];
+        unset($json[0]);
+        $x = [];
+        foreach ($json as $value){
+            if (count($keys) == count($value)){
+                self::_inserData(array_combine($keys, $value));
+            }
+        }
 
-        dump(json_decode($json));
-
-        $json1 = '{"Peter":65,"Harry":80,"John":78,"Clark":90}';
-
-        //var_dump(json_decode($json1));
 
     }
     static function _inserData($fileContent){
-        $step = json_decode($fileContent);
-
-/*'{"courseId":1,"test":5}'
         $req = new Step();
         $req->course_id = $fileContent['course_id'];
         $req->step_name = $fileContent['step_name'];
@@ -49,8 +50,9 @@ class Excel extends ComponentBase
         $req->custom_text = $fileContent['custom_text'];
         $req->step_position = $fileContent['step_position'];
         $req->homework = $fileContent['homework'];
+
         $req->save();
-*/
+
     }
 
 }
