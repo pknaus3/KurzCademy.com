@@ -2,8 +2,9 @@
 
 use Academy\Course\Models\Step;
 use Cms\Classes\ComponentBase;
-use http\Env\Request;
 use Illuminate\Support\Facades\Input;
+
+
 
 
 class Excel extends ComponentBase
@@ -35,13 +36,13 @@ class Excel extends ComponentBase
 
         foreach ($csv as $stepData){
             if (count($keys) == count($stepData)){
-                self::_inserData(array_combine($keys, $stepData));
+                self::_createStep(array_combine($keys, $stepData));
             }
         }
-        \Flash::succes('Uploaded');
 
     }
-    static function _inserData($fileContent){
+
+    static function _createStep($fileContent){
         $req = new Step();
 
         $req->course_id     = $fileContent['course_id'];
@@ -54,6 +55,7 @@ class Excel extends ComponentBase
         $req->homework      = $fileContent['homework'];
 
         $req->save();
+
     }
 
 }
