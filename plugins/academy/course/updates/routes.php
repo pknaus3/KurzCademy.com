@@ -3,7 +3,7 @@
 
 use October\Rain\Auth\Models\User;
 
-Route::post('chcek', function ($req) {
+Route::post('/check', function ($req) {
     $data = $req->input();
 
     $check = new CheckBox();
