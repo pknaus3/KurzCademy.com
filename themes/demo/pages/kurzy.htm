@@ -15,9 +15,7 @@ detailsUrlParameter = "id"
 pageNumber = "{{ :page }}"
 ==
 <?php
-function onStart() {
-    $this["courses"] = Db::table("academy_course_courses")->get();
-}
+
 ?>
 ==
 {% set records = RetrieveCourses.records %}
@@ -33,7 +31,7 @@ function onStart() {
     <div class="courses-container">
 		<ul class="record-list home-record-list">
       {% for record in records %}
-      		<a href="course?id={{ record.id }}" data-aos="fade-up" data-aos-duration="500" class="aos-init aos-animate" v-for="course in courses">
+      		<a href="course?id={{ record.id }}" data-aos="fade-up" data-aos-duration="500" class="aos-init aos-animate">
         		<li class="list-title course-title">
           			<img src="{{ record.courseThumb.path }}" class="list-title-header-image">
                     {# Use spaceless tag to remove spaces inside the A tag. #}

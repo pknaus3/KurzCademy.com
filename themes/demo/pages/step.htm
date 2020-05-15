@@ -6,24 +6,28 @@ is_ = 0
 [homework]
 ==
 <?php
+use Academy\Course\Models\Step;
+use Academy\Course\Models\Course;
 function onStart() {
-    $steps = Db::table("academy_course_steps")->where('id', $_GET['id'])->get();
-    $this["loggedIn"] = $_GET["loggedIn"] == "true";
+    $steps = Step::where('id', $_GET['id'])->first();
+    $this["loggedIn"] = Auth::check();  //if user is logged in
 
-    if (count($steps) > 0) {
+
+    if ($steps->count() > 0) {
+
         $this["found"] = true;
-        $this["step"] = $steps[0];
-        $this["name"] = $steps[0]->step_name;
-        $this["videoUrl"] = $steps[0]->video_link;
-        if ($steps[0]->docs_link) {
-            $this["googleDocUrl"] = file_get_contents($steps[0]->docs_link);
+        $this["step"] = $steps;
+        $this["name"] = $steps->step_name;
+        $this["videoUrl"] = $steps->video_link;
+        if ($steps->docs_link) {
+            $this["googleDocUrl"] = file_get_contents($steps->docs_link);
         } else {
             $this["googleDocUrl"] = "";
         }
-        $this["customText"] = $steps[0]->custom_text;
-        $this["homework"] = $steps[0]->homework;
+        $this["customText"] = $steps->custom_text;
+        $this["homework"] = $steps->homework;
 
-        $this["why"] = $steps[0]->why;
+        $this["why"] = $steps->why;
     }
 }
 ?>
