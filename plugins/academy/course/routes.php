@@ -1,6 +1,5 @@
 <?php
 
-
 use October\Rain\Auth\Models\User;
 
 Route::post('/check', function ($req) {
@@ -12,3 +11,4 @@ Route::post('/check', function ($req) {
     $check->is_checked = $data['is_checked'];
     $check->save();
 });
+
