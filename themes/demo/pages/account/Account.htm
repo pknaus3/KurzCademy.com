@@ -16,7 +16,9 @@ redirect = "login"
 <h2 style="text-align: center;">My account</h2>
 {% component 'session' %}
 <!-- Includuje user component -->
-{% component 'account' %}
+<div id="accountForm">
+    {% component 'account' %}
+</div>
 <br>
 <img src="" style="width: 200px; height: 200px; cursor: pointer;" alt="No image preview" id="avatar" class="form-control" hidden onclick="uploader.click()">
 <br>
@@ -25,7 +27,7 @@ redirect = "login"
 <script>
     var avatarPath = "{{ user.avatar.path }}"
     /** @type {HTMLInputElement} */
-    var uploader = document.querySelector("body > div.void-sides > form > div:nth-child(7) > input")
+    var uploader = document.querySelector("#accountForm > form > div:nth-child(7) > input")
     /** @type {HTMLImageElement} */
     var avatarElement = document.getElementById("avatar")
 

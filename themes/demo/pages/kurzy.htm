@@ -32,11 +32,14 @@ pageNumber = "{{ :page }}"
 		<ul class="record-list home-record-list">
       {% for record in records %}
       		<a href="course?id={{ record.id }}" data-aos="fade-up" data-aos-duration="500" class="aos-init aos-animate">
-        		<li class="list-title course-title" style="background-color: {{ record.coursecolor }} !important;">
-          			<img src="{{ record.courseThumb.path }}" class="list-title-header-image">
+                <li class="list-title course-title" style="background-color: {{ record.coursecolor }} !important;">
+                    <img src="{{ record.courseThumb.path }}" class="list-title-header">
+          			<div class="list-title-header d-flex flex-column list-title-header-overlay">
+                        <div class="flex-fill"></div>
+                        <h1 class="text-white ml-2">{{ record.name }}<h1>
+                    </div>
                     {# Use spaceless tag to remove spaces inside the A tag. #}
                         {% spaceless %}
-                        <h4 class="list-title"><b>{{ record.name }}</b></h4>
                         <h5><p> {{ record.description|raw }} </p></h5>
                         {% endspaceless %}
         		</li>
