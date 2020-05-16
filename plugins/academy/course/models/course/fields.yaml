@@ -36,6 +36,10 @@ fields:
         imageHeight: '100'
         type: fileupload
     keywords:
-        label: klúčové slová
+        label: 'klúčové slová'
         type: text
         span: auto
+    coursecolor:
+        label: 'Farba kurzu'
+        span: auto
+        type: colorpicker

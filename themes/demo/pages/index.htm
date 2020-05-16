@@ -101,8 +101,8 @@ pageNumber = "{{ :page }}"
 		<div class="courses-container">
 			<ul class="record-list home-record-list">
 		  {% for record in records %}
-				  <a href="course?id={{ record.id }}" data-aos="fade-up" data-aos-duration="500" class="aos-init aos-animate" v-for="course in courses">
-					<li class="list-title course-title">
+				  <a href="course?id={{ record.id }}" data-aos="fade-up" data-aos-duration="500" class="aos-init aos-animate">
+					<li class="list-title course-title" style="background-color: {{ record.coursecolor }}">
 						  <img src="{{ record.courseThumb.path }}" class="list-title-header-image">
 						{# Use spaceless tag to remove spaces inside the A tag. #}
 							{% spaceless %}
