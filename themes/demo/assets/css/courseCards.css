@@ -46,11 +46,14 @@ h5{
   height: 438px;
   color: #031D5B;
 }
-.record-list .list-title .list-title-header-image {
+.record-list .list-title .list-title-header {
   width: 100%;
   height: 228px;
-  margin-bottom: 30px;
   object-fit: cover;
+}
+.list-title-header-overlay {
+    position: absolute;
+    top: 0;
 }
 .record-list .list-title h4 {
   margin-left: 5%;
@@ -75,6 +78,7 @@ h5{
   list-style-type: none;
 }
 .record-list .course-title {
+  position: relative;
   background-color: #ffffff;
   box-shadow: 0 0 0px 0 #E9E9E9;
 }
