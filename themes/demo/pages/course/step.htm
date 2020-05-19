@@ -105,7 +105,7 @@ function onStart() {
     var faq = document.getElementById("faq")
 
     function documentResize(/** @type {HTMLIFrameElement} */ iframe) {
-        iframe.style.height = `calc(${getComputedStyle(iframe.contentDocument.body).height} + 24px)`
+        iframe.style.height = `${iframe.contentDocument.documentElement.scrollHeight}px`
     }
 
     if (googleDoc) {
@@ -117,6 +117,11 @@ function onStart() {
         customText.contentDocument.body.innerHTML = document.getElementById("customTextSrc").innerHTML
         documentResize(customText)
     }
+
+    setInterval(()=>{
+        if (googleDoc) documentResize(googleDoc)
+        if (customText) documentResize(customText)
+    }, 100)
 
     /** @type {HTMLAnchorElement} */
     var next = document.getElementById("next")
