@@ -46,9 +46,17 @@ function onStart() {
         <iframe src="https://www.youtube.com/embed/{{ videoUrl }}" class="video mb-3" id="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         {% endif %}
         {% if customText %}
-        <div id="customText" class="document">
+        <iframe src="" class="document" id="customText" style="height: 0;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <template id="customTextSrc">
             {{ customText|raw }}
-        </div>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <style>
+                body {
+                    margin: 0 !important;
+                }
+            </style>
+        </template>
         {% endif %}
         {% if googleDocUrl %}
         <iframe src="" class="document" id="document" style="height: 0;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -96,13 +104,18 @@ function onStart() {
     var header = document.getElementById("header")
     var faq = document.getElementById("faq")
 
-    function documentResize() {
-        googleDoc.style.height = `calc(${getComputedStyle(googleDoc.contentDocument.body).height} + 16px)`
+    function documentResize(/** @type {HTMLIFrameElement} */ iframe) {
+        iframe.style.height = `calc(${getComputedStyle(iframe.contentDocument.body).height} + 24px)`
     }
 
     if (googleDoc) {
         googleDoc.contentDocument.body.innerHTML = document.getElementById("documentSrc").innerHTML
-        documentResize()
+        documentResize(googleDoc)
+    }
+
+    if (customText) {
+        customText.contentDocument.body.innerHTML = document.getElementById("customTextSrc").innerHTML
+        documentResize(customText)
     }
 
     /** @type {HTMLAnchorElement} */
