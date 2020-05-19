@@ -33,6 +33,8 @@ function onStart() {
 ?>
 ==
 <link href="{{'assets/css/stepViewer.css'|theme}}" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
 <base target="_parent">
 
 {% if found %}
@@ -50,12 +52,6 @@ function onStart() {
 
         <template id="customTextSrc">
             {{ customText|raw }}
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-            <style>
-                body {
-                    margin: 0 !important;
-                }
-            </style>
         </template>
         {% endif %}
         {% if googleDocUrl %}
@@ -99,6 +95,7 @@ function onStart() {
     var video = document.getElementById("video")
     /** @type {HTMLIFrameElement} */
     var googleDoc = document.getElementById("document")
+    /** @type {HTMLIFrameElement} */
     var customText = document.getElementById("customText")
     var homework = document.getElementById("homework")
     var header = document.getElementById("header")
@@ -114,11 +111,52 @@ function onStart() {
     }
 
     if (customText) {
-        customText.contentDocument.body.innerHTML = document.getElementById("customTextSrc").innerHTML
+        /** @type {HTMLTemplateElement} */
+        let srcTemplate = document.getElementById("customTextSrc")
+        let code = srcTemplate.innerHTML
+        if (srcTemplate.content.firstElementChild.nodeName == "PRE") {
+            code = markdownit({
+                highlight: function (str, lang) {
+                    if (lang && hljs.getLanguage(lang)) {
+                        try {
+                            return hljs.highlight(lang, str).value;
+                        } catch {
+
+                        }
+                    }
+
+                    return ''
+                }
+            }).render(srcTemplate.content.firstElementChild.innerText)
+        }
+        customText.contentDocument.body.innerHTML = code + `
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/github-gist.min.css">
+        <style>
+            body {
+                margin: 0 !important;
+            }
+
+            pre {
+                padding: 10px;
+                background-color: #f6f8fa;
+            }
+            
+            code {
+                background-color: #f6f8fa;
+                color: initial;
+                padding: .2em .4em;
+            }
+
+            pre > code {
+                padding: 0;
+            }
+        </style>
+        `
         documentResize(customText)
     }
 
-    setInterval(()=>{
+    setInterval(() => {
         if (googleDoc) documentResize(googleDoc)
         if (customText) documentResize(customText)
     }, 100)
