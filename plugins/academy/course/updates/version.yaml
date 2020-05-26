@@ -13,3 +13,12 @@
 1.0.4:
     - 'Added color column'
     - builder_table_update_academy_course_courses_2.php
+1.0.5:
+    - 'Updated table academy_course_check_boxes - Indexes'
+    - builder_table_update_academy_course_check_boxes.php
+1.0.6:
+    - 'Updated table academy_course_courses indexes'
+    - builder_table_update_academy_course_courses_3.php
+1.0.7:
+    - 'Updated table academy_course_steps'
+    - builder_table_update_academy_course_steps.php
