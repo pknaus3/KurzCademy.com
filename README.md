@@ -2,6 +2,7 @@
 ## Ako to rozbehať
 
 1. Naclonovať repo
+> Všetky dalšie kroky treba spraviť vo wsl
 2. Rozbehať composer
 ```
 composer update
@@ -13,6 +14,7 @@ php artisan october up
 4. Buildnúť Vue aplikáciu
 ```
 cd ./themes/vuetober
+npm install
 npm run build
 ```
 
