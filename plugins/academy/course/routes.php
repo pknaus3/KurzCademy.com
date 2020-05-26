@@ -19,8 +19,9 @@ Route::get('api/courses', function () {
     $courses = Course::All();
     return $courses;
 });
-Route::get('api/steps', function () {
-    $steps = Step::All();
+
+Route::get('api/steps/{id}', function ($courseId) {
+    $steps = Step::where('course_id',$courseId)->get();
     return $steps;
 });
 
