@@ -9,12 +9,17 @@ const routes: Array<RouteConfig> = [
         path: '/',
         name: 'Home',
         component: Home
+    },
+    {
+        path: "/courses",
+        name: "Courses",
+        component: () => import("@/views/CoursesView.vue")
     }
 ]
 
 const router = new VueRouter({
     mode: 'history',
-    base: process.env.BASE_URL,
+    base: "/",
     routes
 })
 
