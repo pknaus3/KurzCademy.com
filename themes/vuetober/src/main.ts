@@ -5,10 +5,12 @@ import './plugins/bootstrap-vue'
 import './plugins/portal-vue'
 import App from './App.vue'
 import router from './router'
+import { loadUserData } from './user'
 
 Vue.config.productionTip = false
 
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+loadUserData().then(() => new Vue({
+    router,
+    render: h => h(App)
+}).$mount('#app'))
+
