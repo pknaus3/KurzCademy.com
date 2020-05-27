@@ -35,6 +35,9 @@ Route::get('api/steps/{id}', function ($courseId) {
 
 Route::get('api/step/{id}', function ($stepId) {
     $step = Step::where('id',$stepId)->firstOrFail();
+    if ($step->docs_link) {
+        $step->renderedDocsHtml = Http::get($step->docs_link)->body;
+    }
     return $step;
 });
 

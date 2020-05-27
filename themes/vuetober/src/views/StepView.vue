@@ -35,6 +35,7 @@
 						frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen
+						ref="docsIframe"
 					></iframe>
 				</div>
 				<div id="faq">
@@ -145,11 +146,11 @@
 	@Component
 	export default class StepView extends Vue {
 		@vueProp.Prop({ type: String, required: true })
-        readonly stepId!: string
-        @vueProp.Prop({ type: Boolean, required: true })
-        readonly prevStep!: boolean
-        @vueProp.Prop({ type: Boolean, required: true })
-        readonly nextStep!: boolean
+		readonly stepId!: string
+		@vueProp.Prop({ type: Boolean, required: true })
+		readonly prevStep!: boolean
+		@vueProp.Prop({ type: Boolean, required: true })
+		readonly nextStep!: boolean
 		step = null as IStep | null
 		intervalId = -1
 
@@ -157,6 +158,7 @@
 			this.reloadStep()
 			this.intervalId = setInterval(() => {
 				if (this.$refs.customTextIframe) this.documentResize(this.$refs.customTextIframe as HTMLIFrameElement)
+				if (this.$refs.docsIframe) this.documentResize(this.$refs.docsIframe as HTMLIFrameElement)
 			}, 100)
 		}
 
@@ -221,6 +223,12 @@
 						this.$nextTick(() => {
 							this.documentResize(customTextIframe)
 						})
+					}
+					if (this.step.docs_link) {
+						let docsIframe = this.$refs.docsIframe as HTMLIFrameElement
+						let code = this.step.renderedDocsHtml
+						docsIframe.contentDocument!.body.innerHTML = code
+						this.documentResize(docsIframe)
 					}
 				}
 			})
