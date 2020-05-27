@@ -8,7 +8,7 @@
 		>
 			<b-card
 				:title="course.name"
-				img-src="@/assets/img/KurzPhotos/HybridLab.jpg"
+				:img-src="course.thumbPath"
 				img-top
 				img-height="50%"
 				class="mx-3 course-card d-inline-flex"
@@ -61,7 +61,8 @@
 <script lang="ts">
 	import Vue from 'vue'
 	import Component from "vue-class-component"
-	import * as vueProp from "vue-property-decorator"
+    import * as vueProp from "vue-property-decorator"
+    import axios from "axios"
 
 	export interface ICourse {
 		id: number
@@ -72,38 +73,19 @@
 		difficulty: string
 		description: string
 		teacher_name: string
-		coursecolor: string
+        coursecolor: string,
+        thumbPath: string
 	}
 
 	@Component
 	export default class Courses extends Vue {
 		courses = [
-			{
-				id: 0,
-				created_at: new Date(),
-				updated_at: new Date(),
-				name: "Kurz 1",
-				publisher: "Ja",
-				difficulty: "Hard",
-				description: "Tento kurz je kurz pre testovanie zobrazovania kurzov bez použitia API",
-				teacher_name: "Ty",
-				coursecolor: "#2980b9"
-			},
-			{
-				id: 1,
-				created_at: new Date(),
-				updated_at: new Date(),
-				name: "Kurz 2",
-				publisher: "Ja",
-				difficulty: "Hard",
-				description: "Tento kurz je kurz pre testovanie zobrazovania kurzov bez použitia API",
-				teacher_name: "Ty",
-				coursecolor: "#b92980"
-			}
+		
 		] as ICourse[]
 
-		mounted() {
-			// TODO: Load courses
+		async mounted() {
+            let coursesResponse = await axios.get("/api/courses")
+            this.courses = coursesResponse.data
 		}
 	}
 </script>
