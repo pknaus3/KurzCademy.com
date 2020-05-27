@@ -32,7 +32,7 @@
 				Kurz nebol nájdený
 				<br />
 			</h3>
-			<a href="/kurzy" class="btn btn-primary mt-2">Naspäť</a>
+            <b-btn variant="primary" class="mt-2" to="/courses">Naspäť</b-btn>
 		</div>
 	</div>
 </template>
