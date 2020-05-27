@@ -14,6 +14,26 @@ const routes: Array<RouteConfig> = [
         path: "/courses",
         name: "Courses",
         component: () => import("@/views/CoursesView.vue")
+    },
+    {
+        path: "/course/:id",
+        props: true,
+        name: "Course",
+        component: () => import("@/views/CourseView.vue"),
+        meta: {
+            hideFooter: true
+        },
+        children: [
+            {
+                path: ":stepId",
+                props: true,
+                name: "Step",
+                component: () => import("@/views/StepView.vue"),
+                meta: {
+                    hideFooter: true
+                }
+            }
+        ]
     }
 ]
 

@@ -63,19 +63,7 @@
 	import Component from "vue-class-component"
     import * as vueProp from "vue-property-decorator"
     import axios from "axios"
-
-	export interface ICourse {
-		id: number
-		created_at: Date
-		updated_at: Date
-		name: string
-		publisher: string
-		difficulty: string
-		description: string
-		teacher_name: string
-        coursecolor: string,
-        thumbPath: string
-	}
+    import { ICourse } from '../types'
 
 	@Component
 	export default class Courses extends Vue {
@@ -84,7 +72,7 @@
 		] as ICourse[]
 
 		async mounted() {
-            let coursesResponse = await axios.get("/api/courses")
+            let coursesResponse = await axios.get("/api/courses/")
             this.courses = coursesResponse.data
 		}
 	}

@@ -23,8 +23,18 @@ Route::get('api/courses', function () {
     return $courses;
 });
 
+Route::get('api/course/{id}', function ($courseId) {
+    $course = Course::where('id',$courseId)->firstOrFail();
+    return $course;
+});
+
 Route::get('api/steps/{id}', function ($courseId) {
     $steps = Step::where('course_id',$courseId)->get();
     return $steps;
+});
+
+Route::get('api/step/{id}', function ($stepId) {
+    $step = Step::where('id',$stepId)->firstOrFail();
+    return $step;
 });
 

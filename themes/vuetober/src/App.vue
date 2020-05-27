@@ -5,7 +5,7 @@
 			<b-col>
 				<Header></Header>
 				<router-view></router-view>
-				<Footer></Footer>
+				<Footer v-if="!$router.currentRoute.meta.hideFooter"></Footer>
 			</b-col>
 		</b-container>  
 	</div>
