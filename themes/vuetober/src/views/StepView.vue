@@ -42,8 +42,8 @@
 				</div>
 
 				<div class="go-buttons">
-					<a class="btn btn-outline-secondary" id="prev" hidden>◁ Späť</a>
-					<a class="btn btn-outline-secondary" id="next" hidden>Ďalej ▷</a>
+					<a class="btn btn-outline-secondary" id="prev" v-if="prevStep" @click="$emit('prev')">◁ Späť</a>
+					<a class="btn btn-outline-secondary" id="next" v-if="nextStep" @click="$emit('next')">Ďalej ▷</a>
 				</div>
 			</template>
 		</div>
@@ -77,7 +77,7 @@
 		position: relative;
 		padding: calc(50% - 450px);
 		padding-top: 4px;
-		padding-bottom: 0;
+		padding-bottom: 10px;
 		height: 100%;
 		overflow-y: scroll;
 		margin: 0;
@@ -145,7 +145,11 @@
 	@Component
 	export default class StepView extends Vue {
 		@vueProp.Prop({ type: String, required: true })
-		readonly stepId!: string
+        readonly stepId!: string
+        @vueProp.Prop({ type: Boolean, required: true })
+        readonly prevStep!: boolean
+        @vueProp.Prop({ type: Boolean, required: true })
+        readonly nextStep!: boolean
 		step = null as IStep | null
 		intervalId = -1
 

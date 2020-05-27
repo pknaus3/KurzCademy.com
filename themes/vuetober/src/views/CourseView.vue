@@ -17,7 +17,7 @@
 				</div>
 				<div class="viewer-main">
 					<div v-if="currStep">
-						<router-view></router-view>
+						<router-view :prevStep="this.currStepIndex > 0" :nextStep="this.currStepIndex < this.steps.length - 1" @prev="stepOffset(-1)" @next="stepOffset(1)"></router-view>
 					</div>
 					<div v-else>
 						<div class="viewer-no-step">
@@ -71,8 +71,8 @@
 	.viewer-body {
 		flex: 1 1;
 		display: flex;
-        flex-direction: row;
-        height: calc(100% - 70px);
+		flex-direction: row;
+		height: calc(100% - 70px);
 	}
 
 	.viewer-steps {
@@ -193,16 +193,22 @@
 		//     if (this.currStep) this.$router.push(`/course/${this.id}/${this.currStep.id}`)
 		// }
 
-		public get currStep(): string | null {
+		get currStep(): string | null {
 			return this.$route.params.stepId
 		}
 
 
-		public set currStep(stepId: string | null) {
+		set currStep(stepId: string | null) {
 			if (stepId != null) this.$router.push({ name: "Step", params: { stepId: stepId } })
 			else this.$router.push({ name: "Course", params: { id: this.id } })
 		}
 
-
+		stepOffset(offset: number) {
+			this.currStep = this.steps[this.currStepIndex + offset].id.toString()
+        }
+        
+        get currStepIndex() {
+            return this.steps.findIndex(v => v.id.toString() == this.currStep)
+        }
 	}
 </script>
