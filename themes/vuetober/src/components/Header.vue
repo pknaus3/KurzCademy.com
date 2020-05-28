@@ -16,6 +16,10 @@
 				<b-btn variant="light" @click="logout()">Odhlásiť</b-btn>
 			</div>
 		</b-btn>
+		<template v-else>
+			<b-btn variant="outline-dark" :to="{ path: '/login', query: { redirect: $route.fullPath } }" class="user-button">Prihlásiť</b-btn>
+			<b-btn variant="outline-dark" :to="{ path: '/register', query: { redirect: $route.fullPath } }" class="user-button ml-2">Registrovať</b-btn>
+		</template>
 	</b-navbar>
 </template>
 
