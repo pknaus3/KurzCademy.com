@@ -6,7 +6,7 @@
 					<b-btn @click="uploadAvatar()" variant="link">
 						<b-avatar size="200px" :src="userData.user.avatar.path"></b-avatar>
 					</b-btn>
-					<b-btn variant="light" class="trash-btn" @click="delteUserAvatar()">
+					<b-btn variant="light" class="trash-btn" @click="delteUserAvatar()" v-if="userData.user.avatar.path">
 						<b-icon-trash-fill></b-icon-trash-fill>
 					</b-btn>
 				</div>
