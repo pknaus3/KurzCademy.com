@@ -38,6 +38,9 @@ class AccountManager
 
         Event::fire('bedard.rainlabuserapi.afterGetUser', [&$user]);
 
+        // Include avatar info on returned object
+        $user->avatar;
+
         return $user;
     }
 

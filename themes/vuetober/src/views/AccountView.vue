@@ -1,14 +1,26 @@
 <template>
 	<div v-if="userData.user" class="d-flex flex-column justify-content-center">
 		<div class="d-flex flex-row justify-content-center">
+			<div class="mr-5 d-flex flex-column">
+				<div class="avatar-container">
+					<b-btn @click="uploadAvatar()" variant="link">
+						<b-avatar size="200px" :src="userData.user.avatar.path"></b-avatar>
+					</b-btn>
+					<b-btn variant="light" class="trash-btn" @click="delteUserAvatar()">
+						<b-icon-trash-fill></b-icon-trash-fill>
+					</b-btn>
+				</div>
+				<input
+					type="file"
+					accept="image/*"
+					ref="imageUpload"
+					@change="onAvatarSelect($event)"
+					class="d-none"
+				/>
+			</div>
 			<b-form class="form-block" @submit.prevent="submit">
 				<b-form-group id="full-name-group" label="Celé meno" label-for="full-name">
-					<b-form-input
-						id="full-name"
-						v-model="fullName"
-						type="text"
-						placeholder="Vložte celé meno"
-					></b-form-input>
+					<b-form-input id="full-name" v-model="fullName" type="text" placeholder="Vložte celé meno"></b-form-input>
 				</b-form-group>
 				<b-form-group id="email-group" label="E-mail" label-for="email">
 					<b-form-input
@@ -56,11 +68,21 @@
 		transform: scale(1, 0);
 		transition: transform 0.1s;
 		border-color: red;
-        height: auto;
+		height: auto;
 	}
 
 	.error-box[data-active="true"] {
 		transform: scale(1, 1);
+	}
+
+	.avatar-container {
+		position: relative;
+	}
+
+	.avatar-container > .trash-btn {
+		position: absolute;
+		top: 0;
+		right: -10px;
 	}
 </style>
 
@@ -68,7 +90,7 @@
 	import Vue from 'vue'
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
-	import { userData, updateUserData } from '../user'
+	import { userData, updateUserData, updateUserAvatar, deleteAvatar } from '../user'
 
 	@Component
 	export default class AccountView extends Vue {
@@ -111,6 +133,19 @@
 				this.error = Object.values(err.response.data as Record<string, string[]>).map(v => v.join("\n")).join("\n")
 				console.error(err, err.response)
 			})
-		}
+        }
+        
+        uploadAvatar() {
+            (this.$refs.imageUpload as HTMLInputElement).click()
+        }
+
+        onAvatarSelect(event: Event) {
+            let file = (event?.target as HTMLInputElement)?.files?.[0] as File | null
+            if (file != null) updateUserAvatar(file)
+        }
+
+        delteUserAvatar() {
+            deleteAvatar()
+        }
 	}
 </script>

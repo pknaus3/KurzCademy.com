@@ -5,7 +5,7 @@
 		</b-navbar-brand>
 		<div class="flex-fill"></div>
 		<b-btn v-if="userData.user" variant="outline-dark" class="d-flex flex-row align-items-center user-button" style="border: none">
-			<b-avatar variant="light" :src="userData.user.avatar"></b-avatar>
+			<b-avatar :src="userData.user.avatar.path"></b-avatar>
             <div class="font-weight-bold ml-2">{{ userData.user.name }}</div>
             <div class="user-menu flex-column">
                 <b-btn variant="light" to="/account">Môj účet</b-btn>
