@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
+import { userData } from '@/user'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,14 @@ const routes: Array<RouteConfig> = [
                 }
             }
         ]
+    },
+    {
+        path: "/account",
+        name: "Account",
+        component: () => import("@/views/AccountView.vue"),
+        meta: {
+            authReq: true
+        }
     }
 ]
 
@@ -41,6 +50,14 @@ const router = new VueRouter({
     mode: 'history',
     base: "/",
     routes
+})
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.authReq && userData.user == null) {
+        next(`/login?redirect=${to.fullPath}`)
+    } else {
+        next()
+    }
 })
 
 export default router
