@@ -9,7 +9,7 @@
             <div class="font-weight-bold ml-2">{{ userData.user.name }}</div>
             <div class="user-menu flex-column">
                 <b-btn variant="light" to="/account">Môj účet</b-btn>
-                <b-btn variant="light">Odhlásiť</b-btn>
+                <b-btn variant="light" @click="logout()">Odhlásiť</b-btn>
             </div>
 		</b-btn>
 	</b-navbar>
@@ -44,10 +44,14 @@
 	import Vue from 'vue'
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
-	import { userData } from "../user"
+	import { userData, logout } from "../user"
 
 	@Component
 	export default class Header extends Vue {
-		userData = userData
+        userData = userData
+        
+        logout() {
+            logout()
+        }
 	}
 </script>

@@ -1,5 +1,6 @@
 import Vue from "vue"
 import axios from "axios"
+import router from './router'
 
 export interface IUserData {
     password_confirmation?: string
@@ -16,8 +17,14 @@ export const userData = Vue.observable({
 })
 
 export async function loadUserData() {
-    let userResponse = await axios.get<IUserData>(`/api/rainlab/user/account`)
-    userData.user = userResponse.data
+    try {
+        let userResponse = await axios.get<IUserData>(`/api/rainlab/user/account`)
+        userData.user = userResponse.data
+        console.log("Logged in", userData.user)
+    } catch (err) {
+        console.log("Not logged in", err.response.data, err)
+        userData.user = null
+    }
     // let avatarResponse = await axios.get<string>(`/api/user-avatar`)
     // userData.user!.avatar = avatarResponse.data
 }
@@ -31,4 +38,10 @@ export async function updateUserData(fullName: string, email: string, newPasswor
 
     let response = await axios.post<IUserData>(`/api/rainlab/user/account`, userData.user)
     console.log("Update user data", response.data)
+}
+
+export async function logout() {
+    await axios.get(`/api/rainlab/user/auth/logout`)
+    await loadUserData()
+    router.push("/")
 }
