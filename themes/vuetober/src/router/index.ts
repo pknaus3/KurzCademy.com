@@ -13,7 +13,7 @@ const routes: Array<RouteConfig> = [
     {
         path: "/courses",
         name: "Courses",
-        component: () => import("@/views/CoursesView.vue")
+        component: () => import("@/components/Courses.vue")
     },
     {
         path: "/course/:id",
