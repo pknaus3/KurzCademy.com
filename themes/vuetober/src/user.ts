@@ -48,6 +48,17 @@ export async function updateUserData(fullName: string, email: string, newPasswor
     console.log("Update user data", response.data)
 }
 
+export async function registerUser(fullName: string, email: string, password: string) {
+    let response = await axios.post<IUserData>(`/api/rainlab/user/users`, {
+        password,
+        password_confirmation: password,
+        email,
+        name: fullName
+    })
+    console.log("Registered user", response.data)
+    await loadUserData()
+}
+
 export async function updateUserAvatar(avatar: File) {
     if (userData.user == null) throw new Error("Cannot update user avatar with no user logged in")
     
