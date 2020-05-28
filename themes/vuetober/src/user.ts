@@ -45,3 +45,8 @@ export async function logout() {
     await loadUserData()
     router.push("/")
 }
+
+export async function login(login: string, password: string) {
+    await axios.post(`/api/rainlab/user/auth/login`, { login, password })
+    await loadUserData()
+}

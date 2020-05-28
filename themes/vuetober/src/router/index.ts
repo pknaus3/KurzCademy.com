@@ -43,6 +43,11 @@ const routes: Array<RouteConfig> = [
         meta: {
             authReq: true
         }
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: () => import("@/views/LoginView.vue"),
     }
 ]
 

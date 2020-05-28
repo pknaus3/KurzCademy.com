@@ -71,9 +71,9 @@ class AuthController extends ApiController
         }
 
         // record ip address
-        if ($ipAddress = Request::ip()) {
-            $user->touchIpAddress($ipAddress);
-        }
+        // if ($ipAddress = Request::ip()) {
+        //     $user->touchIpAddress($ipAddress);
+        // }
 
         return AccountManager::getAuthenticatedUser();
     }
