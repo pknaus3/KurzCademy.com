@@ -1,0 +1,16 @@
+body {
+    background-color: #F5F5F5;
+    overflow-y: scroll;
+}
+
+:root {
+    --highligh-color: #362965;
+}
+
+.highlight-text {
+    color: var(--highligh-color);
+}
+
+.highlight-block {
+    background-color: var(--highligh-color);
+}
