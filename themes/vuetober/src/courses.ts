@@ -46,5 +46,12 @@ export async function getCourseStepsById(courseId: string) {
 export async function getAllCourses() {
     let coursesResponse = await axios.get<ICourse[]>("/api/courses/")
     return coursesResponse.data
+}
 
+export async function getCourseFavourite(courseId: string) {
+    return false
+}
+
+export async function setCourseFavourite(courseId: string, value: boolean) {
+    console.log("Set course favourite", courseId, value)
 }

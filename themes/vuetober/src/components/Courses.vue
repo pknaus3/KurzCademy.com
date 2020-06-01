@@ -3,7 +3,7 @@
 		<router-link
 			:to="`/course/${course.id}`"
 			style="text-decoration: none"
-			v-for="course in courses"
+			v-for="(course, index) in courses"
 			:key="course.id"
 		>
 			<b-card
@@ -15,6 +15,7 @@
 				:style="`background-color: ${course.coursecolor}`"
 			>
 				<b-card-text v-html="course.description"></b-card-text>
+                <b-icon class="course-favourite" font-scale="1.5" :icon="favourites[index] ? 'star-fill' : 'star'"></b-icon>
 			</b-card>
 		</router-link>
 	</div>
@@ -56,22 +57,30 @@
 	.course-card > .card-body > .card-text {
 		margin-top: 10px;
 	}
+
+    .course-favourite {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
 </style>
 
 <script lang="ts">
 	import Vue from 'vue'
 	import Component from "vue-class-component"
-    import * as vueProp from "vue-property-decorator"
-    import { ICourse, getAllCourses } from '../courses'
+	import * as vueProp from "vue-property-decorator"
+	import { ICourse, getAllCourses, getCourseFavourite } from '../courses'
 
 	@Component
 	export default class Courses extends Vue {
-		courses = [
-		
-		] as ICourse[]
+        courses = [] as ICourse[]
+        favourites = [] as boolean[]
 
 		async mounted() {
-            this.courses = await getAllCourses()
+			this.courses = await getAllCourses()
+			this.favourites = await Promise.all(this.courses.map(async v => {
+                return getCourseFavourite(v.id.toString())
+			}))
 		}
 	}
 </script>
