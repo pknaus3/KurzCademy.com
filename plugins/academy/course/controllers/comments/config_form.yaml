@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Comment
+
+# Model Form Field configuration
+form: $/academy/course/models/comments/fields.yaml
+
+# Model Class name
+modelClass: Academy\Course\Models\Comments
+
+# Default redirect location
+defaultRedirect: academy/course/comments
+
+# Create page
+create:
+    title: Create Comment
+    redirect: academy/course/comments/update/:id
+    redirectClose: academy/course/comments
+
+# Update page
+update:
+    title: Edit Comment
+    redirect: academy/course/comments
+    redirectClose: academy/course/comments
+
+# Preview page
+preview:
+    title: Preview Comment

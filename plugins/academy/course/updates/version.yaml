@@ -13,3 +13,6 @@
 1.0.4:
     - 'Added color column'
     - builder_table_update_academy_course_courses_2.php
+1.0.5:
+    - 'Table for comments'
+    - create_comments_table.php

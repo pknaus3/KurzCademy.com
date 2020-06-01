@@ -63,13 +63,15 @@ class Plugin extends PluginBase
      */
     public function registerPermissions()
     {
-        return []; // Remove this line to activate
-
         return [
-            'academy.course.some_permission' => [
-                'tab' => 'course',
-                'label' => 'Some permission'
+            'academy.course.edit_courses' => [
+                'tab' => 'academy.course',
+                'label' => 'Acces edit all courses'
             ],
+            'academy.course.viewCourses' => [
+                'tab' => 'Course',
+                'label' => 'Acces edit all courses'
+            ]
         ];
     }
 
@@ -87,6 +89,22 @@ class Plugin extends PluginBase
                 'icon'        => 'icon-leaf',
                 'permissions' => ['academy.course.*'],
                 'order'       => 500,
+                'sideMenu'     => [
+                    'checkbox' => [
+                        'label'       => 'Zaškrtnuté kroky',
+                        'url'         => Backend::url('academy/course/checkbox'),
+                        'icon'        => 'icon-leaf',
+                        'permissions' => ['academy.course.*'],
+                        'order'       => 500,
+                    ],
+                    'comments' => [
+                        'label'       => 'Komentáre',
+                        'url'         => Backend::url('academy/course/comments'),
+                        'icon'        => 'icon-leaf',
+                        'permissions' => ['academy.course.*'],
+                        'order'       => 500,
+                    ],
+                ]
             ],
             'step' => [
                 'label'       => 'Krok',
@@ -95,13 +113,7 @@ class Plugin extends PluginBase
                 'permissions' => ['academy.course.*'],
                 'order'       => 500,
             ],
-            'checkbox' => [
-                'label'       => 'Zaškrtnuté kroky',
-                'url'         => Backend::url('academy/course/checkbox'),
-                'icon'        => 'icon-leaf',
-                'permissions' => ['academy.course.*'],
-                'order'       => 500,
-            ],
+
         ];
     }
 }
