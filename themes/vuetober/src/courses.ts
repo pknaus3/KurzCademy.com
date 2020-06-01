@@ -55,3 +55,7 @@ export async function getCourseFavourite(courseId: string) {
 export async function setCourseFavourite(courseId: string, value: boolean) {
     console.log("Set course favourite", courseId, value)
 }
+
+export async function getAllFavouritedCourses() {
+    return getAllCourses()
+}

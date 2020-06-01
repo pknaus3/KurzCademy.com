@@ -15,7 +15,12 @@
 				:style="`background-color: ${course.coursecolor}`"
 			>
 				<b-card-text v-html="course.description"></b-card-text>
-                <b-icon class="course-favourite" font-scale="1.5" :icon="favourites[index] ? 'star-fill' : 'star'"></b-icon>
+				<b-icon
+					v-if="!favouriteOnly"
+					class="course-favourite"
+					font-scale="1.5"
+					:icon="favourites[index] ? 'star-fill' : 'star'"
+				></b-icon>
 			</b-card>
 		</router-link>
 	</div>
@@ -58,29 +63,35 @@
 		margin-top: 10px;
 	}
 
-    .course-favourite {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-    }
+	.course-favourite {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
 </style>
 
 <script lang="ts">
 	import Vue from 'vue'
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
-	import { ICourse, getAllCourses, getCourseFavourite } from '../courses'
+	import { ICourse, getAllCourses, getCourseFavourite, getAllFavouritedCourses } from '../courses'
 
 	@Component
 	export default class Courses extends Vue {
-        courses = [] as ICourse[]
-        favourites = [] as boolean[]
+		@vueProp.Prop({ type: Boolean, required: false, default: false })
+		readonly favouriteOnly!: boolean
+		courses = [] as ICourse[]
+		favourites = [] as boolean[]
 
 		async mounted() {
-			this.courses = await getAllCourses()
-			this.favourites = await Promise.all(this.courses.map(async v => {
-                return getCourseFavourite(v.id.toString())
-			}))
+			if (this.favouriteOnly) {
+                this.courses = await getAllFavouritedCourses()
+			} else {
+				this.courses = await getAllCourses()
+				this.favourites = await Promise.all(this.courses.map(async v => {
+					return getCourseFavourite(v.id.toString())
+				}))
+			}
 		}
 	}
 </script>

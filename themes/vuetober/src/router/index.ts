@@ -17,6 +17,12 @@ const routes: Array<RouteConfig> = [
         component: () => import("@/components/Courses.vue")
     },
     {
+        path: "/favourites",
+        name: "Favourites",
+        component: () => import("@/components/Courses.vue"),
+        props: { favouriteOnly: true }
+    },
+    {
         path: "/course/:id",
         props: true,
         name: "Course",
