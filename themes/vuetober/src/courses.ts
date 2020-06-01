@@ -1,4 +1,5 @@
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
+import { userData } from './user'
 
 export interface ICourse {
     id: number
@@ -49,13 +50,23 @@ export async function getAllCourses() {
 }
 
 export async function getCourseFavourite(courseId: string) {
-    return false
+    if (userData.user == null) throw new Error("Tryed to get favourite state of a course with no user")
+    return (await axios.get<number>(`/api/favoritesCourses/${userData.user.id}/${courseId}`)).data == 1
 }
 
 export async function setCourseFavourite(courseId: string, value: boolean) {
-    console.log("Set course favourite", courseId, value)
+    if (userData.user == null) throw new Error("Tryed to set favourite state of a course with no user")
+    if (value == true) {
+        await axios.post(`/api/addFavorite`, {
+            course_id: courseId,
+            user_id: userData.user.id
+        })
+    } else {
+        await axios.delete(`/api/deleteFavorite/${userData.user.id}/${courseId}`)
+    }
 }
 
 export async function getAllFavouritedCourses() {
-    return getAllCourses()
+    if (userData.user == null) throw new Error("Tryed to get favourite courses with no user")
+    return (await axios.get<ICourse[]>(`api/favoritesCourses/${userData.user.id}`)).data
 }

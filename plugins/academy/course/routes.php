@@ -77,8 +77,7 @@ Route::get('api/favoritesCourses/{userId}/{courseId}', function ($userId, $cours
 });
 
 Route::delete('api/deleteFavorite/{userId}/{courseId}', function ($userId, $courseId) {
-    $favCourses = FavoriteCourses::where('user_id', $userId)->where('course_id', $courseId)->first();
-    $favCourses->delete();
+    $favCourses = FavoriteCourses::where('user_id', $userId)->where('course_id', $courseId)->delete();
 });
 
 Route::delete('api/deleteComment/{id}', function ($commentId) {
@@ -88,5 +87,11 @@ Route::delete('api/deleteComment/{id}', function ($commentId) {
 
 Route::get('api/favoritesCourses/{id}', function ($userId) {
     $favCourses = FavoriteCourses::where('user_id', $userId)->get();
-    return $favCourses;
+    $courseModels = [];
+    foreach ($favCourses as $key => $favCourse) {
+        $course = Course::findOrFail($favCourse->course_id);
+        $course->thumbPath = $course->courseThumb->getPath();
+        array_push($courseModels, $course);
+    }
+    return $courseModels;
 });
