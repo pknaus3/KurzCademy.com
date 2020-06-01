@@ -14,7 +14,7 @@
 				class="mx-3 course-card d-inline-flex"
 				:style="`background-color: ${course.coursecolor}`"
 			>
-				<b-card-text>{{ course.description }}</b-card-text>
+				<b-card-text v-html="course.description"></b-card-text>
 			</b-card>
 		</router-link>
 	</div>
