@@ -1,6 +1,7 @@
 <?php
 
 use Academy\Course\Models\Comments;
+use Academy\Course\Models\FavoriteCourses;
 use Illuminate\Http\Request;
 use October\Rain\Auth\Models\User;
 use Academy\Course\Models\Course;
@@ -83,4 +84,9 @@ Route::delete('api/deleteFavorite/{userId}/{courseId}', function ($userId, $cour
 Route::delete('api/deleteComment/{id}', function ($commentId) {
     $comment = Comments::find($commentId);
     $comment->delete();
+});
+
+Route::get('api/favoritesCourses/{id}', function ($userId) {
+    $favCourses = FavoriteCourses::where('user_id', $userId)->get();
+    return $favCourses;
 });

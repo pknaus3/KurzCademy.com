@@ -90,6 +90,20 @@ class Plugin extends PluginBase
                 'permissions' => ['academy.course.*'],
                 'order'       => 500,
                 'sideMenu'     => [
+                    'course' => [
+                        'label'       => 'Kurz',
+                        'url'         => Backend::url('academy/course/course'),
+                        'icon'        => 'icon-leaf',
+                        'permissions' => ['academy.course.*'],
+                        'order'       => 500,
+                        ],
+                    'step' => [
+                        'label'       => 'Krok',
+                        'url'         => Backend::url('academy/course/step'),
+                        'icon'        => 'icon-leaf',
+                        'permissions' => ['academy.course.*'],
+                        'order'       => 500,
+                    ],
                     'checkbox' => [
                         'label'       => 'Zaškrtnuté kroky',
                         'url'         => Backend::url('academy/course/checkbox'),
@@ -104,15 +118,16 @@ class Plugin extends PluginBase
                         'permissions' => ['academy.course.*'],
                         'order'       => 500,
                     ],
+                    'favorites' => [
+                        'label'       => 'Obľubené kurzy',
+                        'url'         => Backend::url('academy/course/FavoriteCourses'),
+                        'icon'        => 'icon-leaf',
+                        'permissions' => ['academy.course.*'],
+                        'order'       => 500,
+                    ],
                 ]
             ],
-            'step' => [
-                'label'       => 'Krok',
-                'url'         => Backend::url('academy/course/step'),
-                'icon'        => 'icon-leaf',
-                'permissions' => ['academy.course.*'],
-                'order'       => 500,
-            ],
+
 
         ];
     }
