@@ -12,7 +12,7 @@
 						<p>Všetko ON-LINE</p>
 						<h2 class="font-weight-bold">Vzdelanie ktoré ti zmení život</h2>
 						<div class="mt-3">Vyber si oblasť, v ktorej sa chceš vzdelávať.</div>
-						<div>Naše kurzy ťa prevedú od úplných zákoadov až op pokročilejšie techniky.</div>
+						<div>Naše kurzy ťa prevedú od úplných základov až po pokročilejšie techniky.</div>
 						<b-btn class="mt-3" variant="primary" to="courses">Všetky Kurzy</b-btn>
 						<div class="mt-3">Aké technológie sa tu naučíte?</div>
 						<div class="mt-1">
@@ -37,14 +37,14 @@
 			<b-row class="d-flex flex-row justify-content-around mt-5">
 				<div class="feature">
 					<b-img class="feature-image" src="@/assets/img/topficurky/ficurka-2.png"></b-img>
-					<h1 class="font-weight-bold mt-3">Vzelávaj sa</h1>
+					<h1 class="font-weight-bold mt-3">Vzdelávaj sa</h1>
 					<div
 						class="mt-3"
 					>Vyber si oblasť, v ktorej sa chceš vzdelávať. Naše kurzy ťa prevedú od úplných základov až po pokročilejšie techniky.</div>
 				</div>
 				<div class="feature">
 					<b-img class="feature-image" src="@/assets/img/topficurky/ficurka-1.png"></b-img>
-					<h1 class="font-weight-bold mt-3">Pítaj sa</h1>
+					<h1 class="font-weight-bold mt-3">Pýtaj sa</h1>
 					<div class="mt-3">V kľude nám môžeš napísať a opýtať sa dodatočné info.</div>
 				</div>
 				<div class="feature">
