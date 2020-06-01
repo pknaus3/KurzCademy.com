@@ -43,8 +43,24 @@
 				</div>
 
 				<div class="go-buttons">
-					<a class="btn btn-outline-secondary" id="prev" v-if="prevStep" @click="$emit('prev')">◁ Späť</a>
-					<a class="btn btn-outline-secondary" id="next" v-if="nextStep" @click="$emit('next')">Ďalej ▷</a>
+					<b-btn
+						variant="outline-dark"
+						class="border-0"
+						:disabled="!prevStep"
+						@click="$emit('prev')"
+					>
+						<b-icon-chevron-left scale="0.75"></b-icon-chevron-left>
+						<span>Späť</span>
+					</b-btn>
+					<b-btn
+						variant="outline-dark"
+						class="border-0"
+						:disabled="!nextStep"
+						@click="$emit('next')"
+					>
+						<span>Ďalej</span>
+						<b-icon-chevron-right scale="0.75"></b-icon-chevron-right>
+					</b-btn>
 				</div>
 			</template>
 		</div>
@@ -104,6 +120,7 @@
 	.go-buttons > * {
 		margin-left: 4px;
 	}
+    
 	.navigation {
 		position: absolute;
 		top: 10px;
