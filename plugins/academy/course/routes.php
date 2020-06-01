@@ -41,3 +41,48 @@ Route::get('api/step/{id}', function ($stepId) {
     return $step;
 });
 
+<<<<<<< Updated upstream
+=======
+Route::post('/api/comment', function (Request $req) {
+    $data = $req->input();
+
+    $comment = new Comments();
+    $comment->comment = $data['comment'];
+    $comment->course_id = $data['course_id'];
+    $comment->user_id = $data['user_id'];
+    $comment->save();
+});
+
+Route::get('api/comments/{id}', function ($courseId) {
+    $comments = Comments::where('course_id', $courseId)->get();
+    return $comments;
+});
+
+Route::post('/api/addFavorite', function (Request $req) {
+    $data = $req->input();
+
+    $favCourse = new FavoriteCourses();
+    $favCourse->course_id = $data['course_id'];
+    $favCourse->user_id = $data['user_id'];
+    $favCourse->save();
+});
+
+Route::get('api/favoritesCourses/{userId}/{courseId}', function ($userId, $courseId) {
+    $favCourses = FavoriteCourses::where('user_id', $userId)->where('course_id', $courseId)->count();
+    if ($favCourses == 1) {
+        return 1;
+    } else {
+        return 0;
+    }
+});
+
+Route::delete('api/deleteFavorite/{userId}/{courseId}', function ($userId, $courseId) {
+    $favCourses = FavoriteCourses::where('user_id', $userId)->where('course_id', $courseId)->first();
+    $favCourses->delete();
+});
+
+Route::delete('api/deleteComment/{id}', function ($commentId) {
+    $comment = Comments::find($commentId);
+    $comment->delete();
+});
+>>>>>>> Stashed changes
