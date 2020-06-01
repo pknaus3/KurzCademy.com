@@ -43,7 +43,7 @@ Route::get('api/step/{id}', function ($stepId) {
     return $step;
 });
 
-Route::post('/api/comment', function (Request $req){
+Route::post('/api/comment', function (Request $req) {
     $data = $req->input();
 
     $comment = new Comments();
@@ -58,7 +58,7 @@ Route::get('api/comments/{id}', function ($courseId) {
     return $comments;
 });
 
-Route::post('/api/addFavorite', function (Request $req){
+Route::post('/api/addFavorite', function (Request $req) {
     $data = $req->input();
 
     $favCourse = new FavoriteCourses();
@@ -67,7 +67,11 @@ Route::post('/api/addFavorite', function (Request $req){
     $favCourse->save();
 });
 
-Route::get('api/favoritesCourses/{id}', function ($userId) {
-    $favCourses = FavoriteCourses::where('user_id', $userId)->get();
-    return $favCourses;
+Route::get('api/favoritesCourses/{userId}/{courseId}', function ($userId, $courseId) {
+    $favCourses = FavoriteCourses::where('user_id', $userId)->where('course_id', $courseId)->count();
+    if ($favCourses == 1) {
+        return 1;
+    } else {
+        return 0;
+    }
 });
