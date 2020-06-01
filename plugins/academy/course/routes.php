@@ -41,8 +41,6 @@ Route::get('api/step/{id}', function ($stepId) {
     return $step;
 });
 
-<<<<<<< Updated upstream
-=======
 Route::post('/api/comment', function (Request $req) {
     $data = $req->input();
 
@@ -85,4 +83,3 @@ Route::delete('api/deleteComment/{id}', function ($commentId) {
     $comment = Comments::find($commentId);
     $comment->delete();
 });
->>>>>>> Stashed changes
