@@ -1,6 +1,8 @@
 <?php namespace Academy\Course\Models;
 
+use Backend\Facades\BackendAuth;
 use Model;
+use RainLab\User\Facades\Auth;
 use RainLab\User\Models\User;
 
 /**
@@ -49,6 +51,36 @@ class Course extends Model
      * @var array Attributes to be removed from the API representation of the model (ex. toArray())
      */
     protected $hidden = [];
+
+    public function getNameOptions($scopes = null)
+    {
+        $userId - Auth::getUser();
+
+            return Course::where($userId, 'id')->get();
+
+    }
+
+    public function getTeacherOptions()
+    {
+        $beUser = BackendAuth::getUser();
+        $user = Auth::getUser();
+        if ($beUser->hasAccess('academy.course.edit_courses')) {
+            return User::all()->pluck('name', 'id');
+        }else {
+            return [$user->id, $user->name];
+        }
+    }
+
+    public function getPublisherOptions()
+    {
+        $beUser = BackendAuth::getUser();
+        $user = Auth::getUser();
+        if ($beUser->hasAccess('academy.course.edit_courses')) {
+            return User::all()->pluck('name', 'id');
+        }else {
+            return [$user->id, $user->name];
+        }
+    }
 
     /**
      * @var array Attributes to be cast to Argon (Carbon) instances

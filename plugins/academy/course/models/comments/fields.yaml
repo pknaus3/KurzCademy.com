@@ -1,0 +1,17 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    comment:
+        label: Komentár
+        type: text
+    user:
+        label: používateľ
+        type: relation
+    course:
+        label: kurz
+        type: relation
