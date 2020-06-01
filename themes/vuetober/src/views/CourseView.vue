@@ -178,7 +178,7 @@
 		async reloadCourses() {
 			if (this.course != null) {
 				let stepsResponse = await axios.get<IStep[]>(`/api/steps/${this.id}`)
-				this.steps = stepsResponse.data
+				this.steps = stepsResponse.data.sort((a, b) => a.step_position - b.step_position)
 
 				if (this.steps.length > 0 && this.currStep == null) this.$router.replace({ name: "Step", params: { stepId: this.steps[0].id.toString() } })
 			}
