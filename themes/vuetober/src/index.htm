@@ -13,39 +13,67 @@ function onStart()
 <!-- htmlmin:ignore -->
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- meta -->
-        <meta charset="utf-8">
-        <meta content="IE=edge" http-equiv="X-UA-Compatible">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <meta name="vuetober" content="{{ vuetober | json_encode }}" />
-        <link rel="icon" type="image/png" href="/themes/vuetober/src/assets/img/logo/KurzCademyIcon.png"/>
 
-        <!-- Meta tagy vygenerované z https://metatags.io/ -->
-        <!-- Primary Meta Tags -->
-        <title>KurzCademy</title>
-        <meta name="title" content="KurzCademy">
-        <meta name="description" content="Vzdelanie ktoré ti zmení život. Vyber si oblasť, v ktorej sa chceš vzdelávať. Naše kurzy ťa prevedú od úplných základov až po pokročilejšie techniky.">
+<head>
+    <!-- meta -->
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="vuetober" content="{{ vuetober | json_encode }}" />
+    <link rel="icon" type="image/png" href="/themes/vuetober/src/assets/img/logo/KurzCademyIcon.png" />
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://kurzcademy.hybridlab.dev/">
-        <meta property="og:title" content="KurzCademy">
-        <meta property="og:description" content="Vzdelanie ktoré ti zmení život. Vyber si oblasť, v ktorej sa chceš vzdelávať. Naše kurzy ťa prevedú od úplných základov až po pokročilejšie techniky.">
-        <meta property="og:image" content="/themes/vuetober/src/assets/img/logo/KurzCademyLogoBezTextu.png">
+    <!-- Meta tagy vygenerované z https://metatags.io/ -->
+    <!-- Primary Meta Tags -->
+    <title>KurzCademy</title>
+    <meta name="title" content="KurzCademy">
+    <meta name="description" content="Vzdelanie ktoré ti zmení život. Vyber si oblasť, v ktorej sa chceš vzdelávať. Naše kurzy ťa prevedú od úplných základov až po pokročilejšie techniky.">
 
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image">
-        <meta property="twitter:url" content="https://kurzcademy.hybridlab.dev/">
-        <meta property="twitter:title" content="KurzCademy">
-        <meta property="twitter:description" content="Vzdelanie ktoré ti zmení život. Vyber si oblasť, v ktorej sa chceš vzdelávať. Naše kurzy ťa prevedú od úplných základov až po pokročilejšie techniky.">
-        <meta property="twitter:image" content="/themes/vuetober/src/assets/img/logo/KurzCademyLogoBezTextu.png">
-    </head>
-    <body>
-        <noscript>
-            <strong>We're sorry but vuetober doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-        </noscript>
-        <div id="app"></div>
-        <!-- built files will be auto injected -->
-    </body>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kurzcademy.hybridlab.dev/">
+    <meta property="og:title" content="KurzCademy">
+    <meta property="og:description" content="Vzdelanie ktoré ti zmení život. Vyber si oblasť, v ktorej sa chceš vzdelávať. Naše kurzy ťa prevedú od úplných základov až po pokročilejšie techniky.">
+    <meta property="og:image" content="/themes/vuetober/src/assets/img/logo/KurzCademyLogoBezTextu.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kurzcademy.hybridlab.dev/">
+    <meta property="twitter:title" content="KurzCademy">
+    <meta property="twitter:description" content="Vzdelanie ktoré ti zmení život. Vyber si oblasť, v ktorej sa chceš vzdelávať. Naše kurzy ťa prevedú od úplných základov až po pokročilejšie techniky.">
+    <meta property="twitter:image" content="/themes/vuetober/src/assets/img/logo/KurzCademyLogoBezTextu.png">
+
+    <!-- Firebase (Google Analytics) -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAW-yTf7p_BroINHbDmIkDupWtif5F8Us0",
+            authDomain: "kurz-cademy.firebaseapp.com",
+            databaseURL: "https://kurz-cademy.firebaseio.com",
+            projectId: "kurz-cademy",
+            storageBucket: "kurz-cademy.appspot.com",
+            messagingSenderId: "498238340726",
+            appId: "1:498238340726:web:4eef91b9139f7836e96957",
+            measurementId: "G-ZV1DPKY922"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+</head>
+
+<body>
+    <noscript>
+        <strong>We're sorry but vuetober doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+</body>
+
 </html>
