@@ -62,8 +62,7 @@
 	import Vue from 'vue'
 	import Component from "vue-class-component"
     import * as vueProp from "vue-property-decorator"
-    import axios from "axios"
-    import { ICourse } from '../types'
+    import { ICourse, getAllCourses } from '../courses'
 
 	@Component
 	export default class Courses extends Vue {
@@ -72,8 +71,7 @@
 		] as ICourse[]
 
 		async mounted() {
-            let coursesResponse = await axios.get("/api/courses/")
-            this.courses = coursesResponse.data
+            this.courses = await getAllCourses()
 		}
 	}
 </script>

@@ -153,8 +153,7 @@
 	import Vue from 'vue'
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
-	import { IStep } from '../types'
-	import axios from "axios"
+	import { IStep, getStepById } from '../courses'
 	// @ts-ignore
 	import markdownit from "markdown-it"
 	// @ts-ignore
@@ -188,8 +187,7 @@
 		}
 
 		async reloadStep() {
-			let stepResponse = await axios.get<IStep>(`/api/step/${this.stepId}`)
-			this.step = stepResponse.data
+			this.step = await getStepById(this.stepId)
 
 			this.$nextTick(() => {
 				if (this.step) {

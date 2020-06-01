@@ -158,8 +158,7 @@
 	import Vue from 'vue'
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
-	import { ICourse, IStep } from '../types'
-	import axios from "axios"
+	import { ICourse, IStep, getCourseById, getCourseStepsById } from '../courses'
 
 	@Component
 	export default class CourseView extends Vue {
@@ -169,16 +168,14 @@
 		steps = [] as IStep[]
 
 		async mounted() {
-			let courseResponse = await axios.get<ICourse>(`/api/course/${this.id}`)
-			this.course = courseResponse.data
+			this.course = await getCourseById(this.id)
 
 			this.reloadCourses()
 		}
 
 		async reloadCourses() {
 			if (this.course != null) {
-				let stepsResponse = await axios.get<IStep[]>(`/api/steps/${this.id}`)
-				this.steps = stepsResponse.data.sort((a, b) => a.step_position - b.step_position)
+				this.steps = (await getCourseStepsById(this.id)).sort((a, b) => a.step_position - b.step_position)
 
 				if (this.steps.length > 0 && this.currStep == null) this.$router.replace({ name: "Step", params: { stepId: this.steps[0].id.toString() } })
 			}
