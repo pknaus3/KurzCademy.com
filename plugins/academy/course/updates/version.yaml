@@ -16,3 +16,6 @@
 1.0.5:
     - 'Table for comments'
     - create_comments_table.php
+1.0.6:
+    - 'Table for Favorite courses'
+    - create_favorite_courses_table.php

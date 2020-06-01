@@ -1,6 +1,7 @@
 <?php
 
 use Academy\Course\Models\Comments;
+use Academy\Course\Models\FavoriteCourses;
 use Illuminate\Http\Request;
 use October\Rain\Auth\Models\User;
 use Academy\Course\Models\Course;
@@ -55,4 +56,18 @@ Route::post('/api/comment', function (Request $req){
 Route::get('api/comments/{id}', function ($courseId) {
     $comments = Comments::where('course_id', $courseId)->get();
     return $comments;
+});
+
+Route::post('/api/addFavorite', function (Request $req){
+    $data = $req->input();
+
+    $favCourse = new FavoriteCourses();
+    $favCourse->course_id = $data['course_id'];
+    $favCourse->user_id = $data['user_id'];
+    $favCourse->save();
+});
+
+Route::get('api/favoritesCourses/{id}', function ($userId) {
+    $favCourses = FavoriteCourses::where('user_id', $userId)->get();
+    return $favCourses;
 });
