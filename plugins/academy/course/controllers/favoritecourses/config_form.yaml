@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Favorite Course
+
+# Model Form Field configuration
+form: $/academy/course/models/favoritecourses/fields.yaml
+
+# Model Class name
+modelClass: Academy\Course\Models\FavoriteCourses
+
+# Default redirect location
+defaultRedirect: academy/course/favoritecourses
+
+# Create page
+create:
+    title: Create Favorite Course
+    redirect: academy/course/favoritecourses/update/:id
+    redirectClose: academy/course/favoritecourses
+
+# Update page
+update:
+    title: Edit Favorite Course
+    redirect: academy/course/favoritecourses
+    redirectClose: academy/course/favoritecourses
+
+# Preview page
+preview:
+    title: Preview Favorite Course
