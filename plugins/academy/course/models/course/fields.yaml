@@ -6,7 +6,8 @@ fields:
     publisher:
         label: 'Meno Autora'
         span: auto
-        type: relation
+        type: dropdown
+        options: getPublisherOptions
     difficulty:
         label: 'náročnosť kurzu'
         type: dropdown
@@ -22,7 +23,8 @@ fields:
     teacher:
         label: 'meno učiteľa'
         span: auto
-        type: relation
+        type: dropdown
+        options: getteacherOptions
     courseThumb:
         label: 'Náhľad kurzu'
         mode: image

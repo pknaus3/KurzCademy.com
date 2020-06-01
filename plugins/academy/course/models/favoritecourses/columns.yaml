@@ -1,0 +1,18 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    course:
+        label: Kurz
+        searchable: true
+        select: name
+        relation: course
+    user:
+        label: Používateľ
+        searchable: true
+        select: name
+        relation: user
