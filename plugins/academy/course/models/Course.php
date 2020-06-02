@@ -67,7 +67,7 @@ class Course extends Model
         if ($beUser->hasAccess('academy.course.edit_courses')) {
             return User::all()->pluck('name', 'id');
         }else {
-            return [$user->id, $user->name];
+            return [$user->name, $user->id];
         }
     }
 
@@ -78,7 +78,7 @@ class Course extends Model
         if ($beUser->hasAccess('academy.course.edit_courses')) {
             return User::all()->pluck('name', 'id');
         }else {
-            return [$user->id, $user->name];
+            return [$user->name, $user->id];
         }
     }
 
