@@ -2,62 +2,54 @@
 	<div class="step-viewer">
 		<div class="step-container" id="stepContainer">
 			<template v-if="step">
-				<div id="why">
-					<h2 class="mt-2 mb-3" id="header">{{ step.step_name }}</h2>
-					<div v-html="step.why"></div>
-				</div>
-				<div id="guide">
-					<iframe
-						v-if="step.video_link"
-						:src="`https://www.youtube.com/embed/${step.video_link}`"
-						class="video mb-3"
-						id="video"
-						frameborder="0"
-						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen
-					></iframe>
-					<iframe
-						v-if="step.custom_text"
-						class="document"
-						id="customText"
-						style="height: 0;"
-						frameborder="0"
-						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen
-						ref="customTextIframe"
-					></iframe>
-					<iframe
-						v-if="step.docs_link"
-						src
-						class="document"
-						id="document"
-						style="height: 0;"
-						frameborder="0"
-						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen
-						ref="docsIframe"
-					></iframe>
-				</div>
-				<div id="faq">
-					<div v-if="step.homework" id="homework"></div>
+				<div class="step-main">
+					<div id="why">
+						<h2 class="mt-2 mb-3" id="header">{{ step.step_name }}</h2>
+						<div v-html="step.why"></div>
+					</div>
+					<div id="guide">
+						<iframe
+							v-if="step.video_link"
+							:src="`https://www.youtube.com/embed/${step.video_link}`"
+							class="video mb-3"
+							id="video"
+							frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen
+						></iframe>
+						<iframe
+							v-if="step.custom_text"
+							class="document"
+							id="customText"
+							style="height: 0;"
+							frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen
+							ref="customTextIframe"
+						></iframe>
+						<iframe
+							v-if="step.docs_link"
+							src
+							class="document"
+							id="document"
+							style="height: 0;"
+							frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen
+							ref="docsIframe"
+						></iframe>
+					</div>
+					<div id="faq">
+						<div v-if="step.homework" id="homework"></div>
+					</div>
 				</div>
 
 				<div class="go-buttons">
-					<b-btn
-						variant="outline-dark"
-						class="border-0"
-						:disabled="!prevStep"
-						@click="$emit('prev')"
-					>
+					<b-btn variant="outline-dark" class="border-0" :disabled="!prevStep" @click="$emit('prev')">
 						<b-icon-chevron-left scale="0.75"></b-icon-chevron-left>
 						<span>Späť</span>
 					</b-btn>
-					<b-btn
-						variant="outline-dark"
-						class="border-0"
-						:disabled="!nextStep"
-						@click="$emit('next')"
-					>
+					<b-btn variant="outline-dark" class="border-0" :disabled="!nextStep" @click="$emit('next')">
 						<span>Ďalej</span>
 						<b-icon-chevron-right scale="0.75"></b-icon-chevron-right>
 					</b-btn>
@@ -120,7 +112,7 @@
 	.go-buttons > * {
 		margin-left: 4px;
 	}
-    
+
 	.navigation {
 		position: absolute;
 		top: 10px;
@@ -147,6 +139,10 @@
 	.navigation > * > .active {
 		border-right: 2px solid var(--primary);
 	}
+
+    .step-main {
+        min-height: calc(100% - 50px);
+    }
 </style>
 
 <script lang="ts">
