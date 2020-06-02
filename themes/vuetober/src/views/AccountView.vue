@@ -90,6 +90,7 @@
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
 	import { userData, updateUserData, updateUserAvatar, deleteAvatar } from '../user'
+import { processAxiosError } from '../errorProcessor'
 
 	@Component
 	export default class AccountView extends Vue {
@@ -129,7 +130,7 @@
 				this.resetValues()
 			}).catch((err) => {
 				this.loading = false
-				this.error = Object.values(err.response.data as Record<string, string[]>).map(v => v.join("\n")).join("\n")
+				this.error = processAxiosError(err.response.data)
 				console.error(err, err.response)
 			})
         }

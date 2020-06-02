@@ -52,7 +52,8 @@
 	import Vue from 'vue'
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
-	import { userData, login } from '../user'
+    import { userData, login } from '../user'
+    import { processAxiosError } from "../errorProcessor"
 
 	@Component
 	export default class LoginView extends Vue {
@@ -72,8 +73,8 @@
                     this.$router.push("/")
                 }
 			}).catch((err) => {
-				this.loading = false
-				this.error = Object.values(err.response.data as Record<string, string[]>).map(v => v.join("\n")).join("\n")
+                this.loading = false
+				this.error = processAxiosError(err.response.data)
 				console.error(err, err.response)
 			})
 		}
