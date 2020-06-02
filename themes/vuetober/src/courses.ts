@@ -65,13 +65,16 @@ export async function getCourseFavourite(courseId: string) {
 
 export async function setCourseFavourite(courseId: string, value: boolean) {
     if (userData.user == null) throw new Error("Tryed to set favourite state of a course with no user")
-    if (value == true) {
-        await axios.post(`/api/addFavorite`, {
-            course_id: courseId,
-            user_id: userData.user.id
-        })
-    } else {
-        await axios.delete(`/api/deleteFavorite/${userData.user.id}/${courseId}`)
+    let oldValue = await getCourseFavourite(courseId)
+    if (oldValue != value) {
+        if (value == true) {
+            await axios.post(`/api/addFavorite`, {
+                course_id: courseId,
+                user_id: userData.user.id
+            })
+        } else {
+            await axios.delete(`/api/deleteFavorite/${userData.user.id}/${courseId}`)
+        }
     }
 }
 
