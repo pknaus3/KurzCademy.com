@@ -14,3 +14,7 @@ body {
 .highlight-block {
     background-color: var(--highligh-color);
 }
+
+.b-avatar-img > img {
+    object-fit: cover;
+}
