@@ -95,12 +95,8 @@
 				<b-form-textarea v-model="commentContent" placeholder="Vložte komentár" rows="3" max-rows="6"></b-form-textarea>
 				<div class="mt-2 d-flex flex-row">
 					<b-btn variant="primary" @click="sendComment()">Odoslať</b-btn>
-					<b-btn variant="danger" class="ml-2" @click="commentContent = ''">Zrušiť</b-btn>
+					<b-btn variant="danger" class="ml-2" @click="commentsShown = false">Zrušiť</b-btn>
 					<b-spinner variant="primary" class="ml-2 mt-1" v-if="waitingComment"></b-spinner>
-					<div class="flex-fill"></div>
-					<b-btn variant="outline-dark" class="border-0" @click="commentsShown = false">
-						<b-icon-x></b-icon-x>
-					</b-btn>
 				</div>
 			</div>
 		</div>
@@ -333,8 +329,16 @@
 		@vueProp.Watch("stepId")
 		onStepIdChanged() {
 			this.step = null
-			this.reloadStep()
-		}
+            this.reloadStep()
+            this.commentsShown = false
+        }
+        
+        @vueProp.Watch("commentsShown")
+        onCommentsShownChanged() {
+            if (!this.commentsShown) {
+                this.commentContent = ""
+            }
+        }
 
 		sendComment() {
 			this.waitingComment = true
