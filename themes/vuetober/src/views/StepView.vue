@@ -43,23 +43,16 @@
 				</div>
 
 				<div class="go-buttons">
-					<b-btn
-						variant="outline-dark"
-						class="border-0"
-						:disabled="!prevStep"
-						@click="$emit('prev')"
-					>
+					<b-btn variant="outline-dark" class="border-0" :disabled="!prevStep" @click="$emit('prev')">
 						<b-icon-chevron-left scale="0.75"></b-icon-chevron-left>
 						<span>Späť</span>
 					</b-btn>
-					<b-btn
-						variant="outline-dark"
-						class="border-0"
-						:disabled="!nextStep"
-						@click="$emit('next')"
-					>
+					<b-btn variant="outline-dark" class="border-0" :disabled="!nextStep" @click="$emit('next')">
 						<span>Ďalej</span>
 						<b-icon-chevron-right scale="0.75"></b-icon-chevron-right>
+					</b-btn>
+					<b-btn variant="outline-dark" class="border-0" @click="commentsShown = true">
+						<b-icon-chat></b-icon-chat>
 					</b-btn>
 				</div>
 			</template>
@@ -70,6 +63,47 @@
 			<b-nav-item href="#guide">Guide</b-nav-item>
 			<b-nav-item href="#faq">Why</b-nav-item>
 		</b-nav>
+
+		<div
+			class="comments d-flex flex-column"
+			:data-active="commentsShown"
+			@keydown.esc="commentsShown = false"
+		>
+			<div class="written-comments">
+				<div
+					v-for="comment in comments"
+					:key="comment.id"
+					class="border rounded d-flex flex-column p-2 m-2"
+				>
+					<div class="d-flex flex-row">
+						<b-avatar size="25px" :src="comment.user.avatar.path"></b-avatar>
+						<div class="font-weight-bold ml-2">{{ comment.user.name }}</div>
+						<div class="flex-fill"></div>
+						<b-btn
+							variant="outline-dark p-1 px-2"
+							class="border-0"
+							v-if="comment.isOwner"
+							@click="deleteComment(comment.id)"
+						>
+							<b-icon icon="trash-fill" font-scale="0.99"></b-icon>
+						</b-btn>
+					</div>
+					<div class="mt-2" style="white-space: pre">{{ comment.comment }}</div>
+				</div>
+			</div>
+			<div class="d-flex flex-column m-2 bg-light">
+				<b-form-textarea v-model="commentContent" placeholder="Vložte komentár" rows="3" max-rows="6"></b-form-textarea>
+				<div class="mt-2 d-flex flex-row">
+					<b-btn variant="primary" @click="sendComment()">Odoslať</b-btn>
+					<b-btn variant="danger" class="ml-2" @click="commentContent = ''">Zrušiť</b-btn>
+					<b-spinner variant="primary" class="ml-2 mt-1" v-if="waitingComment"></b-spinner>
+					<div class="flex-fill"></div>
+					<b-btn variant="outline-dark" class="border-0" @click="commentsShown = false">
+						<b-icon-x></b-icon-x>
+					</b-btn>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -120,7 +154,7 @@
 	.go-buttons > * {
 		margin-left: 4px;
 	}
-    
+
 	.navigation {
 		position: absolute;
 		top: 10px;
@@ -147,13 +181,44 @@
 	.navigation > * > .active {
 		border-right: 2px solid var(--primary);
 	}
+
+	.comments {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transform: scale(0.75);
+		opacity: 0;
+		visibility: collapse;
+		transition: opacity 0.2s, transform 0.1s, visibility 0.2s;
+		background-color: white;
+	}
+
+	.comments[data-active="true"] {
+		transform: scale(1);
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.commnets-close-button {
+		position: absolute;
+		top: 4px;
+		right: 24px;
+	}
+
+	.written-comments {
+		flex: 1 1;
+		overflow-y: scroll;
+		border-bottom: 1px solid lightgray;
+	}
 </style>
 
 <script lang="ts">
 	import Vue from 'vue'
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
-	import { IStep, getStepById } from '../courses'
+	import { IStep, getStepById, createComment, IComment, getAllStepComments, deleteComment } from '../courses'
 	// @ts-ignore
 	import markdownit from "markdown-it"
 	// @ts-ignore
@@ -167,8 +232,13 @@
 		readonly prevStep!: boolean
 		@vueProp.Prop({ type: Boolean, required: true })
 		readonly nextStep!: boolean
+
 		step = null as IStep | null
 		intervalId = -1
+		commentsShown = false
+		commentContent = ""
+		comments = [] as IComment[]
+		waitingComment = false
 
 		mounted() {
 			this.reloadStep()
@@ -247,12 +317,44 @@
 					}
 				}
 			})
+
+			await this.reloadComments();
+		}
+
+		async reloadComments() {
+			this.comments = await getAllStepComments(this.stepId)
+			this.comments.forEach(v => {
+				if (v.user.avatar == null) {
+					v.user.avatar = { path: "" }
+				}
+			})
 		}
 
 		@vueProp.Watch("stepId")
 		onStepIdChanged() {
 			this.step = null
 			this.reloadStep()
+		}
+
+		sendComment() {
+			this.waitingComment = true
+			createComment(this.stepId, this.commentContent).then(async () => {
+				await this.reloadComments()
+				this.waitingComment = false
+			}).catch(() => {
+				this.waitingComment = false
+			})
+			this.commentContent = ""
+		}
+
+		deleteComment(id: string) {
+			this.waitingComment = true
+			deleteComment(id).then(async () => {
+				await this.reloadComments()
+				this.waitingComment = false
+			}).catch(()=>{
+				this.waitingComment = false
+            })
 		}
 	}
 </script>

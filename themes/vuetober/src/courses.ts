@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios"
-import { userData } from './user'
+import { userData, IUserData } from './user'
 
 export interface ICourse {
     id: number
@@ -27,6 +27,15 @@ export interface IStep {
     why: string,
     homework: boolean
     renderedDocsHtml: string
+}
+
+export interface IComment {
+    id: number
+    comment: string
+    course_id: string
+    user_id: string,
+    user: IUserData,
+    isOwner: boolean
 }
 
 export async function getStepById(id: string) {
@@ -69,4 +78,21 @@ export async function setCourseFavourite(courseId: string, value: boolean) {
 export async function getAllFavouritedCourses() {
     if (userData.user == null) throw new Error("Tryed to get favourite courses with no user")
     return (await axios.get<ICourse[]>(`api/favoritesCourses/${userData.user.id}`)).data
+}
+
+export async function createComment(courseId: string, content: string) {
+    if (userData.user == null) throw new Error("Tryed to create comment with no user")
+    await axios.post(`/api/comment`, {
+        comment: content,
+        course_id: courseId,
+        user_id: userData.user.id
+    } as IComment)
+}
+
+export async function deleteComment(commentId: string) {
+    await axios.delete(`/api/deleteComment/${commentId}`)
+}
+
+export async function getAllStepComments(stepId: string) {
+    return (await axios.get<IComment[]>(`/api/comments/${stepId}`)).data.map(v => ({ ...v, isOwner: userData.user != null && v.user.id == userData.user.id }))
 }
