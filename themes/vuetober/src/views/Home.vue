@@ -36,7 +36,11 @@
 			</b-col>
 			<b-row class="d-flex flex-row justify-content-around mt-5">
 				<div class="feature">
-					<b-img class="feature-image" src="@/assets/img/topficurky/ficurka-2.png"></b-img>
+					<b-img
+						class="feature-image"
+						src="@/assets/img/topficurky/ficurka-2.png"
+						style="transform: translate(-50px, 0)"
+					></b-img>
 					<h1 class="font-weight-bold mt-3">Vzdelávaj sa</h1>
 					<div
 						class="mt-3"
