@@ -1,9 +1,15 @@
 <template>
 	<b-navbar>
+        <!-- Logo -->
 		<b-navbar-brand to="/">
 			<b-img src="@/assets/img/logo/KurzCademyLogoBezTextu.png" height="50px"></b-img>
 		</b-navbar-brand>
+        <!-- Navigation -->
+        <b-btn variant="light" class="navlink" to="/courses">Kurzy</b-btn>
+        <b-btn variant="light" class="navlink ml-2" to="/favourites" v-if="userData.user != null">Obľúbené</b-btn>
+        <!-- Spacer -->
 		<div class="flex-fill"></div>
+        <!-- User menus -->
 		<b-btn
 			v-if="userData.user"
 			variant="outline-dark"
@@ -16,6 +22,7 @@
 				<b-btn variant="light" @click="logout()">Odhlásiť</b-btn>
 			</div>
 		</b-btn>
+        <!-- Login and register -->
 		<template v-else>
 			<b-btn variant="outline-dark" :to="{ path: '/login', query: { redirect: $route.fullPath } }" class="user-button">Prihlásiť</b-btn>
 			<b-btn variant="outline-dark" :to="{ path: '/register', query: { redirect: $route.fullPath } }" class="user-button ml-2">Registrovať</b-btn>
@@ -52,6 +59,10 @@
         visibility: visible;
 		opacity: 1;
 	}
+
+    .navlink.router-link-exact-active {
+        font-weight: bold;
+    }
 </style>
 
 <script lang="ts">

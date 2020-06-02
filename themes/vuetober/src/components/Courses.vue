@@ -3,7 +3,7 @@
 		<router-link
 			:to="`/course/${course.id}`"
 			style="text-decoration: none"
-			v-for="course in courses"
+			v-for="(course, index) in courses"
 			:key="course.id"
 		>
 			<b-card
@@ -15,6 +15,12 @@
 				:style="`background-color: ${course.coursecolor}`"
 			>
 				<b-card-text v-html="course.description"></b-card-text>
+				<b-icon
+					v-if="userData.user != null && !favouriteOnly && favourites.length > 0"
+					class="course-favourite"
+					font-scale="1.5"
+					:icon="favourites[index] ? 'star-fill' : 'star'"
+				></b-icon>
 			</b-card>
 		</router-link>
 	</div>
@@ -56,22 +62,47 @@
 	.course-card > .card-body > .card-text {
 		margin-top: 10px;
 	}
+
+	.course-favourite {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
 </style>
 
 <script lang="ts">
 	import Vue from 'vue'
 	import Component from "vue-class-component"
-    import * as vueProp from "vue-property-decorator"
-    import { ICourse, getAllCourses } from '../courses'
+	import * as vueProp from "vue-property-decorator"
+	import { ICourse, getAllCourses, getCourseFavourite, getAllFavouritedCourses } from '../courses'
+	import { userData } from '../user'
 
 	@Component
 	export default class Courses extends Vue {
-		courses = [
-		
-		] as ICourse[]
+		@vueProp.Prop({ type: Boolean, required: false, default: false })
+		readonly favouriteOnly!: boolean
+		courses = [] as ICourse[]
+		favourites = [] as boolean[]
+		userData = userData
 
-		async mounted() {
-            this.courses = await getAllCourses()
+		@vueProp.Watch("favouriteOnly", { immediate: true })
+		async onFavouriteOnlyChanged() {
+			if (this.favouriteOnly) {
+                if (userData.user != null) {
+                    this.courses = await getAllFavouritedCourses()
+                } else {
+                    this.courses = []
+                }
+			} else {
+                this.courses = await getAllCourses()
+                if (userData.user != null) {
+                    this.favourites = await Promise.all(this.courses.map(async v => {
+                        return getCourseFavourite(v.id.toString())
+                    }))
+                } else {
+                    this.favourites = []
+                }
+			}
 		}
 	}
 </script>

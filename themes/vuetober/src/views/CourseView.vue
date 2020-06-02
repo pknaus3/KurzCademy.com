@@ -3,6 +3,9 @@
 		<template v-if="course">
 			<div class="viewer-head">
 				<div class="course-name">{{ course.name }}</div>
+				<b-btn variant="light" @click="isCourseFavourited = !isCourseFavourited" v-if="userData.user != null">
+					<b-icon :icon="isCourseFavourited ? 'star-fill' : 'star'"></b-icon>
+				</b-btn>
 			</div>
 			<div class="viewer-body">
 				<div class="viewer-steps">
@@ -17,7 +20,12 @@
 				</div>
 				<div class="viewer-main">
 					<div v-if="currStep">
-						<router-view :prevStep="this.currStepIndex > 0" :nextStep="this.currStepIndex < this.steps.length - 1" @prev="stepOffset(-1)" @next="stepOffset(1)"></router-view>
+						<router-view
+							:prevStep="this.currStepIndex > 0"
+							:nextStep="this.currStepIndex < this.steps.length - 1"
+							@prev="stepOffset(-1)"
+							@next="stepOffset(1)"
+						></router-view>
 					</div>
 					<div v-else>
 						<div class="viewer-no-step">
@@ -32,7 +40,7 @@
 				Kurz nebol nájdený
 				<br />
 			</h3>
-            <b-btn variant="primary" class="mt-2" to="/courses">Naspäť</b-btn>
+			<b-btn variant="primary" class="mt-2" to="/courses">Naspäť</b-btn>
 		</div>
 	</div>
 </template>
@@ -63,7 +71,6 @@
 	}
 
 	.course-name {
-		flex: 1 1;
 		border: none;
 		font-size: 35px;
 	}
@@ -158,7 +165,8 @@
 	import Vue from 'vue'
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
-	import { ICourse, IStep, getCourseById, getCourseStepsById } from '../courses'
+	import { ICourse, IStep, getCourseById, getCourseStepsById, getCourseFavourite, setCourseFavourite } from '../courses'
+import { userData } from '../user'
 
 	@Component
 	export default class CourseView extends Vue {
@@ -166,6 +174,8 @@
 		readonly id!: string
 		course = null as ICourse | null
 		steps = [] as IStep[]
+        isCourseFavourited = false
+        userData = userData
 
 		async mounted() {
 			this.course = await getCourseById(this.id)
@@ -175,9 +185,16 @@
 
 		async reloadCourses() {
 			if (this.course != null) {
-				this.steps = (await getCourseStepsById(this.id)).sort((a, b) => a.step_position - b.step_position)
-
-				if (this.steps.length > 0 && this.currStep == null) this.$router.replace({ name: "Step", params: { stepId: this.steps[0].id.toString() } })
+                await Promise.all([
+                    (async () => {
+                        this.steps = (await getCourseStepsById(this.id)).sort((a, b) => a.step_position - b.step_position)
+        
+                        if (this.steps.length > 0 && this.currStep == null) this.$router.replace({ name: "Step", params: { stepId: this.steps[0].id.toString() } })
+                    })(),
+                    (async () => {
+                        if (userData.user != null) this.isCourseFavourited = await getCourseFavourite(this.id)
+                    })()
+                ])
 			}
 		}
 
@@ -202,10 +219,15 @@
 
 		stepOffset(offset: number) {
 			this.currStep = this.steps[this.currStepIndex + offset].id.toString()
+		}
+
+		get currStepIndex() {
+			return this.steps.findIndex(v => v.id.toString() == this.currStep)
         }
         
-        get currStepIndex() {
-            return this.steps.findIndex(v => v.id.toString() == this.currStep)
+        @vueProp.Watch("isCourseFavourited")
+        async onFavouriteChanged() {
+            await setCourseFavourite(this.id, this.isCourseFavourited)
         }
 	}
 </script>
