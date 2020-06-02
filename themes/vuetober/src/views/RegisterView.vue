@@ -41,7 +41,7 @@
 				</b-form-group>
 				<div class="form-control error-box" :data-active="error.length > 0">{{ error }}</div>
 				<div class="d-flex flex-row mt-3">
-					<b-button type="submit" variant="primary">Uložiť</b-button>
+					<b-button type="submit" variant="primary">Registrovať</b-button>
 					<b-spinner variant="primary" class="ml-2 mt-1" v-if="loading"></b-spinner>
 				</div>
 			</b-form>
