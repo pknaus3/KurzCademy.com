@@ -5,8 +5,8 @@
 			<b-img src="@/assets/img/logo/KurzCademyLogoBezTextu.png" height="50px"></b-img>
 		</b-navbar-brand>
         <!-- Navigation -->
-        <b-btn variant="light" class="navlink" to="/courses">Kurzy</b-btn>
-        <b-btn variant="light" class="navlink ml-2" to="/favourites" v-if="userData.user != null">Obľúbené</b-btn>
+        <b-btn variant="outline-dark" class="navlink border-0" to="/courses">Kurzy</b-btn>
+        <b-btn variant="outline-dark" class="navlink ml-2 border-0" to="/favourites" v-if="userData.user != null">Obľúbené</b-btn>
         <!-- Spacer -->
 		<div class="flex-fill"></div>
         <!-- User menus -->
