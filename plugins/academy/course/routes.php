@@ -19,8 +19,10 @@ Route::post('/check', function ($req) {
 
 Route::get('api/courses', function () {
     $courses = Course::All();
-    foreach ($courses as $key => $course) {
-        $course->thumbPath = $course->courseThumb->getPath();
+    foreach ($courses as $course) {
+        if (isset($course->courseThumb)) {
+            $course->thumbPath = $course->courseThumb->getPath();
+        }
     }
     return $courses;
 });
