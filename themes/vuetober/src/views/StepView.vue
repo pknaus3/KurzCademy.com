@@ -66,21 +66,29 @@
 			<b-nav-item href="#faq">Why</b-nav-item>
 		</b-nav>
 
+		<!-- Comments dialog -->
 		<div
 			class="comments d-flex flex-column"
 			:data-active="commentsShown"
 			@keydown.esc="commentsShown = false"
 		>
+			<!-- Comments container -->
 			<div class="written-comments">
+				<!-- Comment -->
 				<div
 					v-for="comment in comments"
 					:key="comment.id"
 					class="border rounded d-flex flex-column p-2 m-2"
 				>
+					<!-- Header -->
 					<div class="d-flex flex-row">
+						<!-- Avatar -->
 						<b-avatar size="25px" :src="comment.user.avatar.path"></b-avatar>
+						<!-- User name -->
 						<div class="font-weight-bold ml-2">{{ comment.user.name }}</div>
+						<!-- Spacer -->
 						<div class="flex-fill"></div>
+						<!-- Delete button -->
 						<b-btn
 							variant="outline-dark p-1 px-2"
 							class="border-0"
@@ -90,22 +98,40 @@
 							<b-icon icon="trash-fill" font-scale="0.99"></b-icon>
 						</b-btn>
 					</div>
+					<!-- Comment text -->
 					<div class="mt-2" style="white-space: pre">{{ comment.comment }}</div>
 				</div>
 			</div>
 			<div class="d-flex flex-column m-2 bg-light">
 				<template v-if="userData.user != null">
+					<!-- Comment box  -->
 					<b-form-textarea v-model="commentContent" placeholder="Vložte komentár" rows="3" max-rows="6"></b-form-textarea>
+					<!-- Controlls -->
 					<div class="mt-2 d-flex flex-row">
+                        <!-- Send button -->
 						<b-btn variant="primary" @click="sendComment()">Odoslať</b-btn>
+                        <!-- Cancel button -->
 						<b-btn variant="danger" class="ml-2" @click="commentsShown = false">Zrušiť</b-btn>
+                        <!-- Waiting indicator -->
 						<b-spinner variant="primary" class="ml-2 mt-1" v-if="waitingComment"></b-spinner>
 					</div>
 				</template>
 				<template v-else>
-					<div class="d-flex flex-row justify-content-center">
+                    <!-- Comment box if not signed in -->
+					<div class="d-flex flex-row">
+                        <!-- Cancel button -->
+						<div class="flex-fill">
+							<b-btn variant="danger" class="ml-2" @click="commentsShown = false">Zrušiť</b-btn>
+						</div>
+                        <!-- Please login message -->
 						<div class="d-flex flex-column justify-content-center">Na písanie komentárov sa musíte</div>
-						<b-btn variant="primary" class="ml-2" :to="{ path: '/login', query: { redirect: $route.fullPath } }">Prihlásiť</b-btn>
+						<b-btn
+							variant="primary"
+							class="ml-2"
+							:to="{ path: '/login', query: { redirect: $route.fullPath } }"
+						>Prihlásiť</b-btn>
+                        <!-- Spacer -->
+						<div class="flex-fill"></div>
 					</div>
 				</template>
 			</div>
@@ -249,16 +275,16 @@
 		commentContent = ""
 		comments = [] as IComment[]
 		waitingComment = false
-        userData = userData
-        
-        get commentsShown() {
-            return this.$route.name == "StepComments"
-        }
+		userData = userData
 
-        set commentsShown(value: boolean) {
-            if (value == true) this.$router.push({ params: this.$route.params, name: "StepComments" })
-            else this.$router.push({ params: this.$route.params, name: "Step" })
-        }
+		get commentsShown() {
+			return this.$route.name == "StepComments"
+		}
+
+		set commentsShown(value: boolean) {
+			if (value == true) this.$router.push({ params: this.$route.params, name: "StepComments" })
+			else this.$router.push({ params: this.$route.params, name: "Step" })
+		}
 
 		mounted() {
 			this.reloadStep()
