@@ -1,7 +1,7 @@
 <template>
 	<div class="d-flex flex-column justify-content-center">
 		<div class="d-flex flex-row justify-content-center">
-			<b-form class="form-block" @submit.prevent="submit">
+			<b-form class="form-block border rounded bg-white p-4" @submit.prevent="submit">
 				<b-form-group id="email-group" label="E-mail" label-for="email">
 					<b-form-input
 						id="email"

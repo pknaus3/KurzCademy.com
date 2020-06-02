@@ -1,7 +1,7 @@
 <template>
 	<div class="d-flex flex-column justify-content-center">
 		<div class="d-flex flex-row justify-content-center">
-			<b-form class="form-block" @submit.prevent="submit">
+			<b-form class="form-block border rounded bg-white p-4" @submit.prevent="submit">
 				<b-form-group id="full-name-group" label="Celé meno" label-for="full-name">
 					<b-form-input id="full-name" v-model="fullName" type="text" placeholder="Vložte celé meno"></b-form-input>
 				</b-form-group>
