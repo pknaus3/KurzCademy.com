@@ -57,7 +57,7 @@
 		<!-- Kurzy -->
 		<b-col class="highlight-text mb-5">
 			<h1 class="font-weight-bold">Naše kurzy</h1>
-			<Courses class="my-5"></Courses>
+			<Courses class="my-5" :max="4"></Courses>
 			<div class="d-flex flex-row justify-content-center">
 				<b-btn variant="outline-secondary" to="/courses">Všetky kurzy</b-btn>
 			</div>

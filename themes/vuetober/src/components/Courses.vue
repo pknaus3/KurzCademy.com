@@ -11,7 +11,7 @@
 				:img-src="course.thumbPath"
 				img-top
 				img-height="50%"
-				class="mx-3 course-card d-inline-flex"
+				class="course-card d-inline-flex m-3"
 				:style="`background-color: ${course.coursecolor}`"
 			>
 				<b-card-text v-html="course.description"></b-card-text>
@@ -80,7 +80,10 @@
 	@Component
 	export default class Courses extends Vue {
 		@vueProp.Prop({ type: Boolean, required: false, default: false })
-		readonly favouriteOnly!: boolean
+        readonly favouriteOnly!: boolean
+        @vueProp.Prop({ type: Number, default: -1 })
+        readonly max!: number
+
 		courses = [] as ICourse[]
 		favourites = [] as boolean[]
 		userData = userData
@@ -94,7 +97,7 @@
                     this.courses = []
                 }
 			} else {
-                this.courses = await getAllCourses()
+                this.courses = await getAllCourses(this.max)
                 if (userData.user != null) {
                     this.favourites = await Promise.all(this.courses.map(async v => {
                         return getCourseFavourite(v.id.toString())
@@ -102,7 +105,7 @@
                 } else {
                     this.favourites = []
                 }
-			}
+            }
 		}
 	}
 </script>

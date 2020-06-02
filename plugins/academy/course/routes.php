@@ -17,8 +17,13 @@ Route::post('/check', function ($req) {
     $check->save();
 });
 
-Route::get('api/courses', function () {
-    $courses = Course::All();
+Route::get('api/courses/{max}', function ($max) {
+    if ($max == -1) {
+        $courses = Course::All();
+    } else {
+        $courses = Course::take($max)->get();
+    }
+    
     foreach ($courses as $course) {
         if (isset($course->courseThumb)) {
             $course->thumbPath = $course->courseThumb->getPath();

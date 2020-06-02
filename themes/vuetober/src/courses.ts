@@ -53,8 +53,8 @@ export async function getCourseStepsById(courseId: string) {
     return stepsResponse.data
 }
 
-export async function getAllCourses() {
-    let coursesResponse = await axios.get<ICourse[]>("/api/courses/")
+export async function getAllCourses(max: number = -1) {
+    let coursesResponse = await axios.get<ICourse[]>(`/api/courses/${max}`)
     return coursesResponse.data
 }
 
