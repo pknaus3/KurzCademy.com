@@ -94,12 +94,20 @@
 				</div>
 			</div>
 			<div class="d-flex flex-column m-2 bg-light">
-				<b-form-textarea v-model="commentContent" placeholder="Vložte komentár" rows="3" max-rows="6"></b-form-textarea>
-				<div class="mt-2 d-flex flex-row">
-					<b-btn variant="primary" @click="sendComment()">Odoslať</b-btn>
-					<b-btn variant="danger" class="ml-2" @click="commentsShown = false">Zrušiť</b-btn>
-					<b-spinner variant="primary" class="ml-2 mt-1" v-if="waitingComment"></b-spinner>
-				</div>
+				<template v-if="userData.user != null">
+					<b-form-textarea v-model="commentContent" placeholder="Vložte komentár" rows="3" max-rows="6"></b-form-textarea>
+					<div class="mt-2 d-flex flex-row">
+						<b-btn variant="primary" @click="sendComment()">Odoslať</b-btn>
+						<b-btn variant="danger" class="ml-2" @click="commentsShown = false">Zrušiť</b-btn>
+						<b-spinner variant="primary" class="ml-2 mt-1" v-if="waitingComment"></b-spinner>
+					</div>
+				</template>
+				<template v-else>
+					<div class="d-flex flex-row justify-content-center">
+						<div class="d-flex flex-column justify-content-center">Na písanie komentárov sa musíte</div>
+						<b-btn variant="primary" class="ml-2" :to="{ path: '/login', query: { redirect: $route.fullPath } }">Prihlásiť</b-btn>
+					</div>
+				</template>
 			</div>
 		</div>
 	</div>
@@ -210,10 +218,10 @@
 		overflow-y: scroll;
 		border-bottom: 1px solid lightgray;
 	}
-    
-    .step-main {
-        min-height: calc(100% - 50px);
-    }
+
+	.step-main {
+		min-height: calc(100% - 50px);
+	}
 </style>
 
 <script lang="ts">
@@ -225,6 +233,7 @@
 	import markdownit from "markdown-it"
 	// @ts-ignore
 	import hljs from "highlight.js"
+	import { userData } from '../user'
 
 	@Component
 	export default class StepView extends Vue {
@@ -241,6 +250,7 @@
 		commentContent = ""
 		comments = [] as IComment[]
 		waitingComment = false
+		userData = userData
 
 		mounted() {
 			this.reloadStep()
@@ -335,16 +345,16 @@
 		@vueProp.Watch("stepId")
 		onStepIdChanged() {
 			this.step = null
-            this.reloadStep()
-            this.commentsShown = false
-        }
-        
-        @vueProp.Watch("commentsShown")
-        onCommentsShownChanged() {
-            if (!this.commentsShown) {
-                this.commentContent = ""
-            }
-        }
+			this.reloadStep()
+			this.commentsShown = false
+		}
+
+		@vueProp.Watch("commentsShown")
+		onCommentsShownChanged() {
+			if (!this.commentsShown) {
+				this.commentContent = ""
+			}
+		}
 
 		sendComment() {
 			this.waitingComment = true
@@ -362,9 +372,9 @@
 			deleteComment(id).then(async () => {
 				await this.reloadComments()
 				this.waitingComment = false
-			}).catch(()=>{
+			}).catch(() => {
 				this.waitingComment = false
-            })
+			})
 		}
 	}
 </script>

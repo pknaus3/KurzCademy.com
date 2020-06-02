@@ -3,7 +3,7 @@
 		<template v-if="course">
 			<div class="viewer-head">
 				<div class="course-name">{{ course.name }}</div>
-				<b-btn variant="light" @click="isCourseFavourited = !isCourseFavourited">
+				<b-btn variant="light" @click="isCourseFavourited = !isCourseFavourited" v-if="userData.user != null">
 					<b-icon :icon="isCourseFavourited ? 'star-fill' : 'star'"></b-icon>
 				</b-btn>
 			</div>
@@ -166,6 +166,7 @@
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
 	import { ICourse, IStep, getCourseById, getCourseStepsById, getCourseFavourite, setCourseFavourite } from '../courses'
+import { userData } from '../user'
 
 	@Component
 	export default class CourseView extends Vue {
@@ -173,7 +174,8 @@
 		readonly id!: string
 		course = null as ICourse | null
 		steps = [] as IStep[]
-		isCourseFavourited = false
+        isCourseFavourited = false
+        userData = userData
 
 		async mounted() {
 			this.course = await getCourseById(this.id)
@@ -190,7 +192,7 @@
                         if (this.steps.length > 0 && this.currStep == null) this.$router.replace({ name: "Step", params: { stepId: this.steps[0].id.toString() } })
                     })(),
                     (async () => {
-                        this.isCourseFavourited = await getCourseFavourite(this.id)
+                        if (userData.user != null) this.isCourseFavourited = await getCourseFavourite(this.id)
                     })()
                 ])
 			}
