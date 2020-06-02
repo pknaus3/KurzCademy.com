@@ -3,7 +3,13 @@
 		<div class="d-flex flex-row justify-content-center">
 			<b-form class="form-block border rounded bg-white p-4" @submit.prevent="submit">
 				<b-form-group id="full-name-group" label="Celé meno" label-for="full-name">
-					<b-form-input id="full-name" v-model="fullName" type="text" placeholder="Vložte celé meno"></b-form-input>
+					<b-form-input
+						id="full-name"
+						v-model="fullName"
+						type="text"
+						placeholder="Vložte celé meno"
+						required
+					></b-form-input>
 				</b-form-group>
 				<b-form-group id="email-group" label="E-mail" label-for="email">
 					<b-form-input
@@ -12,7 +18,7 @@
 						type="text"
 						placeholder="Vložte e-mail"
 						autocomplete="username"
-                        required
+						required
 					></b-form-input>
 				</b-form-group>
 				<b-form-group id="new-password-group" label="Nové heslo" label-for="new-password">
@@ -21,7 +27,7 @@
 						v-model="newPassword"
 						type="password"
 						autocomplete="new-password"
-                        required
+						required
 					></b-form-input>
 				</b-form-group>
 				<b-form-group id="confirm-password-group" label="Overiť heslo" label-for="confirm-password">
@@ -30,7 +36,7 @@
 						v-model="confirmPassword"
 						type="password"
 						autocomplete="new-password"
-                        required
+						required
 					></b-form-input>
 				</b-form-group>
 				<div class="form-control error-box" :data-active="error.length > 0">{{ error }}</div>
@@ -66,7 +72,7 @@
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
 	import { userData, updateUserData, updateUserAvatar, deleteAvatar, registerUser } from '../user'
-import { processAxiosError } from '../errorProcessor'
+	import { processAxiosError } from '../errorProcessor'
 
 	@Component
 	export default class AccountView extends Vue {
@@ -78,12 +84,12 @@ import { processAxiosError } from '../errorProcessor'
 		loading = false
 
 		submit() {
-            let newPassword = this.newPassword
-            
-				if (this.newPassword != this.confirmPassword) {
-					this.error = "Nové heslo a overenie hesla sa musia rovnať"
-					return
-				}
+			let newPassword = this.newPassword
+
+			if (this.newPassword != this.confirmPassword) {
+				this.error = "Nové heslo a overenie hesla sa musia rovnať"
+				return
+			}
 
 			let fullName = this.fullName
 			let email = this.email
@@ -92,15 +98,15 @@ import { processAxiosError } from '../errorProcessor'
 			registerUser(fullName, email, newPassword).then(() => {
 				this.loading = false
 				if (this.$route.query.redirect) {
-                    this.$router.push(this.$route.query.redirect as string)
-                } else {
-                    this.$router.push("/")
-                }
+					this.$router.push(this.$route.query.redirect as string)
+				} else {
+					this.$router.push("/")
+				}
 			}).catch((err: any) => {
 				this.loading = false
 				this.error = processAxiosError(err.response.data)
 				console.error(err, err.response)
 			})
-        }
+		}
 	}
 </script>
