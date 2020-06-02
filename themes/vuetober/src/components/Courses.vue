@@ -67,6 +67,8 @@
 		position: absolute;
 		top: 5px;
 		right: 5px;
+		stroke: black;
+		stroke-width: 0.25px;
 	}
 </style>
 
@@ -80,9 +82,9 @@
 	@Component
 	export default class Courses extends Vue {
 		@vueProp.Prop({ type: Boolean, required: false, default: false })
-        readonly favouriteOnly!: boolean
-        @vueProp.Prop({ type: Number, default: -1 })
-        readonly max!: number
+		readonly favouriteOnly!: boolean
+		@vueProp.Prop({ type: Number, default: -1 })
+		readonly max!: number
 
 		courses = [] as ICourse[]
 		favourites = [] as boolean[]
@@ -91,21 +93,21 @@
 		@vueProp.Watch("favouriteOnly", { immediate: true })
 		async onFavouriteOnlyChanged() {
 			if (this.favouriteOnly) {
-                if (userData.user != null) {
-                    this.courses = await getAllFavouritedCourses()
-                } else {
-                    this.courses = []
-                }
+				if (userData.user != null) {
+					this.courses = await getAllFavouritedCourses()
+				} else {
+					this.courses = []
+				}
 			} else {
-                this.courses = await getAllCourses(this.max)
-                if (userData.user != null) {
-                    this.favourites = await Promise.all(this.courses.map(async v => {
-                        return getCourseFavourite(v.id.toString())
-                    }))
-                } else {
-                    this.favourites = []
-                }
-            }
+				this.courses = await getAllCourses(this.max)
+				if (userData.user != null) {
+					this.favourites = await Promise.all(this.courses.map(async v => {
+						return getCourseFavourite(v.id.toString())
+					}))
+				} else {
+					this.favourites = []
+				}
+			}
 		}
 	}
 </script>
