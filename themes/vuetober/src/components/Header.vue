@@ -1,15 +1,20 @@
 <template>
 	<b-navbar>
-        <!-- Logo -->
+		<!-- Logo -->
 		<b-navbar-brand to="/">
 			<b-img src="@/assets/img/logo/KurzCademyLogoBezTextu.png" height="50px"></b-img>
 		</b-navbar-brand>
-        <!-- Navigation -->
-        <b-btn variant="outline-dark" class="navlink border-0" to="/courses">Kurzy</b-btn>
-        <b-btn variant="outline-dark" class="navlink ml-2 border-0" to="/favourites" v-if="userData.user != null">Obľúbené</b-btn>
-        <!-- Spacer -->
+		<!-- Navigation -->
+		<b-btn variant="outline-secondary" class="navlink bg-white" to="/courses">Kurzy</b-btn>
+		<b-btn
+			variant="outline-secondary"
+			class="navlink ml-2 bg-white"
+			to="/favourites"
+			v-if="userData.user != null"
+		>Obľúbené</b-btn>
+		<!-- Spacer -->
 		<div class="flex-fill"></div>
-        <!-- User menus -->
+		<!-- User menus -->
 		<b-btn
 			v-if="userData.user"
 			variant="outline-dark"
@@ -22,10 +27,18 @@
 				<b-btn variant="light" @click="logout()">Odhlásiť</b-btn>
 			</div>
 		</b-btn>
-        <!-- Login and register -->
+		<!-- Login and register -->
 		<template v-else>
-			<b-btn variant="outline-dark" :to="{ path: '/login', query: { redirect: $route.fullPath } }" class="user-button">Prihlásiť</b-btn>
-			<b-btn variant="outline-dark" :to="{ path: '/register', query: { redirect: $route.fullPath } }" class="user-button ml-2">Registrovať</b-btn>
+			<b-btn
+				variant="outline-dark"
+				:to="{ path: '/login', query: { redirect: $route.fullPath } }"
+				class="user-button"
+			>Prihlásiť</b-btn>
+			<b-btn
+				variant="outline-dark"
+				:to="{ path: '/register', query: { redirect: $route.fullPath } }"
+				class="user-button ml-2"
+			>Registrovať</b-btn>
 		</template>
 	</b-navbar>
 </template>
@@ -35,22 +48,22 @@
 		position: relative;
 		border: none;
 		font-weight: bold;
-        z-index: 2;
+		z-index: 2;
 	}
 
 	.user-menu {
-        visibility: collapse;
+		visibility: collapse;
 		opacity: 0;
 		position: absolute;
 		top: calc(100% - 4px);
 		left: 0;
 		background-color: white;
 		width: 100%;
-        border-radius: 4px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        transform: translate(0, -50%) scale(1, 0);
-        transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+		border-radius: 4px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		transform: translate(0, -50%) scale(1, 0);
+		transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
 	}
 
 	.user-menu > * {
@@ -58,14 +71,14 @@
 	}
 
 	.user-button:hover > .user-menu {
-        visibility: visible;
+		visibility: visible;
 		opacity: 1;
-        transform: translate(0, 0) scale(1, 1);
+		transform: translate(0, 0) scale(1, 1);
 	}
 
-    .navlink.router-link-exact-active {
-        font-weight: bold;
-    }
+	.navlink.router-link-exact-active {
+		font-weight: bold;
+	}
 </style>
 
 <script lang="ts">
