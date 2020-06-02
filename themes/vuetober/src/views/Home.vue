@@ -13,14 +13,14 @@
 						<h2 class="font-weight-bold">Vzdelanie ktoré ti zmení život</h2>
 						<div class="mt-3">Vyber si oblasť, v ktorej sa chceš vzdelávať.</div>
 						<div>Naše kurzy ťa prevedú od úplných základov až po pokročilejšie techniky.</div>
-						<b-btn class="mt-3" variant="primary" to="courses">Všetky Kurzy</b-btn>
-						<div class="mt-3">Aké technológie sa tu naučíte?</div>
-						<div class="mt-1">
-							<b-img height="50px" class="ml-2" src="@/assets/img/otherLogos/ionic-logo.png"></b-img>
-							<b-img height="50px" class="ml-2" src="@/assets/img/otherLogos/un-js-logo.png"></b-img>
-							<b-img height="50px" class="ml-2" src="@/assets/img/otherLogos/react-logo.png"></b-img>
-							<b-img height="50px" class="ml-2" src="@/assets/img/otherLogos/vue-logo.png"></b-img>
-							<b-img height="50px" class="ml-2" src="@/assets/img/otherLogos/angular-logo.png"></b-img>
+						<b-btn class="m-4" variant="primary" to="courses">Všetky Kurzy</b-btn>
+						<div class="mt-2">Aké technológie sa tu naučíte?</div>
+						<div class="mt-4">
+							<b-img height="50px" src="@/assets/img/otherLogos/ionic-logo.png"></b-img>
+							<b-img height="50px" class="ml-3" src="@/assets/img/otherLogos/un-js-logo.png"></b-img>
+							<b-img height="50px" class="ml-3" src="@/assets/img/otherLogos/react-logo.png"></b-img>
+							<b-img height="50px" class="ml-3" src="@/assets/img/otherLogos/vue-logo.png"></b-img>
+							<b-img height="50px" class="ml-3" src="@/assets/img/otherLogos/angular-logo.png"></b-img>
 						</div>
 					</div>
 				</div>
