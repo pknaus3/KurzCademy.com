@@ -17,7 +17,7 @@
 		>
 			<b-avatar :src="userData.user.avatar.path"></b-avatar>
 			<div class="ml-2">{{ userData.user.name }}</div>
-			<div class="d-flex user-menu flex-column">
+			<div class="d-flex user-menu flex-column border border-top-0">
 				<b-btn variant="light" to="/account">Môj účet</b-btn>
 				<b-btn variant="light" @click="logout()">Odhlásiť</b-btn>
 			</div>
