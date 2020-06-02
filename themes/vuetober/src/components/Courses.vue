@@ -16,7 +16,7 @@
 			>
 				<b-card-text v-html="course.description"></b-card-text>
 				<b-icon
-					v-if="!favouriteOnly && favourites.length > 0"
+					v-if="userData.user != null && !favouriteOnly && favourites.length > 0"
 					class="course-favourite"
 					font-scale="1.5"
 					:icon="favourites[index] ? 'star-fill' : 'star'"
@@ -75,6 +75,7 @@
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
 	import { ICourse, getAllCourses, getCourseFavourite, getAllFavouritedCourses } from '../courses'
+	import { userData } from '../user'
 
 	@Component
 	export default class Courses extends Vue {
@@ -82,16 +83,25 @@
 		readonly favouriteOnly!: boolean
 		courses = [] as ICourse[]
 		favourites = [] as boolean[]
+		userData = userData
 
 		@vueProp.Watch("favouriteOnly", { immediate: true })
 		async onFavouriteOnlyChanged() {
 			if (this.favouriteOnly) {
-				this.courses = await getAllFavouritedCourses()
+                if (userData.user != null) {
+                    this.courses = await getAllFavouritedCourses()
+                } else {
+                    this.courses = []
+                }
 			} else {
-				this.courses = await getAllCourses()
-				this.favourites = await Promise.all(this.courses.map(async v => {
-					return getCourseFavourite(v.id.toString())
-				}))
+                this.courses = await getAllCourses()
+                if (userData.user != null) {
+                    this.favourites = await Promise.all(this.courses.map(async v => {
+                        return getCourseFavourite(v.id.toString())
+                    }))
+                } else {
+                    this.favourites = []
+                }
 			}
 		}
 	}

@@ -20,7 +20,10 @@ const routes: Array<RouteConfig> = [
         path: "/favourites",
         name: "Favourites",
         component: () => import("@/components/Courses.vue"),
-        props: { favouriteOnly: true }
+        props: { favouriteOnly: true },
+        meta: {
+            authReq: true
+        }
     },
     {
         path: "/course/:id",

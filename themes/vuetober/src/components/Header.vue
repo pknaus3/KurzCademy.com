@@ -6,7 +6,7 @@
 		</b-navbar-brand>
         <!-- Navigation -->
         <b-btn variant="light" class="navlink" to="/courses">Kurzy</b-btn>
-        <b-btn variant="light" class="navlink ml-2" to="/favourites">Obľúbené</b-btn>
+        <b-btn variant="light" class="navlink ml-2" to="/favourites" v-if="userData.user != null">Obľúbené</b-btn>
         <!-- Spacer -->
 		<div class="flex-fill"></div>
         <!-- User menus -->
