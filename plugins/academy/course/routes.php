@@ -58,8 +58,11 @@ Route::post('/api/comment', function (Request $req) {
 Route::get('api/comments/{id}', function ($courseId) {
     $comments = Comments::where('course_id', $courseId)->get();
     foreach ($comments as $key => $comment) {
-        $user = User::findOrFail($comment->user_id);
-        $user->avatar;
+        $user = User::find($comment->user_id);
+        $user = Auth::findUserByLogin($user->email);
+        if (isset($user->avatar)) {
+            $user->avatarPath = $user->avatar->getPath();
+        }
         $comment->user = $user;
     }
     return $comments;
