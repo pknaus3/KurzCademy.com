@@ -105,7 +105,13 @@
 			<div class="d-flex flex-column m-2 bg-light">
 				<template v-if="userData.user != null">
 					<!-- Comment box  -->
-					<b-form-textarea v-model="commentContent" placeholder="Vložte komentár" rows="3" max-rows="6"></b-form-textarea>
+					<b-form-textarea
+						v-model="commentContent"
+						placeholder="Vložte komentár"
+						rows="3"
+						max-rows="6"
+						@keydown="onCommentKeyDown($event)"
+					></b-form-textarea>
 					<!-- Controlls -->
 					<div class="mt-2 d-flex flex-row">
 						<!-- Send button -->
@@ -409,6 +415,13 @@
 			}).catch(() => {
 				this.waitingComment = false
 			})
+		}
+
+		onCommentKeyDown(event: KeyboardEvent) {
+			if (event.code == "Enter" && !event.shiftKey) {
+				event.preventDefault()
+				this.sendComment()
+			}
 		}
 	}
 </script>
