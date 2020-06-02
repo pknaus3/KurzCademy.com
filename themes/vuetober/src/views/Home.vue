@@ -29,7 +29,7 @@
 		<!-- Fičurky -->
 		<b-col class="highlight-text">
 			<b-col cols="6">
-				<h1>
+				<h1 class="ml-3">
 					V našich kurzoch učíme ľudí
 					<b>programovať webstránky a mobilné aplikácie</b>
 				</h1>
@@ -56,7 +56,7 @@
 		</b-col>
 		<!-- Kurzy -->
 		<b-col class="highlight-text mb-5">
-			<h1 class="font-weight-bold">Naše kurzy</h1>
+			<h1 class="font-weight-bold ml-3">Naše kurzy</h1>
 			<Courses class="my-5" :max="4"></Courses>
 			<div class="d-flex flex-row justify-content-center">
 				<b-btn variant="outline-secondary" to="/courses">Všetky kurzy</b-btn>
