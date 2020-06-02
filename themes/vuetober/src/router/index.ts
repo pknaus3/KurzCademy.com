@@ -42,6 +42,15 @@ const routes: Array<RouteConfig> = [
                 meta: {
                     hideFooter: true
                 }
+            },
+            {
+                path: ":stepId/comments",
+                props: true,
+                name: "StepComments",
+                component: () => import("@/views/StepView.vue"),
+                meta: {
+                    hideFooter: true
+                }
             }
         ]
     },

@@ -246,11 +246,19 @@
 
 		step = null as IStep | null
 		intervalId = -1
-		commentsShown = false
 		commentContent = ""
 		comments = [] as IComment[]
 		waitingComment = false
-		userData = userData
+        userData = userData
+        
+        get commentsShown() {
+            return this.$route.name == "StepComments"
+        }
+
+        set commentsShown(value: boolean) {
+            if (value == true) this.$router.push({ params: this.$route.params, name: "StepComments" })
+            else this.$router.push({ params: this.$route.params, name: "Step" })
+        }
 
 		mounted() {
 			this.reloadStep()
