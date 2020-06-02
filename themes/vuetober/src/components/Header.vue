@@ -49,6 +49,8 @@
         border-radius: 4px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
+        transform: translate(0, -50%) scale(1, 0);
+        transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
 	}
 
 	.user-menu > * {
@@ -58,6 +60,7 @@
 	.user-button:hover > .user-menu {
         visibility: visible;
 		opacity: 1;
+        transform: translate(0, 0) scale(1, 1);
 	}
 
     .navlink.router-link-exact-active {
