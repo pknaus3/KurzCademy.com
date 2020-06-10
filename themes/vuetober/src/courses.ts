@@ -40,7 +40,7 @@ export interface IComment {
 
 export async function getStepById(id: string) {
     let stepResponse = await axios.get<IStep>(`/api/step/${id}`)
-    if (stepResponse.data.renderedDocsHtml == "undefined") {
+    if (stepResponse.data.renderedDocsHtml == null) {
         stepResponse.data.renderedDocsHtml = ""
     }
     return stepResponse.data
