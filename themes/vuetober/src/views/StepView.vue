@@ -53,9 +53,72 @@
 						<span>Ďalej</span>
 						<b-icon-chevron-right scale="0.75"></b-icon-chevron-right>
 					</b-btn>
-					<b-btn variant="outline-dark" class="border-0" @click="commentsShown = true">
-						<b-icon-chat></b-icon-chat>
-					</b-btn>
+				</div>
+
+				<div class="d-flex flex-column m-2 border-top pt-2">
+					<template v-if="userData.user != null">
+						<!-- Comment box  -->
+						<b-form-textarea
+							v-model="commentContent"
+							placeholder="Vložte komentár"
+							rows="3"
+							max-rows="6"
+							@keydown="onCommentKeyDown($event)"
+						></b-form-textarea>
+						<!-- Controlls -->
+						<div class="mt-2 d-flex flex-row">
+							<!-- Send button -->
+							<b-btn variant="primary" @click="sendComment()">Odoslať</b-btn>
+							<!-- Waiting indicator -->
+							<b-spinner variant="primary" class="ml-2 mt-1" v-if="waitingComment"></b-spinner>
+						</div>
+					</template>
+					<template v-else>
+						<!-- Comment box if not signed in -->
+						<div class="d-flex flex-row">
+							<!-- Please login message -->
+							<div class="d-flex flex-column justify-content-center">Na písanie komentárov sa musíte</div>
+							<b-btn
+								variant="primary"
+								class="ml-2"
+								:to="{ path: '/login', query: { redirect: $route.fullPath } }"
+							>Prihlásiť</b-btn>
+							<!-- Spacer -->
+							<div class="flex-fill"></div>
+						</div>
+					</template>
+				</div>
+
+				<!-- Comments container -->
+				<div class="written-comments border-top">
+					<div class="mt-1 ml-3">{{ commentCountText }}</div>
+					<!-- Comment -->
+					<div
+						v-for="comment in comments"
+						:key="comment.id"
+						class="border rounded d-flex flex-column p-2 m-2"
+					>
+						<!-- Header -->
+						<div class="d-flex flex-row">
+							<!-- Avatar -->
+							<b-avatar size="25px" :src="comment.user.avatar.path"></b-avatar>
+							<!-- User name -->
+							<div class="font-weight-bold ml-2">{{ comment.user.name }}</div>
+							<!-- Spacer -->
+							<div class="flex-fill"></div>
+							<!-- Delete button -->
+							<b-btn
+								variant="outline-dark p-1 px-2"
+								class="border-0"
+								v-if="comment.isOwner"
+								@click="deleteComment(comment.id)"
+							>
+								<b-icon icon="trash-fill" font-scale="0.99"></b-icon>
+							</b-btn>
+						</div>
+						<!-- Comment text -->
+						<div class="mt-2" style="white-space: pre">{{ comment.comment }}</div>
+					</div>
 				</div>
 			</template>
 		</div>
@@ -65,83 +128,6 @@
 			<b-nav-item href="#guide">Guide</b-nav-item>
 			<b-nav-item href="#faq">FAQ</b-nav-item>
 		</b-nav>
-
-		<!-- Comments dialog -->
-		<div
-			class="comments d-flex flex-column"
-			:data-active="commentsShown"
-			@keydown.esc="commentsShown = false"
-		>
-			<!-- Comments container -->
-			<div class="written-comments">
-				<!-- Comment -->
-				<div
-					v-for="comment in comments"
-					:key="comment.id"
-					class="border rounded d-flex flex-column p-2 m-2"
-				>
-					<!-- Header -->
-					<div class="d-flex flex-row">
-						<!-- Avatar -->
-						<b-avatar size="25px" :src="comment.user.avatar.path"></b-avatar>
-						<!-- User name -->
-						<div class="font-weight-bold ml-2">{{ comment.user.name }}</div>
-						<!-- Spacer -->
-						<div class="flex-fill"></div>
-						<!-- Delete button -->
-						<b-btn
-							variant="outline-dark p-1 px-2"
-							class="border-0"
-							v-if="comment.isOwner"
-							@click="deleteComment(comment.id)"
-						>
-							<b-icon icon="trash-fill" font-scale="0.99"></b-icon>
-						</b-btn>
-					</div>
-					<!-- Comment text -->
-					<div class="mt-2" style="white-space: pre">{{ comment.comment }}</div>
-				</div>
-			</div>
-			<div class="d-flex flex-column m-2 bg-light">
-				<template v-if="userData.user != null">
-					<!-- Comment box  -->
-					<b-form-textarea
-						v-model="commentContent"
-						placeholder="Vložte komentár"
-						rows="3"
-						max-rows="6"
-						@keydown="onCommentKeyDown($event)"
-					></b-form-textarea>
-					<!-- Controlls -->
-					<div class="mt-2 d-flex flex-row">
-						<!-- Send button -->
-						<b-btn variant="primary" @click="sendComment()">Odoslať</b-btn>
-						<!-- Cancel button -->
-						<b-btn variant="danger" class="ml-2" @click="commentsShown = false">Zrušiť</b-btn>
-						<!-- Waiting indicator -->
-						<b-spinner variant="primary" class="ml-2 mt-1" v-if="waitingComment"></b-spinner>
-					</div>
-				</template>
-				<template v-else>
-					<!-- Comment box if not signed in -->
-					<div class="d-flex flex-row">
-						<!-- Cancel button -->
-						<div class="flex-fill">
-							<b-btn variant="danger" class="ml-2" @click="commentsShown = false">Zrušiť</b-btn>
-						</div>
-						<!-- Please login message -->
-						<div class="d-flex flex-column justify-content-center">Na písanie komentárov sa musíte</div>
-						<b-btn
-							variant="primary"
-							class="ml-2"
-							:to="{ path: '/login', query: { redirect: $route.fullPath } }"
-						>Prihlásiť</b-btn>
-						<!-- Spacer -->
-						<div class="flex-fill"></div>
-					</div>
-				</template>
-			</div>
-		</div>
 	</div>
 </template>
 
@@ -218,37 +204,6 @@
 
 	.navigation > * > .active {
 		border-right: 2px solid var(--primary);
-	}
-
-	.comments {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		transform: scale(0.75);
-		opacity: 0;
-		visibility: collapse;
-		transition: opacity 0.2s, transform 0.1s, visibility 0.2s;
-		background-color: white;
-	}
-
-	.comments[data-active="true"] {
-		transform: scale(1);
-		opacity: 1;
-		visibility: visible;
-	}
-
-	.commnets-close-button {
-		position: absolute;
-		top: 4px;
-		right: 24px;
-	}
-
-	.written-comments {
-		flex: 1 1;
-		overflow-y: scroll;
-		border-bottom: 1px solid lightgray;
 	}
 
 	.step-main {
@@ -421,6 +376,19 @@
 			if (event.code == "Enter" && !event.shiftKey) {
 				event.preventDefault()
 				this.sendComment()
+			}
+		}
+
+		get commentCountText() {
+			let commentCount = this.comments.length
+			if (commentCount == 0) {
+				return "Žiadne komentáre"
+			} else if (commentCount < 2) {
+				return `${commentCount} komentár`
+			} else if (commentCount < 5) {
+				return `${commentCount} komentáre`
+			} else {
+				return `${commentCount} komentárov`
 			}
 		}
 	}
