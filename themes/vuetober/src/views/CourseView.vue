@@ -3,7 +3,12 @@
 		<template v-if="course">
 			<div class="viewer-head">
 				<div class="course-name">{{ course.name }}</div>
-				<b-btn variant="light" @click="isCourseFavourited = !isCourseFavourited" v-if="userData.user != null">
+				<b-btn
+					variant="outline-dark"
+					class="border-0"
+					@click="isCourseFavourited = !isCourseFavourited"
+					v-if="userData.user != null"
+				>
 					<b-icon :icon="isCourseFavourited ? 'star-fill' : 'star'"></b-icon>
 				</b-btn>
 			</div>
@@ -166,7 +171,7 @@
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
 	import { ICourse, IStep, getCourseById, getCourseStepsById, getCourseFavourite, setCourseFavourite } from '../courses'
-import { userData } from '../user'
+	import { userData } from '../user'
 
 	@Component
 	export default class CourseView extends Vue {
@@ -174,8 +179,8 @@ import { userData } from '../user'
 		readonly id!: string
 		course = null as ICourse | null
 		steps = [] as IStep[]
-        isCourseFavourited = false
-        userData = userData
+		isCourseFavourited = false
+		userData = userData
 
 		async mounted() {
 			this.course = await getCourseById(this.id)
@@ -185,16 +190,16 @@ import { userData } from '../user'
 
 		async reloadCourses() {
 			if (this.course != null) {
-                await Promise.all([
-                    (async () => {
-                        this.steps = (await getCourseStepsById(this.id)).sort((a, b) => a.step_position - b.step_position)
-        
-                        if (this.steps.length > 0 && this.currStep == null) this.$router.replace({ name: "Step", params: { stepId: this.steps[0].id.toString() } })
-                    })(),
-                    (async () => {
-                        if (userData.user != null) this.isCourseFavourited = await getCourseFavourite(this.id)
-                    })()
-                ])
+				await Promise.all([
+					(async () => {
+						this.steps = (await getCourseStepsById(this.id)).sort((a, b) => a.step_position - b.step_position)
+
+						if (this.steps.length > 0 && this.currStep == null) this.$router.replace({ name: "Step", params: { stepId: this.steps[0].id.toString() } })
+					})(),
+					(async () => {
+						if (userData.user != null) this.isCourseFavourited = await getCourseFavourite(this.id)
+					})()
+				])
 			}
 		}
 
@@ -223,11 +228,11 @@ import { userData } from '../user'
 
 		get currStepIndex() {
 			return this.steps.findIndex(v => v.id.toString() == this.currStep)
-        }
-        
-        @vueProp.Watch("isCourseFavourited")
-        async onFavouriteChanged() {
-            await setCourseFavourite(this.id, this.isCourseFavourited)
-        }
+		}
+
+		@vueProp.Watch("isCourseFavourited")
+		async onFavouriteChanged() {
+			await setCourseFavourite(this.id, this.isCourseFavourited)
+		}
 	}
 </script>
