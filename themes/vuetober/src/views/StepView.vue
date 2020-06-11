@@ -224,10 +224,6 @@
 
 	let boostrapCSS = ""
 
-	window.addEventListener("load", () => {
-		boostrapCSS = (document.querySelector(`head > style[type="text/css"]`) as HTMLStyleElement).innerText
-	})
-
 	@Component
 	export default class StepView extends Vue {
 		@vueProp.Prop({ type: String, required: true })
@@ -250,6 +246,8 @@
 				if (this.$refs.customTextIframe) this.documentResize(this.$refs.customTextIframe as HTMLIFrameElement)
 				if (this.$refs.docsIframe) this.documentResize(this.$refs.docsIframe as HTMLIFrameElement)
 			}, 100)
+
+			if (!boostrapCSS) boostrapCSS = (document.querySelector(`head > style[type="text/css"]`) as HTMLStyleElement).innerText
 		}
 
 		destroy() {
@@ -270,7 +268,6 @@
 						let code = this.step.custom_text
 						customTextIframe.contentDocument!.body.innerHTML = code + `
                             <style>${boostrapCSS}</style>
-                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/github-gist.min.css">
                             <style>
                                 body {
                                     margin: 0 !important;
@@ -289,6 +286,80 @@
 
                                 pre > code {
                                     padding: 0;
+                                }
+
+                                    .hljs {
+                                    display: block;
+                                    background: #fff;
+                                    padding: .5em;
+                                    color: #333;
+                                    overflow-x: auto
+                                }
+
+                                .hljs-comment,
+                                .hljs-meta {
+                                    color: #969896
+                                }
+
+                                .hljs-emphasis,
+                                .hljs-quote,
+                                .hljs-strong,
+                                .hljs-template-variable,
+                                .hljs-variable {
+                                    color: #df5000
+                                }
+
+                                .hljs-keyword,
+                                .hljs-selector-tag,
+                                .hljs-type {
+                                    color: #d73a49
+                                }
+
+                                .hljs-attribute,
+                                .hljs-bullet,
+                                .hljs-literal,
+                                .hljs-symbol {
+                                    color: #0086b3
+                                }
+
+                                .hljs-name,
+                                .hljs-section {
+                                    color: #63a35c
+                                }
+
+                                .hljs-tag {
+                                    color: #333
+                                }
+
+                                .hljs-attr,
+                                .hljs-selector-attr,
+                                .hljs-selector-class,
+                                .hljs-selector-id,
+                                .hljs-selector-pseudo,
+                                .hljs-title {
+                                    color: #6f42c1
+                                }
+
+                                .hljs-addition {
+                                    color: #55a532;
+                                    background-color: #eaffea
+                                }
+
+                                .hljs-deletion {
+                                    color: #bd2c00;
+                                    background-color: #ffecec
+                                }
+
+                                .hljs-link {
+                                    text-decoration: underline
+                                }
+
+                                .hljs-number {
+                                    color: #005cc5
+                                }
+
+                                .hljs-string {
+                                    color: #032f62
                                 }
                             </style>
                         `
