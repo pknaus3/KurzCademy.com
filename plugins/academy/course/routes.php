@@ -1,20 +1,39 @@
 <?php
 
+use Academy\Course\Models\CheckBox;
 use Academy\Course\Models\Comments;
 use Academy\Course\Models\FavoriteCourses;
 use Illuminate\Http\Request;
 use October\Rain\Auth\Models\User;
 use Academy\Course\Models\Course;
 use Academy\Course\Models\Step;
+use RainLab\User\Facades\Auth;
 
-Route::post('/check', function ($req) {
+Route::post('api/check', function ($req) {
     $data = $req->input();
 
     $check = new CheckBox();
-    $check->user = User::getAuth()->id;
+    $check->user = Auth::getAuth()->id;
     $check->step_id = $data['step_id'];
-    $check->is_checked = $data['is_checked'];
+    $check->is_checked = 1;
     $check->save();
+});
+
+Route::delete('api/uncheck/{id}', function ($checkboxID) {
+    $checkbox = CheckBox::find($checkboxID);
+    $user = Auth::getUser();
+    if ($user->id == $checkbox->user_id) {
+        $checkbox->delete();
+    }
+});
+Route::get('api/getCheck/{id}', function ($checkboxID) {
+    $user = Auth::getUser();
+    $checkbox = CheckBox::findOrFail($checkboxID);
+    if ($checkbox == 1) {
+        if ($user->id == $checkbox->user_id) {
+            return 1;
+        }
+    }
 });
 
 Route::get('api/courses/{max}', function ($max) {
@@ -23,7 +42,7 @@ Route::get('api/courses/{max}', function ($max) {
     } else {
         $courses = Course::take($max)->get();
     }
-    
+
     foreach ($courses as $course) {
         if (isset($course->courseThumb)) {
             $course->thumbPath = $course->courseThumb->getPath();
