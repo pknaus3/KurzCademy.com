@@ -222,6 +222,12 @@
 	import hljs from "highlight.js"
 	import { userData } from '../user'
 
+	let boostrapCSS = ""
+
+	window.addEventListener("load", () => {
+		boostrapCSS = (document.querySelector(`head > style[type="text/css"]`) as HTMLStyleElement).innerText
+	})
+
 	@Component
 	export default class StepView extends Vue {
 		@vueProp.Prop({ type: String, required: true })
@@ -263,7 +269,7 @@
 						let customTextIframe = this.$refs.customTextIframe as HTMLIFrameElement
 						let code = this.step.custom_text
 						customTextIframe.contentDocument!.body.innerHTML = code + `
-                            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+                            <style>${boostrapCSS}</style>
                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/github-gist.min.css">
                             <style>
                                 body {
