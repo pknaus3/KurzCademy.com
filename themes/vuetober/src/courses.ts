@@ -63,7 +63,7 @@ export async function getAllCourses(max: number = -1) {
 
 export async function getCourseFavourite(courseId: string) {
     if (userData.user == null) throw new Error("Tryed to get favourite state of a course with no user")
-    return (await axios.get<number>(`/api/favoritesCourses/${userData.user.id}/${courseId}`)).data == 1
+    return (await axios.get<number>(`/api/favoritesCourses/${courseId}`)).data == 1
 }
 
 export async function setCourseFavourite(courseId: string, value: boolean) {
@@ -72,18 +72,17 @@ export async function setCourseFavourite(courseId: string, value: boolean) {
     if (oldValue != value) {
         if (value == true) {
             await axios.post(`/api/addFavorite`, {
-                course_id: courseId,
-                user_id: userData.user.id
+                course_id: courseId
             })
         } else {
-            await axios.delete(`/api/deleteFavorite/${userData.user.id}/${courseId}`)
+            await axios.delete(`/api/deleteFavorite/${courseId}`)
         }
     }
 }
 
 export async function getAllFavouritedCourses() {
     if (userData.user == null) throw new Error("Tryed to get favourite courses with no user")
-    return (await axios.get<ICourse[]>(`api/favoritesCourses/${userData.user.id}`)).data
+    return (await axios.get<ICourse[]>(`/api/favoritesCourses`)).data
 }
 
 export async function createComment(courseId: string, content: string) {
@@ -91,7 +90,6 @@ export async function createComment(courseId: string, content: string) {
     await axios.post(`/api/comment`, {
         comment: content,
         course_id: courseId,
-        user_id: userData.user.id
     } as IComment)
 }
 
