@@ -16,11 +16,24 @@
 				<div class="viewer-steps">
 					<div class="viewer-step" v-for="(step, index) in steps" :key="step.id">
 						<button
-							v-text="(index + 1) + '. ' + step.step_name"
 							@click="selectStep(step)"
 							class="viewer-step-name"
-							:disabled="step.id.toString() == currStep"
-						></button>
+							:data-active="step.id.toString() == currStep"
+						>
+							<div data-v-5f358b1a class="custom-control custom-checkbox">
+								<input
+									type="checkbox"
+									autocomplete="off"
+									class="custom-control-input"
+									value="true"
+									:id="`C_${index}`"
+									v-model="stepsChecked[index]"
+									@change.capture.stop.prevent="setStepChecked(step, stepsChecked[index])"
+								/>
+								<label class="custom-control-label" :for="`C_${index}`"></label>
+							</div>
+							<span>{{ step.step_name }}</span>
+						</button>
 					</div>
 				</div>
 				<div class="viewer-main">
@@ -108,7 +121,7 @@
 		color: #5f5b78;
 	}
 
-	.viewer-step > :disabled {
+	.viewer-step > [data-active="true"] {
 		opacity: 0.5;
 	}
 
@@ -117,7 +130,11 @@
 		text-align: left;
 	}
 
-	.viewer-step-name:disabled {
+	.viewer-step-name > div {
+		display: inline-block;
+	}
+
+	.viewer-step-name[data-active="true"] {
 		opacity: 1;
 		background-color: #e9e4ff;
 		border-color: #575eed;
@@ -170,7 +187,7 @@
 	import Vue from 'vue'
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
-	import { ICourse, IStep, getCourseById, getCourseStepsById, getCourseFavourite, setCourseFavourite } from '../courses'
+	import { ICourse, IStep, getCourseById, getCourseStepsById, getCourseFavourite, setCourseFavourite, getStepChecked, setStepChecked } from '../courses'
 	import { userData } from '../user'
 
 	@Component
@@ -179,6 +196,7 @@
 		readonly id!: string
 		course = null as ICourse | null
 		steps = [] as IStep[]
+		stepsChecked = [] as boolean[]
 		isCourseFavourited = false
 		userData = userData
 
@@ -218,6 +236,7 @@
 
 
 		set currStep(stepId: string | null) {
+			if (stepId == this.$route.params.stepId) return
 			if (stepId != null) this.$router.push({ name: "Step", params: { stepId: stepId } })
 			else this.$router.push({ name: "Course", params: { id: this.id } })
 		}
@@ -233,6 +252,18 @@
 		@vueProp.Watch("isCourseFavourited")
 		async onFavouriteChanged() {
 			await setCourseFavourite(this.id, this.isCourseFavourited)
+		}
+
+		@vueProp.Watch("steps")
+		onStepsChanged() {
+			this.stepsChecked = Array(this.steps.length).fill(false)
+			this.steps.forEach(async (v, i) => {
+				this.stepsChecked[i] = await getStepChecked(v.id.toString())
+			})
+		}
+
+		setStepChecked(step: IStep, checked: boolean) {
+			setStepChecked(step.id.toString(), checked)
 		}
 	}
 </script>

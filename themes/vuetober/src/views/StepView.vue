@@ -238,15 +238,6 @@
 		waitingComment = false
 		userData = userData
 
-		get commentsShown() {
-			return this.$route.name == "StepComments"
-		}
-
-		set commentsShown(value: boolean) {
-			if (value == true) this.$router.push({ params: this.$route.params, name: "StepComments" })
-			else this.$router.push({ params: this.$route.params, name: "Step" })
-		}
-
 		mounted() {
 			this.reloadStep()
 			this.intervalId = setInterval(() => {
@@ -341,14 +332,6 @@
 		onStepIdChanged() {
 			this.step = null
 			this.reloadStep()
-			this.commentsShown = false
-		}
-
-		@vueProp.Watch("commentsShown")
-		onCommentsShownChanged() {
-			if (!this.commentsShown) {
-				this.commentContent = ""
-			}
 		}
 
 		sendComment() {
