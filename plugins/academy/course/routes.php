@@ -75,7 +75,7 @@ Route::post('/api/comment', function (Request $req) {
     $comment = new Comments();
     $comment->comment = $data['comment'];
     $comment->course_id = $data['course_id'];
-    $comment->user_id = $data['user_id'];
+    $comment->user_id = Auth::getUser()->id;
     $comment->save();
 });
 
@@ -97,12 +97,13 @@ Route::post('/api/addFavorite', function (Request $req) {
 
     $favCourse = new FavoriteCourses();
     $favCourse->course_id = $data['course_id'];
-    $favCourse->user_id = $data['user_id'];
+    $favCourse->user_id = Auth::getUser()->id;
     $favCourse->save();
 });
 
-Route::get('api/favoritesCourses/{userId}/{courseId}', function ($userId, $courseId) {
-    $favCourses = FavoriteCourses::where('user_id', $userId)->where('course_id', $courseId)->count();
+Route::get('api/favoritesCourses/{courseId}', function ($courseId) {
+    $user = Auth::getUser();
+    $favCourses = FavoriteCourses::where('user_id', $user->id)->where('course_id', $courseId)->count();
     if ($favCourses == 1) {
         return 1;
     } else {
@@ -110,17 +111,22 @@ Route::get('api/favoritesCourses/{userId}/{courseId}', function ($userId, $cours
     }
 });
 
-Route::delete('api/deleteFavorite/{userId}/{courseId}', function ($userId, $courseId) {
-    $favCourses = FavoriteCourses::where('user_id', $userId)->where('course_id', $courseId)->delete();
+Route::delete('api/deleteFavorite/{courseId}', function ($courseId) {
+    $user = Auth::getUser();
+    $favCourses = FavoriteCourses::where('user_id', $user->id)->where('course_id', $courseId)->delete();
 });
 
 Route::delete('api/deleteComment/{id}', function ($commentId) {
     $comment = Comments::find($commentId);
-    $comment->delete();
+    $user = Auth::getUser();
+    if ($user->id == $comment->user_id) {
+        $comment->delete();
+    }
 });
 
-Route::get('api/favoritesCourses/{id}', function ($userId) {
-    $favCourses = FavoriteCourses::where('user_id', $userId)->get();
+Route::get('api/favoritesCourses', function () {
+    $user = Auth::getUser();
+    $favCourses = FavoriteCourses::where('user_id', $user->id)->get();
     $courseModels = [];
     foreach ($favCourses as $key => $favCourse) {
         $course = Course::findOrFail($favCourse->course_id);
