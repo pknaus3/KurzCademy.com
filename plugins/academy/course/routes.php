@@ -1,13 +1,15 @@
 <?php
 
+use Academy\Course\Models\Course;
+use Academy\Course\Models\Step;
 use Academy\Course\Models\CheckBox;
 use Academy\Course\Models\Comments;
 use Academy\Course\Models\FavoriteCourses;
-use Illuminate\Http\Request;
-use October\Rain\Auth\Models\User;
-use Academy\Course\Models\Course;
-use Academy\Course\Models\Step;
+
 use RainLab\User\Facades\Auth;
+use RainLab\User\Models\User;
+
+use Illuminate\Http\Request;
 
 Route::post('api/check', function ($req) {
     $data = $req->input();
@@ -73,15 +75,17 @@ Route::get('api/step/{id}', function ($stepId) {
 Route::post('/api/comment', function (Request $req) {
     $data = $req->input();
     $user = Auth::getUser();
-    $comment = new Comments();
-    $comment->comment = $data['comment'];
-    $comment->course_id = $data['course_id'];
-    $comment->user_id = $user->id;
-    $comment->save();
+    if (Auth::check() == 1) {
+        $comment = new Comments();
+        $comment->comment = $data['comment'];
+        $comment->course_id = $data['course_id'];
+        $comment->user_id = $user->id;
+        $comment->save();
+    }
 });
 
-Route::get('api/comments/{id}', function ($courseId) {
-    $comments = Comments::where('course_id', $courseId)->get();
+Route::get('api/comments/{id}', function () {
+    $comments = Comments::all();
     foreach ($comments as $key => $comment) {
         $user = User::find($comment->user_id);
         $user = Auth::findUserByLogin($user->email);
@@ -95,18 +99,23 @@ Route::get('api/comments/{id}', function ($courseId) {
 
 Route::post('/api/addFavorite', function (Request $req) {
     $data = $req->input();
-
-    $favCourse = new FavoriteCourses();
-    $favCourse->course_id = $data['course_id'];
-    $favCourse->user_id = Auth::getUser()->id;
-    $favCourse->save();
+    if (Auth::check() == 1) {
+        $favCourse = new FavoriteCourses();
+        $favCourse->course_id = $data['course_id'];
+        $favCourse->user_id = Auth::getUser()->id;
+        $favCourse->save();
+    }
 });
 
 Route::get('api/favoritesCourses/{courseId}', function ($courseId) {
     $user = Auth::getUser();
-    $favCourses = FavoriteCourses::where('user_id', $user->id)->where('course_id', $courseId)->count();
-    if ($favCourses == 1) {
-        return 1;
+    if (Auth::check() == 1) {
+        $favCourses = FavoriteCourses::where('user_id', $user->id)->where('course_id', $courseId)->count();
+        if ($favCourses == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
     } else {
         return 0;
     }
@@ -114,7 +123,9 @@ Route::get('api/favoritesCourses/{courseId}', function ($courseId) {
 
 Route::delete('api/deleteFavorite/{courseId}', function ($courseId) {
     $user = Auth::getUser();
-    $favCourses = FavoriteCourses::where('user_id', $user->id)->where('course_id', $courseId)->delete();
+    if (Auth::check() == 1) {
+        $favCourses = FavoriteCourses::where('user_id', $user->id)->where('course_id', $courseId)->delete();
+    }
 });
 
 Route::delete('api/deleteComment/{id}', function ($commentId) {
@@ -127,15 +138,21 @@ Route::delete('api/deleteComment/{id}', function ($commentId) {
 
 Route::get('api/favoritesCourses', function () {
     $user = Auth::getUser();
-    $favCourses = FavoriteCourses::where('user_id', $user->id)->get();
-    $courseModels = [];
-    foreach ($favCourses as $key => $favCourse) {
-        $course = Course::findOrFail($favCourse->course_id);
-        $course->thumbPath = $course->courseThumb->getPath();
-        array_push($courseModels, $course);
+    if (Auth::check() == 1) {
+        $favCourses = FavoriteCourses::where('user_id', $user->id)->get();
+        $courseModels = [];
+        foreach ($favCourses as $key => $favCourse) {
+            $course = Course::findOrFail($favCourse->course_id);
+            $course->thumbPath = $course->courseThumb->getPath();
+            array_push($courseModels, $course);
+        }
+        return $courseModels;
+    } else {
+        return 0;
     }
-    return $courseModels;
 });
+
+
 
    /*
     Route::post('api/check', function ($req) - step_id
@@ -152,4 +169,3 @@ Route::get('api/favoritesCourses', function () {
     Route::delete('api/deleteComment/{id}', function ($commentId) - comment id
     Route::get('api/favoritesCourses', function () - NIC
    */
-
