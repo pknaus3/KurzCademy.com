@@ -102,3 +102,12 @@ export async function deleteComment(commentId: string) {
 export async function getAllStepComments(stepId: string) {
     return (await axios.get<IComment[]>(`/api/comments/${stepId}`)).data.map(v => ({ ...v, isOwner: userData.user != null && v.user.id == userData.user.id }))
 }
+
+export async function getStepChecked(stepId: string) {
+    return false
+}
+
+export async function setStepChecked(stepId: string, checked: boolean) {
+    console.log("Changes step checked", stepId, checked)
+    return
+}
