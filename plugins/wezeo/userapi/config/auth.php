@@ -1,4 +1,5 @@
 <?php
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -11,8 +12,8 @@ return [
     |
     */
     'defaults' => [
-        'guard' => env('AUTH_DEFAULT_GUARD', 'web'),
-        'passwords' => env('AUTH_DEFAULT_PASSWORDS', 'users'),
+        'guard' => 'web',
+        'passwords' => 'users',
     ],
     /*
     |--------------------------------------------------------------------------
@@ -32,12 +33,12 @@ return [
     */
     'guards' => [
         'web' => [
-            'driver' => env('AUTH_GUARDS_WEB_DRIVER', 'session'),
-            'provider' => env('AUTH_GUARDS_WEB_PROVIDER', 'users'),
+            'driver' => 'session',
+            'provider' => 'users',
         ],
         'api' => [
-            'driver' => env('AUTH_GUARDS_API_DRIVER', 'token'),
-            'provider' => env('AUTH_GUARDS_API_PROVIDER', 'users'),
+            'driver' => 'token',
+            'provider' => 'users',
         ],
     ],
     /*
@@ -58,8 +59,8 @@ return [
     */
     'providers' => [
         'users' => [
-            'driver' => env('AUTH_PROVIDERS_USERS_DRIVER', 'eloquent'),
-            'model' => env('AUTH_PROVIDERS_USERS_MODEL', '\RainLab\User\Models\User'),
+            'driver' => 'eloquent',
+            'model' => Wezeo\UserApi\Models\User::class,
         ],
     ],
     /*
@@ -82,10 +83,10 @@ return [
     */
     'passwords' => [
         'users' => [
-            'provider' => env('AUTH_PASSWORDS_USERS_PROVIDER', 'users'),
-            'email' => env('AUTH_PASSWORDS_USERS_EMAIL', 'auth.emails.password'),
-            'table' => env('AUTH_PASSWORDS_USERS_TABLE', 'password_resets'),
-            'expire' => env('AUTH_PASSWORDS_USERS_EXPIRE', 60),
+            'provider' => 'users',
+            'email' => 'auth.emails.password',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 ];
