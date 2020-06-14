@@ -28,7 +28,7 @@
 									value="true"
 									:id="`C_${index}`"
 									v-model="stepsChecked[index]"
-									@change.capture.stop.prevent="setStepChecked(step, stepsChecked[index])"
+									@change.capture.stop.prevent="setStepChecked(step, $event.target.checked)"
 								/>
 								<label class="custom-control-label" :for="`C_${index}`"></label>
 							</div>
