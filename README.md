@@ -5,11 +5,11 @@
 > Všetky dalšie kroky treba spraviť vo wsl
 2. Rozbehať composer
 ```
-composer update
+composer install
 ```
 3. Rozbehať october
 ```
-php artisan october up
+php artisan october:install
 ```
 4. Buildnúť Vue aplikáciu
 ```

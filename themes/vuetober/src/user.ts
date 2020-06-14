@@ -1,6 +1,6 @@
 import Vue from "vue"
-import axios from "axios"
-import router from './router'
+import axios, { AxiosRequestConfig } from "axios"
+import router, { reevaluteRouteGuard } from './router'
 
 export interface IUserData {
     password_confirmation?: string
@@ -16,19 +16,88 @@ export interface IAvatar {
     path: string
 }
 
+export interface IAuthAPIResponse {
+    response: {
+        user: IUserData,
+        token: string
+    }
+}
+
+const LOCAL_STORAGE_JWT_TOKEN_ITEM_NAME = "jwt_token"
+
 export const userData = Vue.observable({
-    user: null as null | IUserData
+    user: null as null | IUserData,
+    token: localStorage.getItem(LOCAL_STORAGE_JWT_TOKEN_ITEM_NAME) as string | null
 })
 
 export async function loadUserData() {
-    try {
-        let userResponse = await axios.get<IUserData>(`/api/rainlab/user/account`)
-        userData.user = userResponse.data
-        console.log("Logged in", userData.user)
-    } catch (err) {
-        console.log("Not logged in", err.response.data, err)
-        userData.user = null
+    if (userData.token) {
+        setUserData((await axios.get<IAuthAPIResponse>(`/api/v1/auth/info`, createAuthHeaders())).data.response.user)
     }
+
+
+}
+
+export function createAuthHeaders() {
+    if (userData.token == null) throw new Error("Tryied to create auth headers with no token saved")
+    return {
+        headers: {
+            Authorization: `Bearer ${userData.token}`
+        }
+    } as AxiosRequestConfig
+}
+
+export async function updateUserData(fullName: string, email: string, newPassword: string | null = null) {
+    if (userData.user == null) throw new Error("Cannot update user data with no user logged in")
+
+    let newUser = { ...userData.user }
+    newUser.name = fullName
+    newUser.email = email
+    if (newPassword != null) newUser.password_confirmation = newUser.password = newPassword
+
+    let response = await axios.post<IAuthAPIResponse>(`/api/v1/auth/info`, newUser, createAuthHeaders())
+    setUserData(response.data.response.user)
+    console.log("Update user data", response.data.response.user)
+}
+
+export async function registerUser(fullName: string, email: string, password: string) {
+    let response = await axios.post<IAuthAPIResponse>(`/api/v1/auth/signup`, {
+        password,
+        password_confirmation: password,
+        email,
+        name: fullName
+    })
+    console.log("Registered user", response.data)
+    setUserData(response.data.response.user)
+    setToken(response.data.response.token)
+}
+
+export async function updateUserAvatar(avatar: File) {
+    throw new Error("Updating user avatar not implemented yet")
+}
+
+export async function deleteAvatar() {
+    throw new Error("Deleting user avatar not implemented yet")
+}
+
+export async function logout() {
+    setUserData(null)
+    setToken(null)
+
+    reevaluteRouteGuard()
+}
+
+export async function login(login: string, password: string) {
+    let response = await axios.post<IAuthAPIResponse>(`/api/v1/auth/login`, {
+        login: login,
+        password: password
+    })
+    setUserData(response.data.response.user)
+    setToken(response.data.response.token)
+}
+
+function setUserData(user: IUserData | null) {
+    userData.user = user
 
     if (userData.user) {
         if (userData.user.avatar == null) {
@@ -37,52 +106,8 @@ export async function loadUserData() {
     }
 }
 
-export async function updateUserData(fullName: string, email: string, newPassword: string | null = null) {
-    if (userData.user == null) throw new Error("Cannot update user data with no user logged in")
-    
-    userData.user.name = fullName
-    userData.user.email = email
-    if (newPassword != null) userData.user.password_confirmation = userData.user.password = newPassword
-    
-    let response = await axios.post<IUserData>(`/api/rainlab/user/account`, userData.user)
-    console.log("Update user data", response.data)
+function setToken(token: string | null) {
+    userData.token = token
+    if (token != null) localStorage.setItem(LOCAL_STORAGE_JWT_TOKEN_ITEM_NAME, token)
+    else localStorage.removeItem(LOCAL_STORAGE_JWT_TOKEN_ITEM_NAME)
 }
-
-export async function registerUser(fullName: string, email: string, password: string) {
-    let response = await axios.post<IUserData>(`/api/rainlab/user/users`, {
-        password,
-        password_confirmation: password,
-        email,
-        name: fullName
-    })
-    console.log("Registered user", response.data)
-    await loadUserData()
-}
-
-export async function updateUserAvatar(avatar: File) {
-    if (userData.user == null) throw new Error("Cannot update user avatar with no user logged in")
-    
-    let formData = new FormData()
-    formData.append("avatar", avatar)
-    
-    await axios.post("/api/rainlab/user/account", formData)
-    await loadUserData()
-}
-
-export async function deleteAvatar() {
-    if (userData.user == null) throw new Error("Cannot delete user avatar with no user logged in")
-    
-    await axios.delete(`/api/rainlab/user/account/avatar`)
-    await loadUserData()
-}
-
-export async function logout() {
-    await axios.get(`/api/rainlab/user/auth/logout`)
-    await loadUserData()
-    router.push("/")
-}
-
-export async function login(login: string, password: string) {
-    await axios.post(`/api/rainlab/user/auth/login`, { login, password })
-    await loadUserData()
-} 

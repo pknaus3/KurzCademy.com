@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios"
-import { userData, IUserData } from './user'
+import { userData, IUserData, createAuthHeaders } from './user'
 
 export interface ICourse {
     id: number
@@ -63,7 +63,7 @@ export async function getAllCourses(max: number = -1) {
 
 export async function getCourseFavourite(courseId: string) {
     if (userData.user == null) throw new Error("Tryed to get favourite state of a course with no user")
-    return (await axios.get<number>(`/api/favoritesCourses/${courseId}`)).data == 1
+    return (await axios.get<number>(`/api/favoritesCourses/${courseId}`), createAuthHeaders()).data == 1
 }
 
 export async function setCourseFavourite(courseId: string, value: boolean) {
@@ -73,16 +73,16 @@ export async function setCourseFavourite(courseId: string, value: boolean) {
         if (value == true) {
             await axios.post(`/api/addFavorite`, {
                 course_id: courseId
-            })
+            }, createAuthHeaders())
         } else {
-            await axios.delete(`/api/deleteFavorite/${courseId}`)
+            await axios.delete(`/api/deleteFavorite/${courseId}`, createAuthHeaders())
         }
     }
 }
 
 export async function getAllFavouritedCourses() {
     if (userData.user == null) throw new Error("Tryed to get favourite courses with no user")
-    return (await axios.get<ICourse[]>(`/api/favoritesCourses`)).data
+    return (await axios.get<ICourse[]>(`/api/favoritesCourses`), createAuthHeaders()).data
 }
 
 export async function createComment(courseId: string, content: string) {
@@ -90,11 +90,11 @@ export async function createComment(courseId: string, content: string) {
     await axios.post(`/api/comment`, {
         comment: content,
         course_id: courseId,
-    } as IComment)
+    } as IComment, createAuthHeaders())
 }
 
 export async function deleteComment(commentId: string) {
-    await axios.delete(`/api/deleteComment/${commentId}`)
+    await axios.delete(`/api/deleteComment/${commentId}`, createAuthHeaders())
 }
 
 export async function getAllStepComments(stepId: string) {
@@ -102,10 +102,17 @@ export async function getAllStepComments(stepId: string) {
 }
 
 export async function getStepChecked(stepId: string) {
-    return false
+    return (await axios.get<number | null>(`/api/getCheck/${stepId}`, createAuthHeaders())).data == 1
 }
 
 export async function setStepChecked(stepId: string, checked: boolean) {
-    console.log("Changes step checked", stepId, checked)
-    return
+    if (checked != await getStepChecked(stepId)) {
+        if (checked) {
+            await axios.post(`/api/check`, {
+                step_id: stepId
+            }, createAuthHeaders())
+        } else {
+            await axios.delete(`/api/uncheck/${stepId}`, createAuthHeaders())
+        }
+    }
 }
