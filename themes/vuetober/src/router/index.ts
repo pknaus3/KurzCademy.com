@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
+import VueRouter, { RouteConfig, NavigationGuard } from 'vue-router'
 import Home from '../views/Home.vue'
 import { userData } from '@/user'
 
@@ -80,12 +80,22 @@ const router = new VueRouter({
     routes
 })
 
-router.beforeEach((to, from, next) => {
+const routeGuard = ((to, from, next) => {
     if (to.meta.authReq && userData.user == null) {
         next(`/login?redirect=${to.fullPath}`)
     } else {
         next()
     }
-})
+}) as NavigationGuard<Vue>
+
+router.beforeEach(routeGuard)
+
+export function reevaluteRouteGuard() {
+    routeGuard(router.currentRoute, router.currentRoute, (path) => {
+        if (path != null) {
+            router.push(path as string)
+        }
+    })
+}
 
 export default router
