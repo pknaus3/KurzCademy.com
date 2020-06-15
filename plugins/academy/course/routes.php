@@ -36,7 +36,7 @@ Route::post('api/getCheck/', function (Request $checkboxID) {
 
     $user = JWTAuth::parseToken()->authenticate();
     $checkbox = CheckBox::find($data['checkbox_id']);
-    if ($checkbox == 1) {
+    if (isset($checkbox) == 1) {
         if ($user->id == $checkbox->user_id) {
             return 1;
         } else {
@@ -45,7 +45,6 @@ Route::post('api/getCheck/', function (Request $checkboxID) {
     } else {
         return 0;
     }
-
 });
 
 Route::get('api/courses/{max}', function ($max) {
