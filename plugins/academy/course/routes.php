@@ -10,6 +10,7 @@ use RainLab\User\Facades\Auth;
 use RainLab\User\Models\User;
 
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 Route::post('api/check', function ($req) {
     $data = $req->input();
@@ -74,8 +75,8 @@ Route::get('api/step/{id}', function ($stepId) {
 
 Route::post('/api/comment', function (Request $req) {
     $data = $req->input();
-    $user = Auth::getUser();
-    if (Auth::check() == 1) {
+    $user = JWTAuth::parseToken()->authenticate();
+    if ($user != null) {
         $comment = new Comments();
         $comment->comment = $data['comment'];
         $comment->course_id = $data['course_id'];
@@ -99,17 +100,18 @@ Route::get('api/comments/{id}', function () {
 
 Route::post('/api/addFavorite', function (Request $req) {
     $data = $req->input();
-    if (Auth::check() == 1) {
+    $user = JWTAuth::parseToken()->authenticate();
+    if ($user != null) {
         $favCourse = new FavoriteCourses();
         $favCourse->course_id = $data['course_id'];
-        $favCourse->user_id = Auth::getUser()->id;
+        $favCourse->user_id = $user->id();
         $favCourse->save();
     }
 });
 
 Route::get('api/favoritesCourses/{courseId}', function ($courseId) {
-    $user = Auth::getUser();
-    if (Auth::check() == 1) {
+    $user = JWTAuth::parseToken()->authenticate();
+    if ($user != null) {
         $favCourses = FavoriteCourses::where('user_id', $user->id)->where('course_id', $courseId)->count();
         if ($favCourses == 1) {
             return 1;
@@ -122,23 +124,23 @@ Route::get('api/favoritesCourses/{courseId}', function ($courseId) {
 });
 
 Route::delete('api/deleteFavorite/{courseId}', function ($courseId) {
-    $user = Auth::getUser();
-    if (Auth::check() == 1) {
+    $user = JWTAuth::parseToken()->authenticate();
+    if ($user != null) {
         $favCourses = FavoriteCourses::where('user_id', $user->id)->where('course_id', $courseId)->delete();
     }
 });
 
 Route::delete('api/deleteComment/{id}', function ($commentId) {
     $comment = Comments::find($commentId);
-    $user = Auth::getUser();
+    $user = JWTAuth::parseToken()->authenticate();
     if ($user->id == $comment->user_id) {
         $comment->delete();
     }
 });
 
 Route::get('api/favoritesCourses', function () {
-    $user = Auth::getUser();
-    if (Auth::check() == 1) {
+    $user = JWTAuth::parseToken()->authenticate();
+    if ($user != null) {
         $favCourses = FavoriteCourses::where('user_id', $user->id)->get();
         $courseModels = [];
         foreach ($favCourses as $key => $favCourse) {
