@@ -258,7 +258,7 @@
 		onStepsChanged() {
 			this.stepsChecked = Array(this.steps.length).fill(false)
 			this.steps.forEach(async (v, i) => {
-				this.stepsChecked[i] = await getStepChecked(v.id.toString())
+				Vue.set(this.stepsChecked, i, await getStepChecked(v.id.toString()))
 			})
 		}
 
