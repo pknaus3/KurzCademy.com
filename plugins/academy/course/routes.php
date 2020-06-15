@@ -31,16 +31,14 @@ Route::delete('api/uncheck/{id}', function ($checkboxID) {
     }
 });
 
-Route::post('api/getCheck/', function (Request $checkboxID) {
-    $data = $checkboxID->input();
+Route::post('api/getCheck/', function (Request $stepId) {
+    $data = $stepId->input();
 
     $user = JWTAuth::parseToken()->authenticate();
-    $checkbox = CheckBox::find($data['checkbox_id']);
+    $checkbox = CheckBox::where('step_id',$data['step_id'])->where('user_id',$user->id)->first();
     if (isset($checkbox) == 1) {
-        if ($user->id == $checkbox->user_id) {
+        if ($user->id == $checkbox->user_id && $checkbox->is_checked == 1) {
             return 1;
-        } else {
-            return 0;
         }
     } else {
         return 0;

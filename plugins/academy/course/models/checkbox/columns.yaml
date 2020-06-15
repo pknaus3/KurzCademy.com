@@ -6,3 +6,14 @@ columns:
     id:
         label: ID
         searchable: true
+    user:
+        label: Pužívaťeľ
+        searchable: true
+        relation: user
+        select: name
+    step:
+        label: krok_id
+        relation: step
+        searchable: true
+        select: step_name
+
