@@ -1,5 +1,5 @@
 import Vue from "vue"
-import axios, { AxiosRequestConfig } from "axios"
+import axios, { AxiosRequestConfig, AxiosError } from "axios"
 import router, { reevaluteRouteGuard } from './router'
 
 export interface IUserData {
@@ -32,7 +32,17 @@ export const userData = Vue.observable({
 
 export async function loadUserData() {
     if (userData.token) {
-        setUserData((await axios.get<IAuthAPIResponse>(`/api/v1/auth/info`, createAuthHeaders())).data.response.user)
+        try {
+            setUserData((await axios.get<IAuthAPIResponse>(`/api/v1/auth/info`, createAuthHeaders())).data.response.user)
+        } catch {
+            try {
+                setToken((await axios.post<IAuthAPIResponse>(`/api/v1/auth/refresh`, {}, createAuthHeaders())).data.response.token)
+                setUserData((await axios.get<IAuthAPIResponse>(`/api/v1/auth/info`, createAuthHeaders())).data.response.user)
+            } catch {
+                setUserData(null)
+                setToken(null)
+            }
+        }
     }
 
 
