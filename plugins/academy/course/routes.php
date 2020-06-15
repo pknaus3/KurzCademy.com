@@ -12,8 +12,9 @@ use RainLab\User\Models\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-Route::post('api/check', function ($req) {
+Route::post('api/check', function (Request $req) {
     $data = $req->input();
+
     $user = JWTAuth::parseToken()->authenticate();
     $check = new CheckBox();
     $check->user = $user->id;
@@ -30,14 +31,21 @@ Route::delete('api/uncheck/{id}', function ($checkboxID) {
     }
 });
 
-Route::get('api/getCheck/{id}', function ($checkboxID) {
+Route::post('api/getCheck/', function (Request $checkboxID) {
+    $data = $checkboxID->input();
+
     $user = JWTAuth::parseToken()->authenticate();
-    $checkbox = CheckBox::findOrFail($checkboxID);
+    $checkbox = CheckBox::find($data['checkbox_id']);
     if ($checkbox == 1) {
         if ($user->id == $checkbox->user_id) {
             return 1;
+        } else {
+            return 0;
         }
+    } else {
+        return 0;
     }
+
 });
 
 Route::get('api/courses/{max}', function ($max) {
