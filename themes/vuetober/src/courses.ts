@@ -102,7 +102,7 @@ export async function getAllStepComments(stepId: string) {
 }
 
 export async function getStepChecked(stepId: string) {
-    return (await axios.post<number | null>(`/api/getCheck/`, { checkbox_id: stepId }, createAuthHeaders())).data == 1
+    return (await axios.post<number | null>(`/api/getCheck/`, { step_id: stepId }, createAuthHeaders())).data == 1
 }
 
 export async function setStepChecked(stepId: string, checked: boolean) {
