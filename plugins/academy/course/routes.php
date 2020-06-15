@@ -23,9 +23,10 @@ Route::post('api/check', function (Request $req) {
     $check->save();
 });
 
-Route::delete('api/uncheck/{id}', function ($checkboxID) {
-    $checkbox = CheckBox::find($checkboxID);
+Route::post('api/uncheck/', function (Request $stepId) {
+    $data = $stepId->input();
     $user = JWTAuth::parseToken()->authenticate();
+    $checkbox = CheckBox::where('step_id', $data['step_id'])->where('user_id', $user->id)->first();
     if ($user->id == $checkbox->user_id) {
         $checkbox->delete();
     }
@@ -35,7 +36,7 @@ Route::post('api/getCheck/', function (Request $stepId) {
     $data = $stepId->input();
 
     $user = JWTAuth::parseToken()->authenticate();
-    $checkbox = CheckBox::where('step_id',$data['step_id'])->where('user_id',$user->id)->first();
+    $checkbox = CheckBox::where('step_id', $data['step_id'])->where('user_id', $user->id)->first();
     if (isset($checkbox) == 1) {
         if ($user->id == $checkbox->user_id && $checkbox->is_checked == 1) {
             return 1;
@@ -150,7 +151,9 @@ Route::get('api/favoritesCourses', function () {
         $courseModels = [];
         foreach ($favCourses as $key => $favCourse) {
             $course = Course::findOrFail($favCourse->course_id);
-            $course->thumbPath = $course->courseThumb->getPath();
+            if ($course->courseThumb){
+                $course->thumbPath = $course->courseThumb->getPath();
+            }
             array_push($courseModels, $course);
         }
         return $courseModels;
@@ -162,17 +165,17 @@ Route::get('api/favoritesCourses', function () {
 
 
    /*
-    Route::post('api/check', function ($req) - step_id
-    Route::delete('api/uncheck/{id}', function ($checkboxID) - checkboxID
-    Route::get('api/getCheck/{id}', function ($checkboxID) - checkboxID
-    Route::get('api/course/{id}', function ($courseId) - Course ID
-    Route::get('api/steps/{id}', function ($courseId) - Course ID
-    Route::get('api/step/{id}', function ($stepId) - step ID
-    Route::post('/api/comment', function (Request $req) - comment, course ID
-    Route::get('api/comments/{id}', function ($courseId) - Course ID
-    Route::post('/api/addFavorite', function (Request $req) - course id
-    Route::get('api/favoritesCourses/{courseId}', function ($courseId) - course id
-    Route::delete('api/deleteFavorite/{courseId}', function ($courseId) - course id
-    Route::delete('api/deleteComment/{id}', function ($commentId) - comment id
-    Route::get('api/favoritesCourses', function () - NIC
+    Route::post('api/check', function ($req) - step_id - ✔
+    Route::delete('api/uncheck/', function ($checkboxID) - stepID - ✔
+    Route::get('api/getCheck/', function ($checkboxID) - stepID - ✔
+    Route::get('api/course/{id}', function ($courseId) - Course ID - ✔
+    Route::get('api/steps/{id}', function ($courseId) - Course ID - ✔
+    Route::get('api/step/{id}', function ($stepId) - step ID - ✔
+    Route::post('/api/comment', function (Request $req) - comment, course ID - ✔
+    Route::get('api/comments/{id}', function ($courseId) - Course ID - ✔
+    Route::post('/api/addFavorite', function (Request $req) - course id - ✔
+    Route::get('api/favoritesCourses/{courseId}', function ($courseId) - course id - ✔
+    Route::delete('api/deleteFavorite/{courseId}', function ($courseId) - course id - ✔
+    Route::delete('api/deleteComment/{id}', function ($commentId) - comment id - ✔
+    Route::get('api/favoritesCourses', function () - NIC - ✔
    */
