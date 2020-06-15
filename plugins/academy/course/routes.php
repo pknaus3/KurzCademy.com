@@ -6,6 +6,7 @@ use Academy\Course\Models\CheckBox;
 use Academy\Course\Models\Comments;
 use Academy\Course\Models\FavoriteCourses;
 
+
 use Academy\Course\Models\Video;
 use RainLab\User\Facades\Auth;
 use RainLab\User\Models\User;
@@ -164,6 +165,7 @@ Route::get('api/favoritesCourses', function () {
 });
 
 Route::post('api/user/avatar', function (Request $avatar){
+    $data = $avatar->input();
     $user = JWTAuth::parseToken()->authenticate();
     if ($user != null){
         $user = User::find($user->id);
@@ -183,6 +185,8 @@ Route::get('api/user/getAvatar', function(){
         $user = User::find($user->id);
         if ($user->avatar == 1){
             return $user->avatar->getPath();
+        } else {
+            return 0;
         }
     }
 });
@@ -191,11 +195,14 @@ Route::post('api/getVideos', function (Request $stepId){
     $data = $stepId->input();
     $videos = Video::where('step_id',$data['step_id'])->all();
 
+
+
     foreach ($videos as $video){
         array_push($videoss, $video);
     }
     return $videoss;
 });
+
 
 
 
