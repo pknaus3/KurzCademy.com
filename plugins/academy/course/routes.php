@@ -170,9 +170,9 @@ Route::post('api/user/avatar', function (Request $avatar){
     if ($user != null){
         $user = User::find($user->id);
         if ($avatar != null){
-            $user->avatar = $avatar->file();
+            $user->avatar = $data->file();
             $user->save();
-        } else {
+        } elseif ($data['avatar'] == null) {
             $user->avatar->delete();
             $user->save();
         }
