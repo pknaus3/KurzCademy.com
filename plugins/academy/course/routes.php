@@ -6,6 +6,7 @@ use Academy\Course\Models\CheckBox;
 use Academy\Course\Models\Comments;
 use Academy\Course\Models\FavoriteCourses;
 
+use Academy\Course\Models\Video;
 use RainLab\User\Facades\Auth;
 use RainLab\User\Models\User;
 
@@ -184,6 +185,16 @@ Route::get('api/user/getAvatar', function(){
             return $user->avatar->getPath();
         }
     }
+});
+
+Route::post('api/getVideos', function (Request $stepId){
+    $data = $stepId->input();
+    $videos = Video::where('step_id',$data['step_id'])->all();
+
+    foreach ($videos as $video){
+        array_push($videoss, $video);
+    }
+    return $videoss;
 });
 
 
