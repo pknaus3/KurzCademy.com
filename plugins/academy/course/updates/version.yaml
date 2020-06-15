@@ -19,3 +19,6 @@
 1.0.6:
     - 'Table for Favorite courses'
     - create_favorite_courses_table.php
+1.0.7:
+    - 'table for videos'
+    - create_videos_table.php

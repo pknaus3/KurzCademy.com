@@ -1,0 +1,21 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    link:
+        label: Link na video
+        disabled: false
+        span: auto
+    user:
+        label: Pouzivatel
+        disabled: false
+        type: relation
+    step:
+        label: krok
+        disable: false
+        type: relation
+        nameFrom: step_name

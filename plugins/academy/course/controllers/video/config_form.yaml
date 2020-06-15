@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Video
+
+# Model Form Field configuration
+form: $/academy/course/models/video/fields.yaml
+
+# Model Class name
+modelClass: Academy\Course\Models\Video
+
+# Default redirect location
+defaultRedirect: academy/course/video
+
+# Create page
+create:
+    title: Create Video
+    redirect: academy/course/video/update/:id
+    redirectClose: academy/course/video
+
+# Update page
+update:
+    title: Edit Video
+    redirect: academy/course/video
+    redirectClose: academy/course/video
+
+# Preview page
+preview:
+    title: Preview Video
