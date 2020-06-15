@@ -82,7 +82,7 @@ export async function setCourseFavourite(courseId: string, value: boolean) {
 
 export async function getAllFavouritedCourses() {
     if (userData.user == null) throw new Error("Tryed to get favourite courses with no user")
-    return (await axios.get<ICourse[]>(`/api/favoritesCourses`), createAuthHeaders()).data
+    return (await axios.get<ICourse[]>(`/api/favoritesCourses`, createAuthHeaders())).data
 }
 
 export async function createComment(courseId: string, content: string) {
