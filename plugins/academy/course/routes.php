@@ -177,6 +177,16 @@ Route::post('api/user/avatar', function (Request $avatar){
     }
 });
 
+Route::get('api/user/getAvatar', function(){
+    $user = JWTAuth::parseToken()->authenticate();
+    if ($user != null){
+        $user = User::find($user->id);
+        if ($user->avatar == 1){
+            return $user->avatar->getPath();
+        }
+    }
+});
+
 
 
 
