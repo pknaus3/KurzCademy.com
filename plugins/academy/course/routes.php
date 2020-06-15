@@ -14,9 +14,9 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 Route::post('api/check', function ($req) {
     $data = $req->input();
-
+    $user = JWTAuth::parseToken()->authenticate();
     $check = new CheckBox();
-    $check->user = Auth::getAuth()->id;
+    $check->user = $user->id;
     $check->step_id = $data['step_id'];
     $check->is_checked = 1;
     $check->save();
@@ -24,14 +24,14 @@ Route::post('api/check', function ($req) {
 
 Route::delete('api/uncheck/{id}', function ($checkboxID) {
     $checkbox = CheckBox::find($checkboxID);
-    $user = Auth::getUser();
+    $user = JWTAuth::parseToken()->authenticate();
     if ($user->id == $checkbox->user_id) {
         $checkbox->delete();
     }
 });
 
 Route::get('api/getCheck/{id}', function ($checkboxID) {
-    $user = Auth::getUser();
+    $user = JWTAuth::parseToken()->authenticate();
     $checkbox = CheckBox::findOrFail($checkboxID);
     if ($checkbox == 1) {
         if ($user->id == $checkbox->user_id) {
@@ -104,7 +104,7 @@ Route::post('/api/addFavorite', function (Request $req) {
     if ($user != null) {
         $favCourse = new FavoriteCourses();
         $favCourse->course_id = $data['course_id'];
-        $favCourse->user_id = $user->id();
+        $favCourse->user_id = $user->id;
         $favCourse->save();
     }
 });
