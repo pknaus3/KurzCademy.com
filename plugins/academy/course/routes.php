@@ -162,7 +162,7 @@ Route::get('api/favoritesCourses', function () {
     }
 });
 
-Route::post('api/post/avatar', function (Request $avatar){
+Route::post('api/user/avatar', function (Request $avatar){
     $user = JWTAuth::parseToken()->authenticate();
     if ($user != null){
         continue;
