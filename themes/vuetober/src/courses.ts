@@ -112,7 +112,7 @@ export async function setStepChecked(stepId: string, checked: boolean) {
                 step_id: stepId
             }, createAuthHeaders())
         } else {
-            await axios.delete(`/api/uncheck/${stepId}`, createAuthHeaders())
+            await axios.post(`/api/uncheck/`, { step_id: stepId }, createAuthHeaders())
         }
     }
 }
