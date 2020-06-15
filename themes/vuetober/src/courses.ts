@@ -63,7 +63,7 @@ export async function getAllCourses(max: number = -1) {
 
 export async function getCourseFavourite(courseId: string) {
     if (userData.user == null) throw new Error("Tryed to get favourite state of a course with no user")
-    return (await axios.get<number>(`/api/favoritesCourses/${courseId}`), createAuthHeaders()).data == 1
+    return (await axios.get<number>(`/api/favoritesCourses/${courseId}`, createAuthHeaders())).data == 1
 }
 
 export async function setCourseFavourite(courseId: string, value: boolean) {
