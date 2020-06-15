@@ -164,6 +164,9 @@ Route::get('api/favoritesCourses', function () {
 
 Route::post('api/post/avatar', function (Request $avatar){
     $user = JWTAuth::parseToken()->authenticate();
+    if ($user != null){
+        continue;
+    }
     $user = User::find($user->id);
     if ($avatar != null){
         $user->avatar = $avatar->file();
@@ -172,7 +175,6 @@ Route::post('api/post/avatar', function (Request $avatar){
         $user->avatar->delete();
         $user->save();
     }
-
 });
 
 
