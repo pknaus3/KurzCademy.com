@@ -19,13 +19,18 @@
 								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 								allowfullscreen
 							></iframe>
+							<!-- Extra videos -->
 							<div class="videos-container">
 								<div v-for="video in videos" :key="video.id">
-									<img
-										:src="`https://img.youtube.com/vi/${video.link}/sddefault.jpg`"
-										class="extra-video"
-										@click="currVideoURL = video.link"
-									/>
+									<div class="extra-video" @click="currVideoURL = video.link">
+										<img :src="`https://img.youtube.com/vi/${video.link}/sddefault.jpg`" />
+										<div class="extra-video-author d-flex flex-row">
+											<!-- Avatar -->
+											<b-avatar size="25px" :src="video.user.avatar.path"></b-avatar>
+											<!-- User name -->
+											<div class="font-weight-bold ml-2 text-white">{{ video.user.name }}</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -192,16 +197,32 @@
 	}
 
 	.extra-video {
-		margin: 4px;
+		margin-bottom: 4px;
 		height: 140px;
 		width: 248px;
-		object-fit: cover;
 		transform: scale(1);
 		transition: transform 0.1s ease-in-out;
 	}
 
 	.extra-video:hover {
-		transform: scale(1.1);
+		transform: scale(1.02);
+	}
+
+	.extra-video > img {
+		object-fit: cover;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.extra-video-author {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 4px;
+		background-color: rgba(0, 0, 0, 0.75);
 	}
 
 	.document {
@@ -259,7 +280,7 @@
 	import markdownit from "markdown-it"
 	// @ts-ignore
 	import hljs from "highlight.js"
-	import { userData } from '../user'
+	import { userData, IUserData } from '../user'
 
 	let boostrapCSS = ""
 
@@ -452,13 +473,13 @@
 		}
 
 		async reloadVideos() {
+			this.videos = []
 			this.videos = await getStepVideos(this.stepId.toString())
 		}
 
 		@vueProp.Watch("stepId")
 		onStepIdChanged() {
 			this.step = null
-			this.videos = []
 			this.reloadStep()
 			this.reloadComments()
 			this.reloadVideos()

@@ -43,6 +43,7 @@ export interface IStepVideo {
     link: string
     user_id: number
     step_id: number
+    user: IUserData
 }
 
 export async function getStepById(id: string) {
@@ -128,19 +129,23 @@ export async function getStepVideos(stepId: string) {
     return [
         {
             id: 0,
-            link: "Q1SsWm9IlpM"
+            link: "Q1SsWm9IlpM",
+            user: userData.user
         },
         {
             id: 1,
-            link: "bm0S4cn_rfw"
+            link: "bm0S4cn_rfw",
+            user: userData.user
         },
         {
             id: 2,
-            link: "ofCooIkIwvQ"
+            link: "ofCooIkIwvQ",
+            user: userData.user
         },
         {
             id: 3,
-            link: "nLCAvIr9rWo"
+            link: "nLCAvIr9rWo",
+            user: userData.user
         }
     ] as IStepVideo[]
     let videos = (await axios.get<IStepVideo[]>(`/api/getVideos`)).data
