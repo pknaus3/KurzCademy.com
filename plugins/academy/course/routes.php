@@ -191,14 +191,16 @@ Route::get('api/user/getAvatar', function(){
 
 Route::post('api/getVideos', function (Request $stepId){
     $data = $stepId->input();
-    $videos = Video::where('step_id',$data['step_id'])->all();
+    $videos = Video::where('step_id', $data['step_id'])->get();
 
-
-
-    foreach ($videos as $video){
-        array_push($videoss, $video);
+    foreach ($videos as $video) {
+        $video->user = User::find($video->user_id);
+        if (isset($video->user->avatar)) {
+            $video->user->avatarPath = $video->user->avatar->getPath();
+        }
     }
-    return $videoss;
+
+    return $videos;
 });
 
 

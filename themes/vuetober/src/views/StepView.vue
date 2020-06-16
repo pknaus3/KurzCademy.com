@@ -8,15 +8,53 @@
 						<div v-html="step.why"></div>
 					</div>
 					<div id="guide">
-						<iframe
-							v-if="step.video_link"
-							:src="`https://www.youtube.com/embed/${step.video_link}`"
-							class="video mb-3"
-							id="video"
-							frameborder="0"
-							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen
-						></iframe>
+						<!-- Video -->
+						<div class="videos-top">
+							<iframe
+								v-if="currVideoURL"
+								:src="`https://www.youtube.com/embed/${currVideoURL}`"
+								class="video mb-3"
+								id="video"
+								frameborder="0"
+								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+								allowfullscreen
+							></iframe>
+							<!-- Extra videos -->
+							<div class="videos-container">
+								<transition name="shrink">
+									<b-btn
+										variant="outline-dark"
+										class="border-0 w-100 mb-2 extra-video-back"
+										v-if="currVideoURL != step.video_link"
+										@click="currVideoURL = step.video_link"
+									>
+										<b-icon-chevron-left scale="0.75"></b-icon-chevron-left>
+										<span>Späť</span>
+									</b-btn>
+								</transition>
+								<div v-for="video in shownVideos" :key="video.id">
+									<div class="extra-video" @click="currVideoURL = video.link">
+										<img :src="`https://img.youtube.com/vi/${video.link}/sddefault.jpg`" />
+										<div class="extra-video-author d-flex flex-row">
+											<!-- Avatar -->
+											<b-avatar size="25px" :src="video.user.avatarPath"></b-avatar>
+											<!-- User name -->
+											<div class="font-weight-bold ml-2 text-white">{{ video.user.name }}</div>
+										</div>
+									</div>
+								</div>
+								<b-btn
+									variant="outline-dark"
+									class="border-0 w-100 mb-2 extra-video-back"
+									v-if="!showAll && videos.length > maxVideosView"
+									@click="showAll = true"
+								>
+									<b-icon-chevron-down scale="0.75"></b-icon-chevron-down>
+									<span>Ďalšie videá</span>
+								</b-btn>
+							</div>
+						</div>
+						<!-- Custom text -->
 						<iframe
 							v-if="step.custom_text"
 							class="document"
@@ -27,6 +65,7 @@
 							allowfullscreen
 							ref="customTextIframe"
 						></iframe>
+						<!-- Document -->
 						<iframe
 							v-if="step.docs_link"
 							src
@@ -165,6 +204,46 @@
 		height: calc(800px * 0.5625);
 	}
 
+	.videos-top {
+		position: relative;
+	}
+
+	.videos-container {
+		position: absolute;
+		top: 0;
+		left: 100%;
+		height: 100%;
+	}
+
+	.extra-video {
+		margin-bottom: 4px;
+		height: 140px;
+		width: 248px;
+		transform: scale(1);
+		transition: transform 0.1s ease-in-out;
+	}
+
+	.extra-video:hover {
+		transform: scale(1.02);
+	}
+
+	.extra-video > img {
+		object-fit: cover;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.extra-video-author {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 4px;
+		background-color: rgba(0, 0, 0, 0.75);
+	}
+
 	.document {
 		width: calc(100% - 10px);
 	}
@@ -215,12 +294,12 @@
 	import Vue from 'vue'
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
-	import { IStep, getStepById, createComment, IComment, getAllStepComments, deleteComment } from '../courses'
+	import { IStep, getStepById, createComment, IComment, getAllStepComments, deleteComment, IStepVideo, getStepVideos } from '../courses'
 	// @ts-ignore
 	import markdownit from "markdown-it"
 	// @ts-ignore
 	import hljs from "highlight.js"
-	import { userData } from '../user'
+	import { userData, IUserData } from '../user'
 
 	let boostrapCSS = ""
 
@@ -232,6 +311,8 @@
 		readonly prevStep!: boolean
 		@vueProp.Prop({ type: Boolean, required: true })
 		readonly nextStep!: boolean
+		@vueProp.Prop({ type: Number, default: 4 })
+		readonly maxVideosView!: number
 
 		step = null as IStep | null
 		intervalId = -1
@@ -239,9 +320,14 @@
 		comments = [] as IComment[]
 		waitingComment = false
 		userData = userData
+		videos = [] as IStepVideo[]
+		currVideoURL = ""
+		showAll = false
 
 		mounted() {
 			this.reloadStep()
+			this.reloadComments()
+			this.reloadVideos()
 			this.intervalId = setInterval(() => {
 				if (this.$refs.customTextIframe) this.documentResize(this.$refs.customTextIframe as HTMLIFrameElement)
 				if (this.$refs.docsIframe) this.documentResize(this.$refs.docsIframe as HTMLIFrameElement)
@@ -259,7 +345,12 @@
 		}
 
 		async reloadStep() {
+			this.currVideoURL = ""
 			this.step = await getStepById(this.stepId)
+
+			if (this.step) {
+				this.currVideoURL = this.step.video_link
+			}
 
 			this.$nextTick(() => {
 				if (this.step) {
@@ -392,8 +483,6 @@
 					}
 				}
 			})
-
-			await this.reloadComments();
 		}
 
 		async reloadComments() {
@@ -405,10 +494,18 @@
 			})
 		}
 
+		async reloadVideos() {
+			this.videos = []
+			this.showAll = false
+			this.videos = await getStepVideos(this.stepId.toString())
+		}
+
 		@vueProp.Watch("stepId")
 		onStepIdChanged() {
 			this.step = null
 			this.reloadStep()
+			this.reloadComments()
+			this.reloadVideos()
 		}
 
 		sendComment() {
@@ -449,6 +546,14 @@
 				return `${commentCount} komentáre`
 			} else {
 				return `${commentCount} komentárov`
+			}
+		}
+
+		get shownVideos() {
+			if (this.videos.length > this.maxVideosView && !this.showAll) {
+				return this.videos.slice(0, this.maxVideosView)
+			} else {
+				return this.videos
 			}
 		}
 	}
