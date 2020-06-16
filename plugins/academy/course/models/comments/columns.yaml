@@ -14,8 +14,8 @@ columns:
         searchable: true
         relation: user
         select: name
-    course:
-        label: kurz
+    step:
+        label: Krok
         searchable: true
-        relation: course
-        select: name
+        relation: step
+        select: step_name
