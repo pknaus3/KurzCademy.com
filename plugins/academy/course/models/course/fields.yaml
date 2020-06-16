@@ -12,8 +12,8 @@ fields:
         label: 'náročnosť kurzu'
         type: dropdown
         options:
-            easy: Ľahká
-            medium: Stredná
+            easy: ľahká
+            medium: stredná
             hard: ťažká
         span: auto
     description:
