@@ -12,6 +12,6 @@ fields:
     user:
         label: používateľ
         type: relation
-    course:
-        label: kurz
+    step:
+        label: step
         type: relation
