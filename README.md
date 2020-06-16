@@ -2,14 +2,16 @@
 ## Ako to rozbehať
 
 1. Naclonovať repo
-> Všetky dalšie kroky treba spraviť vo wsl
+> Všetky dalšie kroky treba spraviť vo WSL (Ak máš Mac alebo linux tak v terminály)
 2. Rozbehať composer
 ```
 composer install
 ```
 3. Rozbehať october
 ```
-php artisan october:install
+touch storage/database.sqlite
+
+php artisan october:up
 ```
 4. Buildnúť Vue aplikáciu
 ```
@@ -29,4 +31,6 @@ cd ./themes/vuetober
 npm run serve
 ```
 > Aj php aj Vue musia bežať naraz!
+
+> V BE musíte zmeniť aktívnu tému na "Vuetober"
 3. Otvoriť v prehliadači [localhost:8000](http://localhost:8000)
