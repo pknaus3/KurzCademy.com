@@ -32,7 +32,7 @@
 										<span>Späť</span>
 									</b-btn>
 								</transition>
-								<div v-for="video in videos" :key="video.id">
+								<div v-for="video in shownVideos" :key="video.id">
 									<div class="extra-video" @click="currVideoURL = video.link">
 										<img :src="`https://img.youtube.com/vi/${video.link}/sddefault.jpg`" />
 										<div class="extra-video-author d-flex flex-row">
@@ -43,6 +43,15 @@
 										</div>
 									</div>
 								</div>
+								<b-btn
+									variant="outline-dark"
+									class="border-0 w-100 mb-2 extra-video-back"
+									v-if="!showAll && videos.length > maxVideosView"
+									@click="showAll = true"
+								>
+									<b-icon-chevron-down scale="0.75"></b-icon-chevron-down>
+									<span>Ďalšie videá</span>
+								</b-btn>
 							</div>
 						</div>
 						<!-- Custom text -->
@@ -302,6 +311,8 @@
 		readonly prevStep!: boolean
 		@vueProp.Prop({ type: Boolean, required: true })
 		readonly nextStep!: boolean
+		@vueProp.Prop({ type: Number, default: 4 })
+		readonly maxVideosView!: number
 
 		step = null as IStep | null
 		intervalId = -1
@@ -311,6 +322,7 @@
 		userData = userData
 		videos = [] as IStepVideo[]
 		currVideoURL = ""
+		showAll = false
 
 		mounted() {
 			this.reloadStep()
@@ -484,6 +496,7 @@
 
 		async reloadVideos() {
 			this.videos = []
+			this.showAll = false
 			this.videos = await getStepVideos(this.stepId.toString())
 		}
 
@@ -533,6 +546,14 @@
 				return `${commentCount} komentáre`
 			} else {
 				return `${commentCount} komentárov`
+			}
+		}
+
+		get shownVideos() {
+			if (this.videos.length > this.maxVideosView && !this.showAll) {
+				return this.videos.slice(0, this.maxVideosView)
+			} else {
+				return this.videos
 			}
 		}
 	}
