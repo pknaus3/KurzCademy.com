@@ -37,7 +37,7 @@
 										<img :src="`https://img.youtube.com/vi/${video.link}/sddefault.jpg`" />
 										<div class="extra-video-author d-flex flex-row">
 											<!-- Avatar -->
-											<b-avatar size="25px" :src="video.user.avatar.path"></b-avatar>
+											<b-avatar size="25px" :src="video.user.avatarPath"></b-avatar>
 											<!-- User name -->
 											<div class="font-weight-bold ml-2 text-white">{{ video.user.name }}</div>
 										</div>

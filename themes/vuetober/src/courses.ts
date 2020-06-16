@@ -126,48 +126,6 @@ export async function setStepChecked(stepId: string, checked: boolean) {
 }
 
 export async function getStepVideos(stepId: string) {
-    return [
-        {
-            id: 0,
-            link: "Q1SsWm9IlpM",
-            user: userData.user
-        },
-        {
-            id: 1,
-            link: "bm0S4cn_rfw",
-            user: userData.user
-        },
-        {
-            id: 2,
-            link: "ofCooIkIwvQ",
-            user: userData.user
-        },
-        {
-            id: 3,
-            link: "nLCAvIr9rWo",
-            user: userData.user
-        },
-        {
-            id: 4,
-            link: "Q1SsWm9IlpM",
-            user: userData.user
-        },
-        {
-            id: 5,
-            link: "bm0S4cn_rfw",
-            user: userData.user
-        },
-        {
-            id: 6,
-            link: "ofCooIkIwvQ",
-            user: userData.user
-        },
-        {
-            id: 7,
-            link: "nLCAvIr9rWo",
-            user: userData.user
-        }
-    ] as IStepVideo[]
-    let videos = (await axios.get<IStepVideo[]>(`/api/getVideos`)).data
+    let videos = (await axios.post<IStepVideo[]>(`/api/getVideos`, { step_id: stepId })).data
     return videos
 }
