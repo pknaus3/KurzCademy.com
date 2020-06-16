@@ -125,6 +125,13 @@ class Plugin extends PluginBase
                         'permissions' => ['academy.course.*'],
                         'order'       => 500,
                     ],
+                    'video' => [
+                        'label'       => 'Videa',
+                        'url'         => Backend::url('academy/course/Video'),
+                        'icon'        => 'icon-leaf',
+                        'permissions' => ['academy.course.*'],
+                        'order'       => 500,
+                    ]
                 ]
             ],
 
