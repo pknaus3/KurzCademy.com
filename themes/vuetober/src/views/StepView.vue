@@ -21,6 +21,17 @@
 							></iframe>
 							<!-- Extra videos -->
 							<div class="videos-container">
+								<transition name="shrink">
+									<b-btn
+										variant="outline-dark"
+										class="border-0 w-100 mb-2 extra-video-back"
+										v-if="currVideoURL != step.video_link"
+										@click="currVideoURL = step.video_link"
+									>
+										<b-icon-chevron-left scale="0.75"></b-icon-chevron-left>
+										<span>Späť</span>
+									</b-btn>
+								</transition>
 								<div v-for="video in videos" :key="video.id">
 									<div class="extra-video" @click="currVideoURL = video.link">
 										<img :src="`https://img.youtube.com/vi/${video.link}/sddefault.jpg`" />
@@ -193,7 +204,6 @@
 		top: 0;
 		left: 100%;
 		height: 100%;
-		width: 100px;
 	}
 
 	.extra-video {
