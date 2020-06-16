@@ -22,3 +22,6 @@
 1.0.7:
     - 'table for videos'
     - create_videos_table.php
+1.0.8:
+    - 'Updated table academy_course_comments'
+    - builder_table_update_academy_course_comments.php

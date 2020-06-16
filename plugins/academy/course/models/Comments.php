@@ -65,7 +65,7 @@ class Comments extends Model
     public $hasMany = [];
     public $belongsTo = [
         'user' => User::class,
-        'course' => Course::class
+        'step' => Step::class
     ];
     public $belongsToMany = [];
     public $morphTo = [];
