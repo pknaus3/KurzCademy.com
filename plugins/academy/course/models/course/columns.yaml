@@ -23,7 +23,7 @@ columns:
         relation: teacher
         select: name
     keywords:
-        label: klúčové slová
+        label: tagy
         type: text
         span: auto
 

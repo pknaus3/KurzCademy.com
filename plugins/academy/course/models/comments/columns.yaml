@@ -7,7 +7,7 @@ columns:
         label: ID
         searchable: true
     comment:
-        label: kurz
+        label: Kurz
         searchable: true
     user:
         label: Pužívaťeľ

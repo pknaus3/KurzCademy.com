@@ -33,6 +33,7 @@ fields:
         span: auto
     homework:
         label: Krok s úlohou?
+        disabled: true
         type: checkbox
         span: auto
 

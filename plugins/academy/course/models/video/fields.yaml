@@ -11,11 +11,11 @@ fields:
         disabled: false
         span: auto
     user:
-        label: Pouzivatel
+        label: Používateľ
         disabled: false
         type: relation
     step:
-        label: krok
+        label: Krok
         disable: false
         type: relation
         nameFrom: step_name

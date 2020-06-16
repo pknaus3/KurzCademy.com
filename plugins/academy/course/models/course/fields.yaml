@@ -9,7 +9,7 @@ fields:
         type: dropdown
         options: getPublisherOptions
     difficulty:
-        label: 'náročnosť kurzu'
+        label: 'Náročnosť kurzu'
         type: dropdown
         options:
             easy: ľahká
@@ -17,11 +17,11 @@ fields:
             hard: ťažká
         span: auto
     description:
-        label: 'popis kurzu'
+        label: 'Popis kurzu'
         type: richeditor
         span: auto
     teacher:
-        label: 'meno učiteľa'
+        label: 'Meno učiteľa'
         span: auto
         type: dropdown
         options: getteacherOptions
@@ -38,7 +38,7 @@ fields:
         imageHeight: '100'
         type: fileupload
     keywords:
-        label: 'klúčové slová'
+        label: 'Tagy'
         type: text
         span: auto
     coursecolor:

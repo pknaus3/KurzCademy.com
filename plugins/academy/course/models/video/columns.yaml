@@ -12,10 +12,10 @@ columns:
         relation: user
         select: name
     step:
-        label: krok_id
+        label: Krok
         relation: step
         searchable: true
         select: step_name
     link:
-        label: link na video
+        label: Link na video
         searchable: true

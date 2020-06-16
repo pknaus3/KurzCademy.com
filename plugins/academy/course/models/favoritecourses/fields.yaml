@@ -7,7 +7,7 @@ fields:
         label: ID
         disabled: true
     course:
-        label: course
+        label: Kurz
         type: relation
     user:
         label: Používateľ

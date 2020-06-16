@@ -10,8 +10,8 @@ fields:
         label: Komentár
         type: text
     user:
-        label: používateľ
+        label: Používateľ
         type: relation
     step:
-        label: step
+        label: Krok
         type: relation
