@@ -165,16 +165,14 @@ Route::get('api/favoritesCourses', function () {
 });
 
 Route::post('api/user/avatar', function (Request $avatar){
-    $data = $avatar->input();
     $user = JWTAuth::parseToken()->authenticate();
-    if ($user != null){
+    if ($user != null) {
         $user = User::find($user->id);
-        if ($avatar != null){
-            $user->avatar = $data->file();
+        if (Input::hasFile('avatar')) {
+            $user->avatar = Input::file('avatar');
             $user->save();
-        } elseif ($data['avatar'] == null) {
+        } else {
             $user->avatar->delete();
-            $user->save();
         }
     }
 });
@@ -183,10 +181,10 @@ Route::get('api/user/getAvatar', function(){
     $user = JWTAuth::parseToken()->authenticate();
     if ($user != null){
         $user = User::find($user->id);
-        if ($user->avatar == 1){
+        if ($user->avatar){
             return $user->avatar->getPath();
         } else {
-            return 0;
+            return "";
         }
     }
 });

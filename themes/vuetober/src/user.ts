@@ -39,13 +39,11 @@ export async function loadUserData() {
                 setToken((await axios.post<IAuthAPIResponse>(`/api/v1/auth/refresh`, {}, createAuthHeaders())).data.response.token)
                 setUserData((await axios.get<IAuthAPIResponse>(`/api/v1/auth/info`, createAuthHeaders())).data.response.user)
             } catch {
-                setUserData(null)
                 setToken(null)
+                setUserData(null)
             }
         }
     }
-
-
 }
 
 export function createAuthHeaders() {
@@ -78,21 +76,28 @@ export async function registerUser(fullName: string, email: string, password: st
         name: fullName
     })
     console.log("Registered user", response.data)
-    setUserData(response.data.response.user)
     setToken(response.data.response.token)
+    setUserData(response.data.response.user)
 }
 
 export async function updateUserAvatar(avatar: File) {
-    throw new Error("Updating user avatar not implemented yet")
+    if (userData.user == null) throw new Error("Cannot update user avatar with no user logged in")
+
+    let formData = new FormData()
+    formData.append("avatar", avatar)
+
+    await axios.post("/api/user/avatar", formData, createAuthHeaders())
+    await loadUserAvatar()
 }
 
 export async function deleteAvatar() {
-    throw new Error("Deleting user avatar not implemented yet")
+    await axios.post(`/api/user/avatar`, { avatar: null }, createAuthHeaders())
+    await loadUserAvatar()
 }
 
 export async function logout() {
-    setUserData(null)
     setToken(null)
+    setUserData(null)
 
     reevaluteRouteGuard()
 }
@@ -102,8 +107,8 @@ export async function login(login: string, password: string) {
         login: login,
         password: password
     })
-    setUserData(response.data.response.user)
     setToken(response.data.response.token)
+    setUserData(response.data.response.user)
 }
 
 function setUserData(user: IUserData | null) {
@@ -111,9 +116,17 @@ function setUserData(user: IUserData | null) {
 
     if (userData.user) {
         if (userData.user.avatar == null) {
-            userData.user.avatar = { path: "" }
+            Vue.set(userData.user, "avatar", { path: "" })
         }
+
+        loadUserAvatar()
     }
+}
+
+async function loadUserAvatar() {
+    if (userData.user == null) throw new Error("Tryied to load user avatar without a user")
+    let avatarPath = (await axios.get<string>(`/api/user/getAvatar`, createAuthHeaders())).data
+    userData.user.avatar.path = avatarPath.toString()
 }
 
 function setToken(token: string | null) {
