@@ -20,7 +20,7 @@
 							class="viewer-step-name"
 							:data-active="step.id.toString() == currStep"
 						>
-							<div data-v-5f358b1a class="custom-control custom-checkbox">
+							<div data-v-5f358b1a class="custom-control custom-checkbox" v-if="userData.user">
 								<input
 									type="checkbox"
 									autocomplete="off"
