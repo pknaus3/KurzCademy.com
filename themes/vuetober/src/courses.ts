@@ -38,6 +38,13 @@ export interface IComment {
     isOwner: boolean
 }
 
+export interface IStepVideo {
+    id: number
+    link: string
+    user_id: number
+    step_id: number
+}
+
 export async function getStepById(id: string) {
     let stepResponse = await axios.get<IStep>(`/api/step/${id}`)
     if (stepResponse.data.renderedDocsHtml == null) {
@@ -115,4 +122,27 @@ export async function setStepChecked(stepId: string, checked: boolean) {
             await axios.post(`/api/uncheck/`, { step_id: stepId }, createAuthHeaders())
         }
     }
+}
+
+export async function getStepVideos(stepId: string) {
+    return [
+        {
+            id: 0,
+            link: "Q1SsWm9IlpM"
+        },
+        {
+            id: 1,
+            link: "bm0S4cn_rfw"
+        },
+        {
+            id: 2,
+            link: "ofCooIkIwvQ"
+        },
+        {
+            id: 3,
+            link: "nLCAvIr9rWo"
+        }
+    ] as IStepVideo[]
+    let videos = (await axios.get<IStepVideo[]>(`/api/getVideos`)).data
+    return videos
 }

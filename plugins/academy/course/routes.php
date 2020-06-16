@@ -193,12 +193,7 @@ Route::post('api/getVideos', function (Request $stepId){
     $data = $stepId->input();
     $videos = Video::where('step_id',$data['step_id'])->all();
 
-
-
-    foreach ($videos as $video){
-        array_push($videoss, $video);
-    }
-    return $videoss;
+    return $videos;
 });
 
 

@@ -8,15 +8,28 @@
 						<div v-html="step.why"></div>
 					</div>
 					<div id="guide">
-						<iframe
-							v-if="step.video_link"
-							:src="`https://www.youtube.com/embed/${step.video_link}`"
-							class="video mb-3"
-							id="video"
-							frameborder="0"
-							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen
-						></iframe>
+						<!-- Video -->
+						<div class="videos-top">
+							<iframe
+								v-if="currVideoURL"
+								:src="`https://www.youtube.com/embed/${currVideoURL}`"
+								class="video mb-3"
+								id="video"
+								frameborder="0"
+								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+								allowfullscreen
+							></iframe>
+							<div class="videos-container">
+								<div v-for="video in videos" :key="video.id">
+									<img
+										:src="`https://img.youtube.com/vi/${video.link}/sddefault.jpg`"
+										class="extra-video"
+										@click="currVideoURL = video.link"
+									/>
+								</div>
+							</div>
+						</div>
+						<!-- Custom text -->
 						<iframe
 							v-if="step.custom_text"
 							class="document"
@@ -27,6 +40,7 @@
 							allowfullscreen
 							ref="customTextIframe"
 						></iframe>
+						<!-- Document -->
 						<iframe
 							v-if="step.docs_link"
 							src
@@ -165,6 +179,31 @@
 		height: calc(800px * 0.5625);
 	}
 
+	.videos-top {
+		position: relative;
+	}
+
+	.videos-container {
+		position: absolute;
+		top: 0;
+		left: 100%;
+		height: 100%;
+		width: 100px;
+	}
+
+	.extra-video {
+		margin: 4px;
+		height: 140px;
+		width: 248px;
+		object-fit: cover;
+		transform: scale(1);
+		transition: transform 0.1s ease-in-out;
+	}
+
+	.extra-video:hover {
+		transform: scale(1.1);
+	}
+
 	.document {
 		width: calc(100% - 10px);
 	}
@@ -215,7 +254,7 @@
 	import Vue from 'vue'
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
-	import { IStep, getStepById, createComment, IComment, getAllStepComments, deleteComment } from '../courses'
+	import { IStep, getStepById, createComment, IComment, getAllStepComments, deleteComment, IStepVideo, getStepVideos } from '../courses'
 	// @ts-ignore
 	import markdownit from "markdown-it"
 	// @ts-ignore
@@ -239,9 +278,13 @@
 		comments = [] as IComment[]
 		waitingComment = false
 		userData = userData
+		videos = [] as IStepVideo[]
+		currVideoURL = ""
 
 		mounted() {
 			this.reloadStep()
+			this.reloadComments()
+			this.reloadVideos()
 			this.intervalId = setInterval(() => {
 				if (this.$refs.customTextIframe) this.documentResize(this.$refs.customTextIframe as HTMLIFrameElement)
 				if (this.$refs.docsIframe) this.documentResize(this.$refs.docsIframe as HTMLIFrameElement)
@@ -259,7 +302,12 @@
 		}
 
 		async reloadStep() {
+			this.currVideoURL = ""
 			this.step = await getStepById(this.stepId)
+
+			if (this.step) {
+				this.currVideoURL = this.step.video_link
+			}
 
 			this.$nextTick(() => {
 				if (this.step) {
@@ -392,8 +440,6 @@
 					}
 				}
 			})
-
-			await this.reloadComments();
 		}
 
 		async reloadComments() {
@@ -405,10 +451,17 @@
 			})
 		}
 
+		async reloadVideos() {
+			this.videos = await getStepVideos(this.stepId.toString())
+		}
+
 		@vueProp.Watch("stepId")
 		onStepIdChanged() {
 			this.step = null
+			this.videos = []
 			this.reloadStep()
+			this.reloadComments()
+			this.reloadVideos()
 		}
 
 		sendComment() {
