@@ -65,7 +65,7 @@ class Video extends Model
     public $hasMany = [];
     public $belongsTo = [
         'user' => User::class,
-        'step' => Step::class
+        'step' => ['Academy\Course\Models\step']
     ];
     public $belongsToMany = [];
     public $morphTo = [];

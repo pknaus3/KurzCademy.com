@@ -1,0 +1,19 @@
+steps:
+    label: steps
+    manage:
+        form: $/academy/course/models/step/fields.yaml
+        list: $/academy/course/models/step/columns.yaml
+    view:
+        list: $/academy/course/models/step/columns.yaml
+        recordUrl: academy/course/step/update/:id
+        toolbarButtons: create|delete
+
+favoritecourses:
+    label: favoritecourses
+    manage:
+        form: $/academy/course/models/favoritecourses/fields.yaml
+        list: $/academy/course/models/favoritecourses/columns.yaml
+    view:
+        list: $/academy/course/models/favoritecourses/columns.yaml
+#        recordUrl: academy/course/favoritecourses/update/:id
+        toolbarButtons: create|delete

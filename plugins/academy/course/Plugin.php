@@ -84,58 +84,12 @@ class Plugin extends PluginBase
     {
         return [
             'course' => [
-                'label'       => 'Kurz',
+                'label'       => 'Courses',
                 'url'         => Backend::url('academy/course/course'),
                 'icon'        => 'icon-leaf',
                 'permissions' => ['academy.course.*'],
                 'order'       => 500,
-                'sideMenu'     => [
-                    'course' => [
-                        'label'       => 'Kurz',
-                        'url'         => Backend::url('academy/course/course'),
-                        'icon'        => 'icon-leaf',
-                        'permissions' => ['academy.course.*'],
-                        'order'       => 500,
-                        ],
-                    'step' => [
-                        'label'       => 'Krok',
-                        'url'         => Backend::url('academy/course/step'),
-                        'icon'        => 'icon-leaf',
-                        'permissions' => ['academy.course.*'],
-                        'order'       => 500,
-                    ],
-                    'checkbox' => [
-                        'label'       => 'Zaškrtnuté kroky',
-                        'url'         => Backend::url('academy/course/checkbox'),
-                        'icon'        => 'icon-leaf',
-                        'permissions' => ['academy.course.*'],
-                        'order'       => 500,
-                    ],
-                    'comments' => [
-                        'label'       => 'Komentáre',
-                        'url'         => Backend::url('academy/course/comments'),
-                        'icon'        => 'icon-leaf',
-                        'permissions' => ['academy.course.*'],
-                        'order'       => 500,
-                    ],
-                    'favorites' => [
-                        'label'       => 'Obľubené kurzy',
-                        'url'         => Backend::url('academy/course/FavoriteCourses'),
-                        'icon'        => 'icon-leaf',
-                        'permissions' => ['academy.course.*'],
-                        'order'       => 500,
-                    ],
-                    'video' => [
-                        'label'       => 'Videa',
-                        'url'         => Backend::url('academy/course/Video'),
-                        'icon'        => 'icon-leaf',
-                        'permissions' => ['academy.course.*'],
-                        'order'       => 500,
-                    ]
-                ]
             ],
-
-
         ];
     }
 }

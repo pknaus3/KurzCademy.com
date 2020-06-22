@@ -1,39 +1,52 @@
 # ===================================
 #  Form Field Definitions
 # ===================================
-
-fields:
-    course:
-        label: Vyber kurz
-        type: relation
-        span: auto
-    step_name:
-        label: Názov kroku
-        type: text
-        span: auto
-        attributes:
-            maxlength: '25'
-    why:
-        label: Úvodné slovo
-        type: richeditor
-    video_link:
-        label: Link na video
-        type: text
-        span: auto
-    docs_link:
-        label: Link na google docs
-        type: text
-        span: auto
-    custom_text:
-        label: Spravte si vlastný štýl kroku
-        type: richeditor
-    step_position:
-        label: Pozícia kroku
-        type: number
-        span: auto
-    homework:
-        label: Krok s úlohou?
-        disabled: true
-        type: checkbox
-        span: auto
-
+tabs:
+    fields:
+        course:
+            tab: Step
+            label: Select course
+            type: relation
+            span: auto
+        step_name:
+            tab: Step
+            label: Step name
+            type: text
+            span: auto
+            attributes:
+                maxlength: '25'
+        why:
+            tab: Step
+            label: why
+            type: richeditor
+        video_link:
+            tab: Step
+            label: Youtube video ID
+            type: text
+            span: auto
+        docs_link:
+            tab: Step
+            label: Google docs link
+            type: text
+            span: auto
+        custom_text:
+            tab: Step
+            label: guide
+            type: richeditor
+        step_position:
+            tab: Step
+            label: Step position
+            type: number
+            span: auto
+        checkboxes:
+            tab: Checkboxes
+            type: partial
+            path: $/academy/course/controllers/step/checkboxes/_relation.htm
+        comments:
+            tab: Comments
+            type: partial
+            path: $/academy/course/controllers/step/comments/_relation.htm
+        videos:
+            tab: Videos
+            type: partial
+            path: $/academy/course/controllers/step/videos/_relation.htm

@@ -52,36 +52,6 @@ class Course extends Model
      */
     protected $hidden = [];
 
-    public function getNameOptions($scopes = null)
-    {
-        $userId - Auth::getUser();
-
-            return Course::where($userId, 'id')->get();
-
-    }
-
-    public function getTeacherOptions()
-    {
-        $beUser = BackendAuth::getUser();
-        $user = Auth::getUser();
-        if ($beUser->hasAccess('academy.course.edit_courses')) {
-            return User::all()->pluck('name', 'id');
-        }else {
-            return [$user->name, $user->id];
-        }
-    }
-
-    public function getPublisherOptions()
-    {
-        $beUser = BackendAuth::getUser();
-        $user = Auth::getUser();
-        if ($beUser->hasAccess('academy.course.edit_courses')) {
-            return User::all()->pluck('name', 'id');
-        }else {
-            return [$user->name, $user->id];
-        }
-    }
-
     /**
      * @var array Attributes to be cast to Argon (Carbon) instances
      */
@@ -95,11 +65,11 @@ class Course extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        'step' => Step::class,
+        'steps' => ['Academy\Course\Models\Step'],
+        'favoritecourses' => ['Academy\Course\Models\favoritecourses']
     ];
     public $belongsTo = [
-        'publisher' => User::class,
-        'teacher' => User::class
+        'author' => User::class,
     ];
     public $belongsToMany = [];
     public $morphTo = [];
@@ -108,7 +78,5 @@ class Course extends Model
     public $attachOne = [
         'courseThumb' => 'System\Models\File'
     ];
-    public $attachMany = [
-        'homeworks' => 'System\Models\File'
-    ];
+    public $attachMany = [];
 }

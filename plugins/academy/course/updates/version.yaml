@@ -3,25 +3,18 @@
     - 'Create tables for courses and steps'
     - create_steps_table.php
     - create_courses_table.php
-    - seed.php
 1.0.2:
-    - CheckBoxes
+    - 'CheckBoxes'
     - create_check_boxes_table.php
 1.0.3:
-    - 'Updated table academy_course_courses'
-    - builder_table_update_academy_course_courses.php
-1.0.4:
-    - 'Added color column'
-    - builder_table_update_academy_course_courses_2.php
-1.0.5:
     - 'Table for comments'
     - create_comments_table.php
-1.0.6:
+1.0.4:
     - 'Table for Favorite courses'
     - create_favorite_courses_table.php
-1.0.7:
+1.0.5:
     - 'table for videos'
     - create_videos_table.php
-1.0.8:
+1.0.6:
     - 'Updated table academy_course_comments'
     - builder_table_update_academy_course_comments.php

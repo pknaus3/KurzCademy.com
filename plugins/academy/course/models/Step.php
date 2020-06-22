@@ -63,10 +63,12 @@ class Step extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        'checkboxes' => CheckBox::class,
+        'checkboxes' => ['Academy\Course\Models\checkbox'],
+        'videos' => ['Academy\Course\Models\Video'],
+        'comments' => ['Academy\Course\Models\Comments']
     ];
     public $belongsTo = [
-        'course' => Course::class,
+        'course' => ['Academy\Course\Models\Course'],
     ];
     public $belongsToMany = [];
     public $morphTo = [];

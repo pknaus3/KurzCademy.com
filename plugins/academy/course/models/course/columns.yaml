@@ -12,15 +12,10 @@ columns:
     difficulty:
         label: Náročnosť kurzu
         searchable: true
-    publisher:
+    author:
         label: Autor kurzu
         searchable: true
-        relation: publisher
-        select: name
-    teacher:
-        label: Učiteľ
-        searchable: true
-        relation: teacher
+        relation: author
         select: name
     keywords:
         label: tagy

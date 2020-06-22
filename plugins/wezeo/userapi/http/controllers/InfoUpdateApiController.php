@@ -10,9 +10,20 @@ class InfoUpdateApiController extends UserApiController
     {
         $response = [];
 
+        $data = post();
         $user = JWTAuth::user();
 
-        $user->fill(post());
+        $user->fill($data);
+
+        if (array_has($data, 'avatar') && empty($data['avatar']) && $user->avatar) {
+            $user->avatar->delete();
+            $user->avatar = null;
+        }
+
+        if (request()->hasFile('avatar')) {
+            $user->avatar = request()->file('avatar');
+        }
+
         $user->save();
 
         Event::fire('wezeo.userapi.beforeReturnUser', [$user]);

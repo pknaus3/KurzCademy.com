@@ -65,7 +65,7 @@ class FavoriteCourses extends Model
     public $hasMany = [];
     public $belongsTo = [
         'user' => User::class,
-        'course' => Course::class
+        'course' => ['Academy\Course\Models\Course']
     ];
     public $belongsToMany = [];
     public $morphTo = [];

@@ -10,13 +10,14 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('academy_course_courses', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->increments('id')->index();
             $table->timestamps();
-            $table->string('name');
-            $table->integer('publisher_id');
-            $table->string('difficulty');
-            $table->string('description');
-            $table->integer('teacher_id');
+            $table->string('name')->index();
+            $table->integer('author_id')->index();
+            $table->string('difficulty')->nullable();
+            $table->string('description')->nullable();
+            $table->string('tags')->nullable();
+            $table->string('coursecolor')->nullable();
         });
     }
 
