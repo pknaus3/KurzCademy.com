@@ -11,7 +11,7 @@
 				:img-src="course.thumbPath"
 				img-top
 				img-height="50%"
-				class="course-card d-inline-flex m-3"
+				class="course-card d-inline-flex m-3 overflow-hidden"
 				:style="`background-color: ${course.coursecolor}`"
 			>
 				<b-card-text v-html="course.description"></b-card-text>
