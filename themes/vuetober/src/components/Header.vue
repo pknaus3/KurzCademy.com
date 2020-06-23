@@ -29,14 +29,10 @@
 		</b-btn>
 		<!-- Login and register -->
 		<template v-else>
+			<b-btn variant="outline-dark" :to="makeRedirectPath(`/login`)" class="user-button">Prihlásiť</b-btn>
 			<b-btn
 				variant="outline-dark"
-				:to="{ path: '/login', query: { redirect: $route.fullPath } }"
-				class="user-button"
-			>Prihlásiť</b-btn>
-			<b-btn
-				variant="outline-dark"
-				:to="{ path: '/register', query: { redirect: $route.fullPath } }"
+				:to="makeRedirectPath(`/register`)"
 				class="user-button ml-2"
 			>Registrovať</b-btn>
 		</template>
@@ -86,6 +82,7 @@
 	import Component from "vue-class-component"
 	import * as vueProp from "vue-property-decorator"
 	import { userData, logout } from "../user"
+	import { RawLocation } from 'vue-router'
 
 	@Component
 	export default class Header extends Vue {
@@ -93,6 +90,13 @@
 
 		logout() {
 			logout()
+		}
+
+		makeRedirectPath(to: string) {
+			return {
+				path: to,
+				query: { redirect: this.$route.query.redirect ?? this.$route.fullPath }
+			} as RawLocation
 		}
 	}
 </script>
