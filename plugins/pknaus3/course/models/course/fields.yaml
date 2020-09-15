@@ -42,11 +42,8 @@ tabs:
             span: auto
             type: colorpicker
             tab: Course
-        steps:
-            tab: steps
+        topics:
+            tab: topics
             type: partial
-            path: $/academy/course/controllers/course/steps/_relation.htm
-        favoritecourses:
-            tab: Favorite Courses
-            type: partial
-            path: $/academy/course/controllers/course/favoritecourses/_relation.htm
+            path: $/pknaus3/course/controllers/courses/topics/_relation.htm
+

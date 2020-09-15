@@ -1,0 +1,16 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    topic:
+        label: Názov kroku
+        searchable: true
+        relation: topic
+        select: name
+    video_link:
+        label: Link na video
+        searchable: true

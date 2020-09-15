@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Topic
+
+# Model Form Field configuration
+form: $/pknaus3/topic/models/topic/fields.yaml
+
+# Model Class name
+modelClass: Pknaus3\Topic\Models\Topic
+
+# Default redirect location
+defaultRedirect: pknaus3/topic/topics
+
+# Create page
+create:
+    title: Create Topic
+    redirect: pknaus3/topic/topics/update/:id
+    redirectClose: pknaus3/topic/topics
+
+# Update page
+update:
+    title: Edit Topic
+    redirect: pknaus3/topic/topics
+    redirectClose: pknaus3/topic/topics
+
+# Preview page
+preview:
+    title: Preview Topic

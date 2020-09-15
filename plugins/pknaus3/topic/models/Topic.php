@@ -1,20 +1,19 @@
-<?php namespace Pknaus3\Course\Models;
+<?php namespace Pknaus3\Topic\Models;
 
 use Model;
-use Pknaus3\Topic\Models\Topic;
-use RainLab\User\Models\User;
+use Pknaus3\Course\Models\Course;
 
 /**
- * course Model
+ * topic Model
  */
-class Course extends Model
+class Topic extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'pknaus3_course_courses';
+    public $table = 'pknaus3_topic_topics';
 
     /**
      * @var array Guarded fields
@@ -64,18 +63,17 @@ class Course extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        'topics' => Topic::class,
-//        'favoritecourses' => ['Academy\Course\Models\favoritecourses']
+//        'checkboxes' => ['Academy\Course\Models\checkbox'],
+//        'videos' => ['Academy\Course\Models\Video'],
+//        'comments' => ['Academy\Course\Models\Comments']
     ];
     public $belongsTo = [
-        'user' => User::class,
+        'course' => Course::class,
     ];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
-    public $attachOne = [
-        'courseThumb' => 'System\Models\File'
-    ];
+    public $attachOne = [];
     public $attachMany = [];
 }

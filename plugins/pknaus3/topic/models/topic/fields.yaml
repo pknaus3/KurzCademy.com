@@ -1,0 +1,44 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+tabs:
+    fields:
+        course:
+            tab: Step
+            label: Select course
+            type: relation
+            span: auto
+        step_name:
+            tab: Step
+            label: Step name
+            type: text
+            span: auto
+            attributes:
+                maxlength: '25'
+        why:
+            tab: Step
+            label: why
+            type: richeditor
+        video_link:
+            tab: Step
+            label: Youtube video ID
+            type: text
+            span: auto
+        docs_link:
+            tab: Step
+            label: Google docs link
+            type: text
+            span: auto
+        custom_text:
+            tab: Step
+            label: guide
+            type: richeditor
+        step_position:
+            tab: Step
+            label: Step position
+            type: number
+            span: auto
+#        videos:
+#            tab: Videos
+#            type: partial
+#            path: $/academy/course/controllers/step/videos/_relation.htm

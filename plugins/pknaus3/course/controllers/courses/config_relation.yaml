@@ -1,19 +1,9 @@
-steps:
-    label: steps
+topics:
+    label: topics
     manage:
-        form: $/academy/course/models/step/fields.yaml
-        list: $/academy/course/models/step/columns.yaml
+        form: $/pknaus3/topic/models/topic/fields.yaml
+        list: $/pknaus3/topic/models/topic/columns.yaml
     view:
-        list: $/academy/course/models/step/columns.yaml
-        recordUrl: academy/course/step/update/:id
-        toolbarButtons: create|delete
-
-favoritecourses:
-    label: favoritecourses
-    manage:
-        form: $/academy/course/models/favoritecourses/fields.yaml
-        list: $/academy/course/models/favoritecourses/columns.yaml
-    view:
-        list: $/academy/course/models/favoritecourses/columns.yaml
-#        recordUrl: academy/course/favoritecourses/update/:id
+        list: $/pknaus3/topic/models/topic/columns.yaml
+        recordUrl: pknaus3/topic/topic/update/:id
         toolbarButtons: create|delete

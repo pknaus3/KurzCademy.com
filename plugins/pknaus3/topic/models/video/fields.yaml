@@ -1,0 +1,20 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    topic:
+        label: Krok v kurze
+        required: true
+        span: auto
+        disabled: false
+        type: relation
+    video_link:
+        label: Embed link na video
+        type: text
+        disabled: false
+        span: auto
+        required: true

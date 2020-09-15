@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Video
+
+# Model Form Field configuration
+form: $/pknaus3/topic/models/video/fields.yaml
+
+# Model Class name
+modelClass: Pknaus3\Topic\Models\Video
+
+# Default redirect location
+defaultRedirect: pknaus3/topic/videos
+
+# Create page
+create:
+    title: Create Video
+    redirect: pknaus3/topic/videos/update/:id
+    redirectClose: pknaus3/topic/videos
+
+# Update page
+update:
+    title: Edit Video
+    redirect: pknaus3/topic/videos
+    redirectClose: pknaus3/topic/videos
+
+# Preview page
+preview:
+    title: Preview Video

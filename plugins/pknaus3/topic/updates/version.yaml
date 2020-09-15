@@ -1,0 +1,4 @@
+1.0.1:
+    - First version of topic
+    - 202009151152_create_topics_table.php
+    - 202009151238_create_videos_table.php
