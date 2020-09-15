@@ -6,3 +6,13 @@ fields:
     id:
         label: ID
         disabled: true
+    user:
+        label: Pouzivatel
+        type: relation
+        required: true
+        span: auto
+    course:
+        label: Kurz
+        type: relation
+        required: true
+        span: auto

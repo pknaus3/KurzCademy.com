@@ -6,3 +6,13 @@ columns:
     id:
         label: ID
         searchable: true
+    course:
+        label: Názov kurzu
+        searchable: true
+        relation: course
+        select: name
+    user:
+        label: Názov kurzu
+        searchable: true
+        relation: user
+        select: name

@@ -13,6 +13,7 @@ class CreateCheckboxesTable extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('topic_id')->index();
+            $table->boolean('is_checked')->index()->default(false);
             $table->timestamps();
         });
     }

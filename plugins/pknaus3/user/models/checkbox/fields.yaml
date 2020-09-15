@@ -6,4 +6,19 @@ fields:
     id:
         label: ID
         disabled: true
-    
+    user:
+        label: Pouzivatel
+        type: relation
+        required: true
+        span: auto
+    topic:
+        label: Krok
+        type: relation
+        required: true
+        span: auto
+    is_checked:
+        label: Je zaskrtnute
+        type: switch
+        required: true
+        disabled: true
+
