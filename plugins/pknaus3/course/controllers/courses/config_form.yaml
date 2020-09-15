@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Course
+
+# Model Form Field configuration
+form: $/pknaus3/course/models/course/fields.yaml
+
+# Model Class name
+modelClass: Pknaus3\Course\Models\Course
+
+# Default redirect location
+defaultRedirect: pknaus3/course/courses
+
+# Create page
+create:
+    title: Create Course
+    redirect: pknaus3/course/courses/update/:id
+    redirectClose: pknaus3/course/courses
+
+# Update page
+update:
+    title: Edit Course
+    redirect: pknaus3/course/courses
+    redirectClose: pknaus3/course/courses
+
+# Preview page
+preview:
+    title: Preview Course

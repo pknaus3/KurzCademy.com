@@ -1,0 +1,52 @@
+fields:
+    name:
+        label: 'Názov kurzu'
+        span: auto
+        type: text
+tabs:
+    fields:
+        difficulty:
+            label: 'Náročnosť kurzu'
+            type: dropdown
+            options:
+                ľahká: ľahká
+                stredná: stredná
+                ťažká: ťažká
+            span: auto
+            tab: Course
+        description:
+            label: 'Popis kurzu'
+            type: richeditor
+            span: auto
+            tab: Course
+        courseThumb:
+            label: 'Náhľad kurzu'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            required: 1
+            imageWidth: '100'
+            imageHeight: '100'
+            type: fileupload
+            tab: Course
+        tags:
+            label: Tagy
+            type: text
+            span: auto
+            tab: Course
+        coursecolor:
+            label: 'Farba kurzu'
+            span: auto
+            type: colorpicker
+            tab: Course
+        steps:
+            tab: steps
+            type: partial
+            path: $/academy/course/controllers/course/steps/_relation.htm
+        favoritecourses:
+            tab: Favorite Courses
+            type: partial
+            path: $/academy/course/controllers/course/favoritecourses/_relation.htm
