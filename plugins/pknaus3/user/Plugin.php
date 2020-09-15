@@ -81,12 +81,24 @@ class Plugin extends PluginBase
      */
     public function registerNavigation()
     {
-        return []; // Remove this line to activate
-
         return [
-            'user' => [
-                'label'       => 'user',
-                'url'         => Backend::url('pknaus3/user/mycontroller'),
+            'checkbox' => [
+                'label'       => 'checkboxes',
+                'url'         => Backend::url('pknaus3/user/checkboxs'),
+                'icon'        => 'icon-leaf',
+                'permissions' => ['pknaus3.user.*'],
+                'order'       => 500,
+            ],
+            'comment' => [
+                'label'       => 'Comments',
+                'url'         => Backend::url('pknaus3/user/comments'),
+                'icon'        => 'icon-leaf',
+                'permissions' => ['pknaus3.user.*'],
+                'order'       => 500,
+            ],
+            'favoriteCourse' => [
+                'label'       => 'Favorite Courses',
+                'url'         => Backend::url('pknaus3/user/favoriteCourses'),
                 'icon'        => 'icon-leaf',
                 'permissions' => ['pknaus3.user.*'],
                 'order'       => 500,

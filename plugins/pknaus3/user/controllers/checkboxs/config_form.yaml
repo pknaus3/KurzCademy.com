@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Checkbox
+
+# Model Form Field configuration
+form: $/pknaus3/user/models/checkbox/fields.yaml
+
+# Model Class name
+modelClass: Pknaus3\User\Models\Checkbox
+
+# Default redirect location
+defaultRedirect: pknaus3/user/checkboxs
+
+# Create page
+create:
+    title: Create Checkbox
+    redirect: pknaus3/user/checkboxs/update/:id
+    redirectClose: pknaus3/user/checkboxs
+
+# Update page
+update:
+    title: Edit Checkbox
+    redirect: pknaus3/user/checkboxs
+    redirectClose: pknaus3/user/checkboxs
+
+# Preview page
+preview:
+    title: Preview Checkbox

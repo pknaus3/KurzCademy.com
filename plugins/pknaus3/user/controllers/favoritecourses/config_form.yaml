@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Favorite Course
+
+# Model Form Field configuration
+form: $/pknaus3/user/models/favoritecourse/fields.yaml
+
+# Model Class name
+modelClass: Pknaus3\User\Models\FavoriteCourse
+
+# Default redirect location
+defaultRedirect: pknaus3/user/favoritecourses
+
+# Create page
+create:
+    title: Create Favorite Course
+    redirect: pknaus3/user/favoritecourses/update/:id
+    redirectClose: pknaus3/user/favoritecourses
+
+# Update page
+update:
+    title: Edit Favorite Course
+    redirect: pknaus3/user/favoritecourses
+    redirectClose: pknaus3/user/favoritecourses
+
+# Preview page
+preview:
+    title: Preview Favorite Course

@@ -16,3 +16,8 @@ fields:
         type: relation
         required: true
         span: auto
+    text:
+        label: Text kommentara
+        type: richeditor
+        required: true
+        span: full

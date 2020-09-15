@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Comment
+
+# Model Form Field configuration
+form: $/pknaus3/user/models/comment/fields.yaml
+
+# Model Class name
+modelClass: Pknaus3\User\Models\Comment
+
+# Default redirect location
+defaultRedirect: pknaus3/user/comments
+
+# Create page
+create:
+    title: Create Comment
+    redirect: pknaus3/user/comments/update/:id
+    redirectClose: pknaus3/user/comments
+
+# Update page
+update:
+    title: Edit Comment
+    redirect: pknaus3/user/comments
+    redirectClose: pknaus3/user/comments
+
+# Preview page
+preview:
+    title: Preview Comment
