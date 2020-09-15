@@ -1,0 +1,5 @@
+1.0.1:
+    - First version of user
+    - 202009151252_create_checkboxes_table.php
+    - 202009151252_create_favorite_courses_table.php
+    - 202009151252_create_comments_table.php
